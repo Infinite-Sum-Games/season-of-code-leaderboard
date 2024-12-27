@@ -19,6 +19,13 @@ const UserCard = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [userData, setUserData] = useState<UserCardProps | null>(null);
 
+  const [timeLeft, setTimeLeft] = useState<{
+    days: number;
+    hours: number;
+    minutes: number;
+    seconds: number;
+  }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+
   const { data: session } = useSession();
   const getUserData = async () => {
     if (!session || !session.user) {
@@ -54,6 +61,30 @@ const UserCard = () => {
       setLoading(false);
     })();
   }, []);
+
+  useEffect(() => {
+      const targetDate = new Date("2025-02-14T00:00:00");
+  
+      const calculateTimeLeft = () => {
+        const now = new Date();
+        const difference = targetDate.getTime() - now.getTime();
+  
+        if (difference > 0) {
+          setTimeLeft({
+            days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+            hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+            minutes: Math.floor((difference / (1000 * 60)) % 60),
+            seconds: Math.floor((difference / 1000) % 60),
+          });
+        } else {
+          setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+        }
+      };
+  
+      const timer = setInterval(calculateTimeLeft, 1000);
+  
+      return () => clearInterval(timer);
+    }, []);
 
   if (loading) {
     return (
@@ -159,6 +190,38 @@ const UserCard = () => {
           </div>
         </Card>
       </BackgroundGradient>
+      <div className="mb-8 text-lg font-semibold">
+          <p className=" mb-2 text-sm font-light">Winter Of Code ends in</p>
+          <div className="flex items-center gap-4 text-center">
+            <div className="flex flex-col items-center justify-center bg-[#3ABEF9] text-[#070F2B] w-12 h-12 sm:w-16 sm:h-16 rounded-lg shadow-md">
+              <span className="text-xl sm:text-3xl font-bold">
+                {timeLeft.days}
+              </span>
+              <span className="text-xs sm:text-sm">Days</span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center bg-[#3ABEF9] text-[#070F2B] w-12 h-12 sm:w-16 sm:h-16 rounded-lg shadow-md">
+              <span className="text-xl sm:text-3xl font-bold">
+                {timeLeft.hours}
+              </span>
+              <span className="text-xs sm:text-sm">Hours</span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center bg-[#3ABEF9] text-[#070F2B] w-12 h-12 sm:w-16 sm:h-16 rounded-lg shadow-md">
+              <span className="text-xl sm:text-3xl font-bold">
+                {timeLeft.minutes}
+              </span>
+              <span className="text-xs sm:text-sm">Minutes</span>
+            </div>
+
+            <div className="flex flex-col items-center justify-center bg-[#3ABEF9] text-[#070F2B] w-12 h-12 sm:w-16 sm:h-16 rounded-lg shadow-md">
+              <span className="text-xl sm:text-3xl font-bold">
+                {timeLeft.seconds}
+              </span>
+              <span className="text-xs sm:text-sm">Seconds</span>
+            </div>
+          </div>
+        </div>
     </div>
   );
 };
