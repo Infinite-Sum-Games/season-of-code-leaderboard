@@ -53,11 +53,11 @@ const ProjectCard = (props: ProjectCardProps) => {
           {props.blurb}
         </CardDescription>
 
-        {/* <CardDescription className="text-1xl px-6 text-gray-300">
+        { <CardDescription className="text-1xl px-6 text-gray-300">
           Details coming soon 🎉
-        </CardDescription> */}
+        </CardDescription> }
 
-        {/* <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
+        { <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
           <p className="text-base text-white px-3">Maintainers : </p>
           {props.maintainer.map((maintainer, index) => (
             <a
@@ -76,7 +76,7 @@ const ProjectCard = (props: ProjectCardProps) => {
               />
             </a>
           ))}
-        </div> */}
+        </div> }
       </div>
     </Card>
   );
