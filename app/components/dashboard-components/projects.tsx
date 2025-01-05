@@ -10,7 +10,7 @@ const ProjectData = [
     blurb:
       "FC-TeamForge, the ultimate solution for effortlessly creating balanced football teams from a pool of real-life players. No more debates, no more uneven teams – just smooth, hassle-free team formation!",
     techstack: ["VueJS", "HTML", "CSS", "JavaScript"],
-    maintainer: ["Tharun Kumarr A", "Thanus Kumaar A"],
+    maintainer: ["TharunKumarrA", "Thanus-Kumaar"],
   },
   {
     name: "FC-TeamForge Server",
@@ -18,7 +18,7 @@ const ProjectData = [
     blurb:
       "The repository containing server code for FC-TeamForge.",
     techstack: ["JavaScript", "NodeJS", "Expressjs", "mysql"],
-    maintainer: ["Thanus Kumaar A"],
+    maintainer: ["Thanus-Kumaar"],
   },
   {
     name: "Winter of Code - Leaderboard",
@@ -33,7 +33,7 @@ const ProjectData = [
     blurb:
       "An innovative tool for visualizing and manipulating chemical molecules in 3D space using graph data structures. It features real-time updates, cycle detection, and molecular geometry analysis for educational and research purposes.",
     techstack: ["React", "MaterialUI", "Tailwind", "NodeJS", "Expressjs", "PlotlyJS"],
-    maintainer: ["Tharun Kumarr A"],
+    maintainer: ["TharunKumarrA"],
   },
   {
     name: "Quick Start Express",
