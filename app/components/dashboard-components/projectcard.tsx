@@ -57,7 +57,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           Details coming soon 🎉
         </CardDescription> */}
 
-        {/* <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
+        { <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
           <p className="text-base text-white px-3">Maintainers : </p>
           {props.maintainer.map((maintainer, index) => (
             <a
@@ -76,7 +76,7 @@ const ProjectCard = (props: ProjectCardProps) => {
               />
             </a>
           ))}
-        </div> */}
+        </div> }
       </div>
     </Card>
   );
