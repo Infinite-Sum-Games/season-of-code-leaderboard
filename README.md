@@ -28,6 +28,11 @@ Follow these steps to set up the project locally after cloning the repository:
 
 2. Create a copy of the `.env` file:
 
+> [!TIP]
+> Do setup the `NODE_ENVIRONMENT` variable to `development` so that the database 
+seeding can take place from `prisma/seed.ts`. You can add further records into 
+the seeds for testing purposes but do not commit it upstream.
+
 3. Set up the database:
    - Create a project in NeonDB.
    - Copy the connection string provided by NeonDB and paste it into the `DATABASE_URL` field in the `.env` file.
