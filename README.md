@@ -8,7 +8,7 @@ This repository contains the code-base to the LIVE leaderboard for ACM@Amrita Wi
 - Interestingly, you can run a 0.25vCPU Neon Serverless Postgres instance every month, absolutely free of cost (191 hours).
 - In order to interact with the database, we have written our schema in **Prisma**, which is an ORM that integrates easily with SQL and manages connection pooling by itself. It also allows us to write type-safe queries without the fear of common vulnerabilities like SQL injection.
 
-> **Note**
+> [!Note]
 > This repository does not have any `POST/` endpoint and only serves the leaderboard and individual profiles. Data mutations in the database take place through separate functions deployed on **Cloudflare Workers**. That repository has been kept private for security reasons.
 
 ### Prerequisites
