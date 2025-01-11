@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import { Card } from "../ui/card";
 import { GitPullRequest } from "lucide-react";
 

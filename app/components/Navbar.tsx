@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 // import { Github } from "lucide-react";
-import Image from "next/image";
+import Image from "next/legacy/image";
 
 const Navbar = () => {
   return (

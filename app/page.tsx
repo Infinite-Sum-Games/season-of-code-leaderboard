@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import Leaderboard from "./components/dashboard-components/leaderboard";
 import { Separator } from "@/app/components/ui/separator";
 import Usercard from "./components/dashboard-components/usercard";

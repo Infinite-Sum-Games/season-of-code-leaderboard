@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/image";
+import Image from "next/legacy/image";
 import React, { useState, useEffect } from "react";
 import { Github } from "lucide-react";
 import { signIn } from "next-auth/react";
