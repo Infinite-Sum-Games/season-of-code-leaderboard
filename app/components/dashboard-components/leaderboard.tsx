@@ -100,7 +100,7 @@ const Leaderboard = () => {
 
 
   return (
-    <Card className="bg-transparent border-none p-6 relative rounded-none z-50 w-full max-h-screen overflow-y-auto">
+    <Card className="bg-transparent border-none p-6 relative rounded-none z-50 w-full max-h-screen overflow-y-auto pb-10">
       <Tabs defaultValue="leaderboard" className="w-full">
         <TabsList className="grid grid-cols-2 bg-[#1d1e3a] text-base text-white h-10 w-full">
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>

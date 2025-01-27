@@ -98,7 +98,7 @@ const UserCard = () => {
               {useLeaderboardStore.getState().getRank(userData.username)}
             </div>
           </div>
-          <div className="flex justify-between items-center px-6 pt-8 space-x-6">
+          <div className="flex flex-col lg:flex-row lg:gap-2 justify-between items-center px-6 pt-8">
             <div className="flex-shrink-0">
               <Image
                 src={`https://github.com/${userData.username}.png`}
@@ -112,7 +112,7 @@ const UserCard = () => {
               />
             </div>
 
-            <div className="text-center">
+            <div className="text-center space-y-1">
               <h2 className="text-3xl text-[#6ee7b7] font-semibold">
                 {userData.fullname}
               </h2>
