@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import React, { useState, useEffect } from "react";
 import { Github } from "lucide-react";
 import { signIn } from "next-auth/react";
@@ -192,8 +192,8 @@ export const Home = () => {
       {/* <Image
           src="/snowbg.png"
           alt="Snow Floor"
-          layout="fill"
-          objectFit="cover"
+          fill
+          style={{ objectFit: "cover" }}
           priority
           className="object-contain md:visible absolute bottom-0 left-0 w-full h-[150px] opacity-80"
         /> */}

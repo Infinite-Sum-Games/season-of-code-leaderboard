@@ -1,6 +1,6 @@
 "use client";
 import { Card, CardHeader, CardDescription } from "../ui/card";
-import Image from "next/legacy/image";
+import Image from "next/image";
 
 export interface ProjectCardProps {
   name: string;

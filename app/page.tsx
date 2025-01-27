@@ -1,5 +1,5 @@
 "use client";
-import Image from "next/legacy/image";
+import Image from "next/image";
 import Leaderboard from "./components/dashboard-components/leaderboard";
 import { Separator } from "@/app/components/ui/separator";
 import Usercard from "./components/dashboard-components/usercard";
@@ -37,8 +37,8 @@ const Dashboard = () => {
       <Image
         src="/snowbg.png"
         alt="Snow Floor"
-        layout="fill"
-        objectFit="cover"
+        fill
+        style={{ objectFit: "cover" }}
         priority
         className="object-contain md:block hidden absolute bottom-0 left-0 w-full h-[150px] opacity-80"
       />
