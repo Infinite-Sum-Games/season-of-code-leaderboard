@@ -42,7 +42,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="w-full h-screen flex flex-col items-start justify-center pt-4 pl-6 md:pl-12 text-[#E3E8F1] relative">
+    <div className="w-full h-screen flex flex-col items-center justify-center pt-4 text-[#E3E8F1] relative">
       <div className="text-left z-10">
         <h1 className="text-4xl sm:text-6xl font-bold text-[#E3E8F1] mb-6 tracking-tight">
           <span className="text-[#3ABEF9]">Amrita</span> Winter of Code
