@@ -7,19 +7,29 @@ import { useEffect, useState } from "react";
 import useLeaderboardStore from "@/app/useLeaderboardStore";
 import { useSession } from "next-auth/react";
 
+interface Issue {
+  issueStatus: boolean;
+  url: string;
+  prCount: number;
+}
+
 interface UserCardProps {
   fullname: string;
   rollNumber: string;
   username: string;
-  issues: { issueStatus: boolean; url: string }[];
-  issueCount: number;
+  completedIssues: Issue[];
+  incompleteIssues: Issue[];
+  completedCount: number;
+  incompleteCount: number;
   bounty: number;
 }
+
 const UserCard = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [userData, setUserData] = useState<UserCardProps | null>(null);
 
   const { data: session } = useSession();
+  
   const getUserData = async () => {
     if (!session || !session.user) {
       return;
@@ -36,7 +46,6 @@ const UserCard = () => {
       const data = await response.json();
 
       setUserData(data);
-
       return true;
     } catch (error) {
       console.log(error);
@@ -46,11 +55,7 @@ const UserCard = () => {
 
   useEffect(() => {
     (async () => {
-      getUserData();
-
-      if (userData) {
-        setUserData(userData);
-      }
+      await getUserData();
       setLoading(false);
     })();
   }, []);
@@ -106,9 +111,7 @@ const UserCard = () => {
                 width={128}
                 height={128}
                 className="rounded-lg border-2"
-                onError={() =>
-                  console.error("Error loading GitHub profile image.")
-                }
+                onError={() => console.error("Error loading GitHub profile image.")}
               />
             </div>
 
@@ -127,33 +130,64 @@ const UserCard = () => {
 
           <div className="space-y-4 px-6 pt-6">
             <CardDescription className="text-xl text-gray-300">
-              🎯 Total Completed Issues: <strong>{userData.issueCount}</strong>
+              🎯 Completed Issues: <strong>{userData.completedCount}</strong>
+            </CardDescription>
+            <CardDescription className="text-xl text-gray-300">
+              📝 Incomplete Issues: <strong>{userData.incompleteCount}</strong>
             </CardDescription>
             <CardDescription className="text-xl text-gray-300">
               🏆 Total Bounty Earned: <strong>{userData.bounty}</strong>
             </CardDescription>
 
             <div className="text-gray-300">
-              <h3 className="text-lg font-semibold">Completed Issues:</h3>
-              {userData.issues.filter(issue => !issue.issueStatus).length > 0 ? (
-                <ul className="list-disc list-inside">
-                  {userData.issues
-                    .filter((issue) => !issue.issueStatus)
-                    .map((issue, index) => (
-                      <li key={index}>
-                        <a
-                          href={issue.url}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                          className="text-blue-400 hover:underline"
-                        >
-                          {issue.url}
-                        </a>
-                      </li>
-                    ))}
+              <h3 className="text-lg font-semibold mb-2">Completed Issues:</h3>
+              {userData.completedIssues.length > 0 ? (
+                <ul className="list-disc list-inside space-y-2">
+                  {userData.completedIssues.map((issue, index) => (
+                    <li key={index}>
+                      <a
+                        href={issue.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:underline"
+                      >
+                        {issue.url}
+                      </a>
+                      {issue.prCount > 0 && (
+                        <span className="ml-2 text-sm text-green-400">
+                          ({issue.prCount} PR{issue.prCount > 1 ? 's' : ''})
+                        </span>
+                      )}
+                    </li>
+                  ))}
                 </ul>
               ) : (
-                <p>You are yet to complete an Issue!</p>
+                <p>No completed issues yet!</p>
+              )}
+
+              <h3 className="text-lg font-semibold mt-4 mb-2">In Progress Issues:</h3>
+              {userData.incompleteIssues.length > 0 ? (
+                <ul className="list-disc list-inside space-y-2">
+                  {userData.incompleteIssues.map((issue, index) => (
+                    <li key={index}>
+                      <a
+                        href={issue.url}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-blue-400 hover:underline"
+                      >
+                        {issue.url}
+                      </a>
+                      {issue.prCount > 0 && (
+                        <span className="ml-2 text-sm text-yellow-400">
+                          ({issue.prCount} PR{issue.prCount > 1 ? 's' : ''})
+                        </span>
+                      )}
+                    </li>
+                  ))}
+                </ul>
+              ) : (
+                <p>No issues in progress!</p>
               )}
             </div>
           </div>

@@ -58,24 +58,53 @@ export async function GET(request: NextRequest) {
         throw new Error("Account does not exist");
       }
 
-      // If user exists, return the user along with issue count
+      // Get all issues for the user
       const issues = await tx.issue.findMany({
         where: {
           claimedBy: user.username,
         },
         select: {
           issueStatus: true,
-          url: true
+          url: true,
+          issueId: true,
+          repoId: true
         }
       });
-      const issueCount: number = issues.filter(i => i.issueStatus === false).length;
+
+      // Get all solutions (PRs) for the user
+      const solutions = await tx.solution.findMany({
+        where: {
+          username: user.username,
+        },
+        select: {
+          repoId: true,
+        }
+      });
+
+      // Group solutions by repoId for easier counting
+      const solutionsByRepo = solutions.reduce((acc, sol) => {
+        acc[sol.repoId] = (acc[sol.repoId] || 0) + 1;
+        return acc;
+      }, {} as Record<string, number>);
+
+      // Process issues to include PR counts
+      const processedIssues = issues.map(issue => ({
+        ...issue,
+        prCount: solutionsByRepo[issue.repoId] || 0
+      }));
+
+      // Separate completed and incomplete issues
+      const completedIssues = processedIssues.filter(i => i.issueStatus);
+      const incompleteIssues = processedIssues.filter(i => !i.issueStatus);
 
       return {
         fullname: user.fullName,
         rollNumber: user.rollNumber,
         username: user.username,
-        issues: issues,
-        issueCount: issueCount,
+        completedIssues,
+        incompleteIssues,
+        completedCount: completedIssues.length,
+        incompleteCount: incompleteIssues.length,
         bounty: user.bounty
       };
     });
