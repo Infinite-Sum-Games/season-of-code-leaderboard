@@ -100,47 +100,42 @@ const Leaderboard = () => {
 
 
   return (
-    <Card className="bg-transparent border-none p-6 relative rounded-none z-50 w-full max-h-screen overflow-y-auto pb-10">
+    <Card className="bg-transparent border-none p-2 sm:p-6 relative rounded-none z-40 w-full max-h-screen overflow-y-auto">
       <Tabs defaultValue="leaderboard" className="w-full">
-        <TabsList className="grid grid-cols-2 bg-[#1d1e3a] text-base text-white h-10 w-full">
+        <TabsList className="grid grid-cols-2 bg-[#1d1e3a] text-sm sm:text-base text-white h-10 w-full">
           <TabsTrigger value="leaderboard">Leaderboard</TabsTrigger>
           <TabsTrigger value="projects">Projects</TabsTrigger>
         </TabsList>
-
         <TabsContent value="leaderboard">
-          <CardHeader className="font-bold text-4xl sm:text-6xl pt-4 pb-2 px-4 text-[#3abef9]">
+          <CardHeader className="font-bold text-3xl sm:text-6xl pt-2 sm:pt-4 pb-1 sm:pb-2 px-2 sm:px-4 text-[#3abef9]">
             Leaderboard
           </CardHeader>
-          <CardDescription className="px-4 pb-4 text-[#c8c7cc]">
+          <CardDescription className="px-2 sm:px-4 pb-2 sm:pb-4 text-[#c8c7cc] text-sm sm:text-base">
             Leaderboard refreshes every 1 hour.
           </CardDescription>
-
-          <div className="flex bg-[#1d1b2e] mx-2 p-4 text-white sm:font-semibold rounded-lg">
-            <div className="text-sm sm:text-base w-[10%] text-left">Rank</div>
-            <div className="text-sm sm:text-base w-[70%] text-left pl-16">
-              Name
-            </div>
-            <div className="text-sm sm:text-base w-[23%] text-center hidden md:block">
+          <div className="flex bg-[#1d1b2e] mx-1 sm:mx-2 p-2 sm:p-4 text-white sm:font-semibold rounded-lg">
+            <div className="text-xs sm:text-base w-[10%] text-left">Rank</div>
+            <div className="text-xs sm:text-base w-[70%] text-left pl-4 sm:pl-16">Name</div>
+            <div className="hidden min-[769px]:block text-sm sm:text-base w-[23%] text-center">
               <button
-                onClick={() => sortLeaderboard("PRs")}
-                className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
-              >
-                PR Merged
-                {getSortIcon("PRs")}
-              </button>
+                  onClick={() => sortLeaderboard("PRs")}
+                  className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
+                >
+                  PR Merged
+                  {getSortIcon("PRs")}
+                </button>
             </div>
-            <div className="text-sm sm:text-base w-[13%] text-right">
+            <div className="text-xs sm:text-base w-[20%] sm:w-[13%] text-right">
               <button
-                onClick={() => sortLeaderboard("Bounty")}
-                className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
-              >
-                Bounties
-                {getSortIcon("Bounty")}
-              </button>
+                  onClick={() => sortLeaderboard("Bounty")}
+                  className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
+                >
+                  Bounties
+                  {getSortIcon("Bounty")}
+                </button>
             </div>
           </div>
-
-          <ScrollArea className="max-h-[75vh] overflow-y-auto overflow-x-auto relative">
+          <ScrollArea className="max-h-[60vh] sm:max-h-[75vh] overflow-y-auto overflow-x-hidden relative">
             {leaderboardData.length === 0 ? (
               <div className="text-center text-2xl text-[#c8c7cc] p-4">
                 Loading Leaderboard...
@@ -160,7 +155,7 @@ const Leaderboard = () => {
             )}
           </ScrollArea>
         </TabsContent>
-
+        
         <TabsContent value="projects">
           <Projects />
         </TabsContent>
