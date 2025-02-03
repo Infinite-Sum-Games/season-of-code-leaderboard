@@ -10,28 +10,29 @@ import Home from "./components/dashboard-components/Home";
 import { useSession } from "next-auth/react";
 
 const Dashboard = () => {
-  const { data: session,} = useSession();
+  const { data: session } = useSession();
+
   return (
-    <div>
-      <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-        <div className="flex flex-col max-h-screen items-center">
-          <Navbar />
+    <div className="h-fit">
+      <div className="mx-auto px-3 md:px-0 overflow-clip">
+        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 justify-start items-start">
+          <div>
+            <Navbar />
 
-          {session && session.user ? (
-            <div className="w-full flex justify-center items-center pt-20">
-              <Usercard />
-            </div>
-          ) : (
-            <Home />
-          )}
-        </div>
+            {session && session.user ? (
+              <div className="w-full pt-20">
+                <Usercard />
+              </div>
+            ) : (
+              <Home />
+            )}
+          </div>
 
-        <div className="md:hidden">
-          <Separator orientation="vertical" />
-        </div>
+          <Separator className="md:hidden" />
 
-        <div className="w-full">
-          <Leaderboard />
+          <div className="relative mt-[16px]">
+            <Leaderboard />
+          </div>
         </div>
       </div>
       <Image
@@ -40,7 +41,7 @@ const Dashboard = () => {
         fill
         style={{ objectFit: "cover" }}
         priority
-        className="object-contain md:block hidden absolute bottom-0 left-0 w-full h-[150px] opacity-80"
+        className="object-contain md:block hidden absolur top-0 bottom-0 left-0 -z-40"
       />
       <Snowfall />
     </div>
