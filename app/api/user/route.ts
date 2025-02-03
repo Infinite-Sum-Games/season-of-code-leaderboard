@@ -94,8 +94,8 @@ export async function GET(request: NextRequest) {
       }));
 
       // Separate completed and incomplete issues
-      const completedIssues = processedIssues.filter(i => i.issueStatus);
-      const incompleteIssues = processedIssues.filter(i => !i.issueStatus);
+      const completedIssues = processedIssues.filter(i => !i.issueStatus);
+      const incompleteIssues = processedIssues.filter(i => i.issueStatus);
 
       return {
         fullname: user.fullName,

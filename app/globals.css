@@ -30,6 +30,7 @@
     --chart-5: 27 87% 67%;
     --radius: 0.5rem;
   }
+
   .dark {
     --background: 0 0% 3.9%;
     --foreground: 0 0% 98%;
@@ -61,10 +62,13 @@
 /* Snowflake falling animation */
 @keyframes snowfall {
   0% {
-    transform: translateY(-100px); /* Start from off-screen */
+    transform: translateY(-100px);
+    /* Start from off-screen */
   }
+
   100% {
-    transform: translateY(100vh); /* End at the bottom of the screen */
+    transform: translateY(100vh);
+    /* End at the bottom of the screen */
   }
 }
 
@@ -73,7 +77,8 @@
   background-color: #c6efff;
   border-radius: 50%;
   animation: snowfall linear infinite;
-  z-index: 1; /* Lower z-index to prevent it from overlapping other elements */
+  z-index: 1;
+  /* Lower z-index to prevent it from overlapping other elements */
   box-shadow: 1px 1px 1px 1px #c6efff;
 }
 
@@ -81,19 +86,23 @@
   0% {
     transform: rotate(0deg);
   }
+
   100% {
     transform: rotate(360deg);
   }
 }
+
 @layer base {
   * {
     @apply border-border;
   }
+
   body {
     background: linear-gradient(to left, #070f2b, #1b1a55);
     font-family: var(--font-geist-sans), sans-serif;
   }
 }
+
 /* Hide scrollbar */
 ::-webkit-scrollbar {
   width: 0;
@@ -160,6 +169,7 @@
   from {
     transform: translateY(0);
   }
+
   to {
     transform: translateY(650px);
   }
@@ -174,10 +184,12 @@
     text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b,
       0 0 20px #070f2b;
   }
+
   50% {
     text-shadow: 0 0 10px #1b1a55, 0 0 20px #1b1a55, 0 0 30px #070f2b,
       0 0 40px #070f2b;
   }
+
   100% {
     text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b,
       0 0 20px #070f2b;
