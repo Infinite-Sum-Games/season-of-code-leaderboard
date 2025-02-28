@@ -24,6 +24,24 @@ interface UserCardProps {
   bounty: number;
 }
 
+// this checks for the signin user
+const NotSignedInCard = () => (
+  <div className="w-fit flex items-center justify-center px-4 py-8">
+    <div className="w-fit max-w-md">
+      <BackgroundGradient className="p-4 rounded-xl">
+        <Card className="bg-[#050217] border border-gray-700 p-6 rounded-xl shadow-lg transition-transform transform">
+          <div className="text-center text-gray-300">
+            <h2 className="text-2xl text-[#c8c7cc] font-semibold">
+              Sign in to view your profile
+            </h2>
+            <p>Use GitHub to authenticate and see your contributions</p>
+          </div>
+        </Card>
+      </BackgroundGradient>
+    </div>
+  </div>
+);
+
 const LoadingCard = () => (
   <div className="w-fit flex items-center justify-center px-4 py-8">
     <div className="w-fit max-w-md">
@@ -63,9 +81,15 @@ const UserCard = () => {
   const [userData, setUserData] = useState<UserCardProps | null>(null);
   const { data: session } = useSession();
 
+  // edited
   useEffect(() => {
     const fetchUserData = async () => {
-      if (!session || !session.user) return;
+
+      if (status!="authenticated"||!session?.user?.name){
+        setLoading(false);
+        return
+      }
+
       try {
         const response = await fetch(`api/user?username=${session.user.name}`);
         if (response.status !== 200) return;
@@ -77,10 +101,25 @@ const UserCard = () => {
         setLoading(false);
       }
     };
-    fetchUserData();
-  }, [session]);
 
-  if (loading) return <div className="w-full h-screen m-auto flex flex-row justify-center items-center"><LoadingCard /></div>;
+    // if status loadign keep loading
+    if(status!="loading"){
+      fetchUserData()
+    }
+  }, [session,status]);
+
+   if (status === "loading") {
+    return <div className="w-full h-screen m-auto flex flex-row justify-center items-center"><LoadingCard /></div>;
+  }
+
+  if (status === "unauthenticated") {
+    return <div className="w-full h-screen flex flex-row justify-center items-center"><NotSignedInCard /></div>;
+  }
+
+  if (loading) {
+    return <div className="w-full h-screen m-auto flex flex-row justify-center items-center"><LoadingCard /></div>;
+  }
+  
   if (!userData) return <div className="w-full h-screen flex flex-row justify-center items-center"><ErrorCard /></div>;
 
   return (
