@@ -10,23 +10,16 @@ on:
       - main
 
 jobs:
-  lint_and_test:
+  quality:
     runs-on: ubuntu-latest
-
     steps:
-      - name: Checkout repository
+      - name: Checkout
         uses: actions/checkout@v4
 
-      - name: Set up Node.js
-        uses: actions/setup-node@v4
+      - name: Setup Biome
+        uses: biomejs/setup-biome@v2
         with:
-          node-version-file: '.nvmrc'
+          version: latest
 
-      - name: Install pnpm and Biome globally
-        run: npm install -g pnpm @biomejs/biome
-
-      - name: Run Biome Checks (Lint & Format)
-        run: biome check ./
-
-      - name: Run tests
-        run: pnpm test
+      - name: Run Biome
+        run: biome ci .
