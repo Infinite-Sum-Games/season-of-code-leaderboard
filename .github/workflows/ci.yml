@@ -25,6 +25,9 @@ jobs:
       - name: Install pnpm globally
         run: npm install -g pnpm
 
+      - name: Install Biome locally
+        run: pnpm add --dev @biomejs/biome
+
       - name: Run Biome Checks (Lint & Format)
         run: pnpm exec biome check ./
 
