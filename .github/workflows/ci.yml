@@ -1,5 +1,3 @@
-# .github/workflows/ci.yml
-
 name: CI
 
 on:
@@ -22,14 +20,11 @@ jobs:
       - name: Set up Node.js
         uses: actions/setup-node@v4
         with:
-          node-version-file: '.nvmrc' 
+          node-version-file: '.nvmrc'
           cache: 'pnpm'
 
-      - name: Enable Corepack
-        run: corepack enable
-
-      - name: Install dependencies
-        run: pnpm install --frozen-lockfile
+      - name: Install pnpm globally
+        run: npm install -g pnpm
 
       - name: Run Biome Checks (Lint & Format)
         run: pnpm exec biome check ./
