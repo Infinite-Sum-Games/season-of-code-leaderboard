@@ -1,13 +1,13 @@
-import Github from "next-auth/providers/github";
-import prisma from "../db";
-import { NextAuthOptions } from "next-auth";
-import { Prisma } from "@prisma/client";
+import type { Prisma } from '@prisma/client';
+import type { NextAuthOptions } from 'next-auth';
+import Github from 'next-auth/providers/github';
+import prisma from '../db';
 
 export const NEXT_AUTH: NextAuthOptions = {
   providers: [
     Github({
-      clientId: process.env.GITHUB_CLIENT_ID || "",
-      clientSecret: process.env.GITHUB_CLIENT_SECRET || "",
+      clientId: process.env.GITHUB_CLIENT_ID || '',
+      clientSecret: process.env.GITHUB_CLIENT_SECRET || '',
     }),
   ],
   secret: process.env.NEXTAUTH_SECRET,
@@ -22,7 +22,7 @@ export const NEXT_AUTH: NextAuthOptions = {
         await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
           const user = await tx.participant.findFirst({
             where: {
-              username: username
+              username: username,
             },
           });
 
@@ -39,8 +39,8 @@ export const NEXT_AUTH: NextAuthOptions = {
                 providerId: profile.id.toString(),
               },
               where: {
-                username: username
-              }
+                username: username,
+              },
             });
           }
         });
@@ -51,21 +51,20 @@ export const NEXT_AUTH: NextAuthOptions = {
       }
     },
     async session({ session, token }) {
-      if (session && session.user) {
+      if (session?.user) {
         try {
           const user = await prisma.participant.findFirst({
             select: {
               username: true,
             },
             where: {
-              providerId: token.sub
-            }
+              providerId: token.sub,
+            },
           });
-          session.user.name = user!.username;
+          session.user.name = user?.username;
           return session;
-        } catch (error) 
-        {
-          console.log(error)
+        } catch (error) {
+          console.log(error);
           return session;
         }
       }

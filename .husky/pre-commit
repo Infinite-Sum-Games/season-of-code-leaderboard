@@ -1,0 +1,18 @@
+bash -c '
+  # Inline bash script to ensure only pnpm-lock.yaml exists
+  unwanted_files=("package-lock.json" "yarn.lock" "npm-shrinkwrap.json")
+  for file in "${unwanted_files[@]}"; do
+    if [ -f "$file" ]; then
+      echo "Removing unwanted lock file: $file"
+    fi
+  done
+
+  if [ ! -f "pnpm-lock.yaml" ]; then
+    echo "Error: pnpm-lock.yaml is missing!"
+    exit 1
+  else
+    echo "pnpm-lock.yaml is present and no other lock files are found."
+  fi
+'
+pnpm lint
+lint-staged

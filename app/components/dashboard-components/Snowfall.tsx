@@ -1,17 +1,17 @@
-"use client";
+'use client';
 
-import { useEffect } from "react";
+import { useEffect } from 'react';
 
 const Snowfall: React.FC = () => {
   useEffect(() => {
     const createSnowflakes = () => {
       const numberOfSnowflakes = 50; // Adjust for better performance
-      const container = document.getElementById("snowfall-container");
+      const container = document.getElementById('snowfall-container');
       if (!container) return;
 
       for (let i = 0; i < numberOfSnowflakes; i++) {
-        const snowflake = document.createElement("div");
-        snowflake.className = "snowflake";
+        const snowflake = document.createElement('div');
+        snowflake.className = 'snowflake';
 
         // Randomize properties
         snowflake.style.left = `${Math.random() * 100}vw`;
@@ -30,7 +30,7 @@ const Snowfall: React.FC = () => {
 
     // Cleanup function
     return () => {
-      const container = document.getElementById("snowfall-container");
+      const container = document.getElementById('snowfall-container');
       if (container) {
         while (container.firstChild) {
           container.removeChild(container.firstChild);
@@ -43,7 +43,7 @@ const Snowfall: React.FC = () => {
     <div
       id="snowfall-container"
       className="fixed top-0 left-0 w-screen h-screen pointer-events-none overflow-hidden -z-10"
-    ></div>
+    />
   );
 };
 

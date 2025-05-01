@@ -1,6 +1,6 @@
-"use client";
-import { Card, CardHeader, CardDescription } from "../ui/card";
-import Image from "next/image";
+'use client';
+import Image from 'next/image';
+import { Card, CardDescription, CardHeader } from '../ui/card';
 
 export interface ProjectCardProps {
   name: string;
@@ -32,14 +32,11 @@ const ProjectCard = (props: ProjectCardProps) => {
 
         {/* Commented out for "Coming soon" */}
         <div className="flex space-x-1 px-4">
-          {props.techstack.map((tech, index) => (
-            <div
-              key={index}
-              className="text-white text-xs pl-2 py-1 rounded-lg"
-            >
+          {props.techstack.map((tech) => (
+            <div key={tech} className="text-white text-xs pl-2 py-1 rounded-lg">
               <Image
                 className="center"
-                key={index}
+                key={tech}
                 src={`/icons/${tech.toLowerCase()}.svg`}
                 alt={tech}
                 width={30}
@@ -57,26 +54,28 @@ const ProjectCard = (props: ProjectCardProps) => {
           Details coming soon 🎉
         </CardDescription> */}
 
-        { <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
-          <p className="text-base text-white px-3">Maintainers : </p>
-          {props.maintainer.map((maintainer, index) => (
-            <a
-              key={index}
-              href={`https://github.com/${maintainer}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mr-2"
-            >
-              <Image
-                src={`https://github.com/${maintainer}.png`}
-                alt={maintainer}
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            </a>
-          ))}
-        </div> }
+        {
+          <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
+            <p className="text-base text-white px-3">Maintainers : </p>
+            {props.maintainer.map((maintainer) => (
+              <a
+                key={maintainer}
+                href={`https://github.com/${maintainer}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mr-2"
+              >
+                <Image
+                  src={`https://github.com/${maintainer}.png`}
+                  alt={maintainer}
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+              </a>
+            ))}
+          </div>
+        }
       </div>
     </Card>
   );

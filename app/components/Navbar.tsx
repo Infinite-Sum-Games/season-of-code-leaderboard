@@ -1,9 +1,12 @@
-"use client";
-import Link from "next/link";
+'use client';
 // import { Github } from "lucide-react";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
+  const handleApplyButtonClick = () => {
+    window.location.href = 'https://forms.office.com/r/xH6GzZZhzC';
+  };
   return (
     <nav className="mt-4 absolute md:w-1/2 mx-4 w-11/12 top-0 left-0 z-50 bg-transparent backdrop-blur-sm border border-[#A7E6FF] shadow-lg rounded-lg">
       <div className="container mx-auto flex items-center justify-between px-2 sm:px-6 py-3">
@@ -30,9 +33,8 @@ const Navbar = () => {
 
         <div className="md:flex items-center space-x-6">
           <button
-            onClick={() =>
-              (window.location.href = "https://forms.office.com/r/xH6GzZZhzC")
-            }
+            type="button"
+            onClick={handleApplyButtonClick}
             className="px-6 py-2 bg-gray-800 border border-gray-400 text-white font-semibold text-sm sm:text-lg rounded-lg transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] flex items-center gap-2 shadow-md hover:shadow-xl"
           >
             {/* <Github size={20} /> */}

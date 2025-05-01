@@ -1,19 +1,19 @@
-"use client";
-import React from "react";
+'use client';
+import { cn } from '@/lib/utils';
 import {
   motion,
   useAnimationFrame,
   useMotionTemplate,
   useMotionValue,
   useTransform,
-} from "framer-motion";
-import { useRef } from "react";
-import { cn } from "@/lib/utils";
+} from 'framer-motion';
+import type React from 'react';
+import { useRef } from 'react';
 
 export function Button({
-  borderRadius = "1.75rem",
+  borderRadius = '1.75rem',
   children,
-  as: Component = "button",
+  as: Component = 'button',
   containerClassName,
   borderClassName,
   duration,
@@ -22,20 +22,18 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
-  as?: any;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   [key: string]: any;
 }) {
   return (
     <Component
       className={cn(
-        "bg-transparent relative w-full text-xl p-2 my-4 overflow-hidden",
-        containerClassName
+        'bg-transparent relative w-full text-xl p-2 my-4 overflow-hidden',
+        containerClassName,
       )}
       style={{
         borderRadius: borderRadius,
@@ -49,8 +47,8 @@ export function Button({
         <MovingBorder duration={duration} rx="10%" ry="10%">
           <div
             className={cn(
-              "h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--sky-500)_40%,transparent_60%)]",
-              borderClassName
+              'h-20 w-20 opacity-[0.8] bg-[radial-gradient(var(--sky-500)_40%,transparent_60%)]',
+              borderClassName,
             )}
           />
         </MovingBorder>
@@ -58,8 +56,8 @@ export function Button({
 
       <div
         className={cn(
-          "relative text-white items-center justify-center w-full h-full antialiased rounded-lg",
-          className
+          'relative text-white items-center justify-center w-full h-full antialiased rounded-lg',
+          className,
         )}
         style={{
           borderRadius: `calc(${borderRadius} * 0.96)`,
@@ -82,10 +80,10 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   [key: string]: any;
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   const pathRef = useRef<any>();
   const progress = useMotionValue<number>(0);
 
@@ -99,17 +97,18 @@ export const MovingBorder = ({
 
   const x = useTransform(
     progress,
-    (val) => pathRef.current?.getPointAtLength(val).x
+    (val) => pathRef.current?.getPointAtLength(val).x,
   );
   const y = useTransform(
     progress,
-    (val) => pathRef.current?.getPointAtLength(val).y
+    (val) => pathRef.current?.getPointAtLength(val).y,
   );
 
   const transform = useMotionTemplate`translateX(${x}px) translateY(${y}px) translateX(-50%) translateY(-50%)`;
 
   return (
     <>
+      {/* biome-ignore lint/a11y/noSvgWithoutTitle: This SVG is decorative. */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"
@@ -129,10 +128,10 @@ export const MovingBorder = ({
       </svg>
       <motion.div
         style={{
-          position: "absolute",
+          position: 'absolute',
           top: 0,
           left: 0,
-          display: "inline-block",
+          display: 'inline-block',
           transform,
         }}
       >

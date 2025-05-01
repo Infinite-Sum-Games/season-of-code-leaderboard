@@ -1,8 +1,8 @@
-import prisma from "@/app/db";
-import { NextResponse } from "next/server";
+import prisma from '@/app/db';
+import { NextResponse } from 'next/server';
 
 export async function GET() {
-  // Fetch all participants from the leaderboard based on bounty and return 
+  // Fetch all participants from the leaderboard based on bounty and return
   try {
     const data = await prisma.participant.findMany({
       select: {
@@ -12,9 +12,9 @@ export async function GET() {
         accountActive: true,
         _count: {
           select: {
-            Solution: true
-          }
-        }
+            Solution: true,
+          },
+        },
       },
       orderBy: {
         bounty: 'desc',
@@ -22,21 +22,21 @@ export async function GET() {
     });
     return NextResponse.json(
       {
-        leaderboard: data
+        leaderboard: data,
       },
       {
         status: 200,
-      }
+      },
     );
   } catch (error) {
     console.log(error);
     return NextResponse.json(
       {
-        message: "Internal Server Error"
+        message: 'Internal Server Error',
       },
       {
-        status: 500
-      }
-    )
+        status: 500,
+      },
+    );
   }
 }

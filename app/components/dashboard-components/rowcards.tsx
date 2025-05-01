@@ -1,7 +1,7 @@
-"use client";
-import Image from "next/image";
-import { Card } from "../ui/card";
-import { GitPullRequest } from "lucide-react";
+'use client';
+import { GitPullRequest } from 'lucide-react';
+import Image from 'next/image';
+import { Card } from '../ui/card';
 
 export interface RowcardsProps {
   index: number;
@@ -25,7 +25,7 @@ const Rowcards = (props: RowcardsProps) => {
 
         <div className="w-[70%] flex items-center">
           <Image
-            src={props.avatar_url || "/default-avatar.png"}
+            src={props.avatar_url || '/default-avatar.png'}
             alt="profile"
             width={64}
             height={64}
