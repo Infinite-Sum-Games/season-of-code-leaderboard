@@ -15,7 +15,7 @@ This repository contains the code-base to the LIVE leaderboard for ACM@Amrita Wi
 Before setting up the project, ensure you have the following installed on your machine:
 
 - **Node.js** (version 16 or higher)
-- **Yarn** (version 1.22 or higher)
+- **pnpm** (version 7 or higher)
 - **PostgreSQL or NeonDB**
 
 ### Setup Steps
@@ -23,7 +23,7 @@ Follow these steps to set up the project locally after cloning the repository:
 
 1. Install dependencies:
    ```bash
-   yarn install
+   pnpm install
    ```
 
 2. Create a copy of the `.env` file:
@@ -49,7 +49,7 @@ the seeds for testing purposes but do not commit it upstream.
 
 6. Run the development server:
    ```bash
-   yarn run dev
+   pnpm run dev
    ```
 
 ### Contribution Guidelines
