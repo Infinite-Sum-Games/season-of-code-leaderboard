@@ -22,11 +22,11 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   [key: string]: any;
 }) {
   return (
