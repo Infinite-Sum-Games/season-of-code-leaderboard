@@ -22,13 +22,12 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  // biome-ignore lint/suspicious/noExplicitAny
-  as?: any;
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  // biome-ignore lint/suspicious/noExplicitAny
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   [key: string]: any;
 }) {
   return (
@@ -82,10 +81,10 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  // biome-ignore lint/suspicious/noExplicitAny
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   [key: string]: any;
 }) => {
-  // biome-ignore lint/suspicious/noExplicitAny
+  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   const pathRef = useRef<any>();
   const progress = useMotionValue<number>(0);
 
@@ -110,8 +109,7 @@ export const MovingBorder = ({
 
   return (
     <>
-    {/* biome-ignore lint/a11y/noSvgWithoutTitle */}
-    {/* biome-ignore lint/a11y/noTitleAttribute */}
+    {/* biome-ignore lint/a11y/noSvgWithoutTitle: This SVG is decorative. */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"

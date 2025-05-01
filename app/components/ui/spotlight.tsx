@@ -8,7 +8,7 @@ type SpotlightProps = {
 
 export const Spotlight = ({ className, fill }: SpotlightProps) => {
   return (
-    // biome-ignore lint/a11y/noSvgWithoutTitle
+    // biome-ignore lint/a11y/noSvgWithoutTitle: This SVG is decorative.
     <svg
       className={cn(
         'animate-spotlight pointer-events-none absolute z-[1]  h-[169%] w-[138%] lg:w-[84%] opacity-0',
