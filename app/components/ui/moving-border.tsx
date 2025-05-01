@@ -27,7 +27,6 @@ export function Button({
   borderClassName?: string;
   duration?: number;
   className?: string;
-  // biome-ignore lint/suspicious/noExplicitAny: Allowing 'any' for the 'as' prop for flexibility.
   [key: string]: any;
 }) {
   return (
@@ -109,7 +108,7 @@ export const MovingBorder = ({
 
   return (
     <>
-    {/* biome-ignore lint/a11y/noSvgWithoutTitle: This SVG is decorative. */}
+      {/* biome-ignore lint/a11y/noSvgWithoutTitle: This SVG is decorative. */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"

@@ -33,10 +33,7 @@ const ProjectCard = (props: ProjectCardProps) => {
         {/* Commented out for "Coming soon" */}
         <div className="flex space-x-1 px-4">
           {props.techstack.map((tech) => (
-            <div
-              key={tech}
-              className="text-white text-xs pl-2 py-1 rounded-lg"
-            >
+            <div key={tech} className="text-white text-xs pl-2 py-1 rounded-lg">
               <Image
                 className="center"
                 key={tech}
