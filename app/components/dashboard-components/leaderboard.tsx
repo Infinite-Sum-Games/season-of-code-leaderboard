@@ -135,7 +135,7 @@ const Leaderboard = () => {
             </div>
           </div>
           <ScrollArea className="max-h-[60vh] sm:max-h-[75vh] overflow-y-auto overflow-x-hidden relative">
-            {leaderboardData.length === 0 ? (
+            {!leaderboardData || leaderboardData.length === 0 ? (
               <div className="text-center text-2xl text-[#c8c7cc] p-4">
                 Loading Leaderboard...
               </div>
