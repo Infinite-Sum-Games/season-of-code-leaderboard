@@ -14,5 +14,5 @@ bash -c '
     echo "pnpm-lock.yaml is present and no other lock files are found."
   fi
 '
-
 pnpm lint
+lint-staged
