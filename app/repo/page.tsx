@@ -1,9 +1,7 @@
-import React from 'react'
+import React from 'react';
 
 const repos = () => {
-  return (
-    <div>page</div>
-  )
-}
+  return <div>page</div>;
+};
 
-export default repos
+export default repos;

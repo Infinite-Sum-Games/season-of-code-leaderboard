@@ -1,12 +1,12 @@
-import { create } from "zustand";
+import { create } from 'zustand';
 type TStoreUserData = {
-    fullName: string;
-    username: string;
-    bounty: number;
-    accountActive: boolean;
-    rank:number
-    _count: { Solution: string };
-  };
+  fullName: string;
+  username: string;
+  bounty: number;
+  accountActive: boolean;
+  rank: number;
+  _count: { Solution: string };
+};
 
 interface LeaderboardState {
   User: Record<string, TStoreUserData>; // Keyed by username
@@ -16,7 +16,7 @@ interface LeaderboardState {
     rank: number,
     bounty: number,
     accountActive: boolean,
-    _count: { Solution: string }
+    _count: { Solution: string },
   ) => void;
   clearUser: () => void;
   getRank: (username: string) => number | undefined; // Function to get a user's rank

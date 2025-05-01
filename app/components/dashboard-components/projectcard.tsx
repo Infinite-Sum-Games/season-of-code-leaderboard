@@ -1,6 +1,6 @@
-"use client";
-import { Card, CardHeader, CardDescription } from "../ui/card";
-import Image from "next/image";
+'use client';
+import Image from 'next/image';
+import { Card, CardDescription, CardHeader } from '../ui/card';
 
 export interface ProjectCardProps {
   name: string;
@@ -57,26 +57,28 @@ const ProjectCard = (props: ProjectCardProps) => {
           Details coming soon 🎉
         </CardDescription> */}
 
-        { <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
-          <p className="text-base text-white px-3">Maintainers : </p>
-          {props.maintainer.map((maintainer, index) => (
-            <a
-              key={index}
-              href={`https://github.com/${maintainer}`}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-block mr-2"
-            >
-              <Image
-                src={`https://github.com/${maintainer}.png`}
-                alt={maintainer}
-                width={32}
-                height={32}
-                className="rounded-full"
-              />
-            </a>
-          ))}
-        </div> }
+        {
+          <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
+            <p className="text-base text-white px-3">Maintainers : </p>
+            {props.maintainer.map((maintainer, index) => (
+              <a
+                key={index}
+                href={`https://github.com/${maintainer}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-block mr-2"
+              >
+                <Image
+                  src={`https://github.com/${maintainer}.png`}
+                  alt={maintainer}
+                  width={32}
+                  height={32}
+                  className="rounded-full"
+                />
+              </a>
+            ))}
+          </div>
+        }
       </div>
     </Card>
   );

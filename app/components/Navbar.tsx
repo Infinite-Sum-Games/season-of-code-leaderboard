@@ -1,7 +1,7 @@
-"use client";
-import Link from "next/link";
+'use client';
 // import { Github } from "lucide-react";
-import Image from "next/image";
+import Image from 'next/image';
+import Link from 'next/link';
 
 const Navbar = () => {
   return (
@@ -31,7 +31,7 @@ const Navbar = () => {
         <div className="md:flex items-center space-x-6">
           <button
             onClick={() =>
-              (window.location.href = "https://forms.office.com/r/xH6GzZZhzC")
+              (window.location.href = 'https://forms.office.com/r/xH6GzZZhzC')
             }
             className="px-6 py-2 bg-gray-800 border border-gray-400 text-white font-semibold text-sm sm:text-lg rounded-lg transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] flex items-center gap-2 shadow-md hover:shadow-xl"
           >

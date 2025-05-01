@@ -1,12 +1,12 @@
-"use client";
-import Image from "next/image";
-import React, { useState, useEffect } from "react";
-import { Github } from "lucide-react";
-import { signIn } from "next-auth/react";
+'use client';
+import { Github } from 'lucide-react';
+import { signIn } from 'next-auth/react';
+import Image from 'next/image';
+import React, { useState, useEffect } from 'react';
 
 const handleSignIn = async () => {
   // Trigger the GitHub sign-in process
-  await signIn("github");
+  await signIn('github');
 };
 
 export const Home = () => {
@@ -18,7 +18,7 @@ export const Home = () => {
   }>({ days: 0, hours: 0, minutes: 0, seconds: 0 });
 
   useEffect(() => {
-    const targetDate = new Date("2025-02-14T00:00:00");
+    const targetDate = new Date('2025-02-14T00:00:00');
 
     const calculateTimeLeft = () => {
       const now = new Date();
@@ -49,7 +49,7 @@ export const Home = () => {
         </h1>
 
         <p className="text-md sm:text-base cl:text-lg text-white max-w-md mb-6 sm:mb-8 leading-relaxed">
-          Join us for an exciting coding journey at{" "}
+          Join us for an exciting coding journey at{' '}
           <span className="text-[#3ABEF9]">Amrita Vishwa Vidyapeetham</span>.
           Collaborate, learn, and build innovative projects with a passionate
           coding community.
@@ -122,9 +122,9 @@ export const Home = () => {
       <div
         className="absolute z-0 animate-rotateSnowflake"
         style={{
-          top: "60vh",
-          left: "40vw",
-          transform: "translate(-50%, -50%)",
+          top: '60vh',
+          left: '40vw',
+          transform: 'translate(-50%, -50%)',
         }}
       >
         <Image
@@ -139,9 +139,9 @@ export const Home = () => {
       <div
         className="absolute z-0 animate-rotateSnowflake"
         style={{
-          top: "10vh",
-          left: "5vw",
-          transform: "translate(-50%, -50%)",
+          top: '10vh',
+          left: '5vw',
+          transform: 'translate(-50%, -50%)',
         }}
       >
         <Image
@@ -156,9 +156,9 @@ export const Home = () => {
       <div
         className="absolute z-0 animate-rotateSnowflake"
         style={{
-          top: "7vh",
-          left: "35vw",
-          transform: "translate(-50%, -50%)",
+          top: '7vh',
+          left: '35vw',
+          transform: 'translate(-50%, -50%)',
         }}
       >
         <Image
@@ -173,9 +173,9 @@ export const Home = () => {
       <div
         className="absolute z-0 animate-rotateSnowflake"
         style={{
-          top: "37vh",
-          left: "65vw",
-          transform: "translate(-50%, -50%)",
+          top: '37vh',
+          left: '65vw',
+          transform: 'translate(-50%, -50%)',
         }}
       >
         <Image
@@ -202,4 +202,3 @@ export const Home = () => {
 };
 
 export default Home;
-

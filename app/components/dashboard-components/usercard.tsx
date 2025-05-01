@@ -1,11 +1,11 @@
-"use client";
-import Image from "next/image";
-import { Card, CardDescription } from "../ui/card";
-import { Spotlight } from "../ui/spotlight";
-import { BackgroundGradient } from "../ui/background-gradient";
-import { useEffect, useState } from "react";
-import useLeaderboardStore from "@/app/useLeaderboardStore";
-import { useSession } from "next-auth/react";
+'use client';
+import useLeaderboardStore from '@/app/useLeaderboardStore';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { BackgroundGradient } from '../ui/background-gradient';
+import { Card, CardDescription } from '../ui/card';
+import { Spotlight } from '../ui/spotlight';
 
 interface Issue {
   issueStatus: boolean;
@@ -80,8 +80,18 @@ const UserCard = () => {
     fetchUserData();
   }, [session]);
 
-  if (loading) return <div className="w-full h-screen m-auto flex flex-row justify-center items-center"><LoadingCard /></div>;
-  if (!userData) return <div className="w-full h-screen flex flex-row justify-center items-center"><ErrorCard /></div>;
+  if (loading)
+    return (
+      <div className="w-full h-screen m-auto flex flex-row justify-center items-center">
+        <LoadingCard />
+      </div>
+    );
+  if (!userData)
+    return (
+      <div className="w-full h-screen flex flex-row justify-center items-center">
+        <ErrorCard />
+      </div>
+    );
 
   return (
     <div className="relative w-fit max-w-3xl mx-auto my-8 mt-16">
@@ -100,14 +110,18 @@ const UserCard = () => {
               width={96}
               height={96}
               className="rounded-2xl w-32 sm:w-48 h-32 sm:h-48 border border-gray-600"
-              onError={() => console.error("Error loading GitHub profile image.")}
+              onError={() =>
+                console.error('Error loading GitHub profile image.')
+              }
             />
             <div className="flex flex-col items-center md:items-start text-center md:text-left">
               <h2 className="text-2xl md:text-3xl text-[#6ee7b7] font-semibold">
                 {userData.fullname}
               </h2>
               <p className="text-lg text-gray-300">@{userData.username}</p>
-              <p className="text-gray-400 text-sm">Roll No: {userData.rollNumber}</p>
+              <p className="text-gray-400 text-sm">
+                Roll No: {userData.rollNumber}
+              </p>
             </div>
           </div>
 
@@ -199,7 +213,7 @@ const IssueList = ({
               </a>
               {issue.prCount > 0 && (
                 <span className={`ml-2 text-xs text-${color}`}>
-                  ({issue.prCount} PR{issue.prCount > 1 ? "s" : ""})
+                  ({issue.prCount} PR{issue.prCount > 1 ? 's' : ''})
                 </span>
               )}
             </CardDescription>
