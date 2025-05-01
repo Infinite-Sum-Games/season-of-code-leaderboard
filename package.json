@@ -22,6 +22,7 @@
     "class-variance-authority": "^0.7.0",
     "clsx": "^2.1.1",
     "framer-motion": "^11.11.17",
+    "lint-staged": "^15.5.1",
     "lucide-react": "^0.460.0",
     "next": "^15.1.4",
     "next-auth": "^4.24.10",
