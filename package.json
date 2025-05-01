@@ -4,7 +4,6 @@
   "private": true,
   "scripts": {
     "dev": "next dev --turbopack",
-    "build": "prisma generate && next build",
     "start": "next start",
     "prepare": "husky install",
     "lint": "biome check --files-ignore-unknown=true"
@@ -15,7 +14,6 @@
     ]
   },
   "dependencies": {
-    "@prisma/client": "5.22.0",
     "@radix-ui/react-scroll-area": "^1.2.1",
     "@radix-ui/react-separator": "^1.1.0",
     "@radix-ui/react-slot": "^1.1.0",
@@ -27,7 +25,6 @@
     "lucide-react": "^0.460.0",
     "next": "^15.1.4",
     "next-auth": "^4.24.10",
-    "prisma": "^5.22.0",
     "react": "^18.0.0",
     "react-dom": "^18.0.0",
     "react-icons": "^5.4.0",
