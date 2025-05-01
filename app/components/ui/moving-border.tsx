@@ -22,13 +22,13 @@ export function Button({
 }: {
   borderRadius?: string;
   children: React.ReactNode;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny
   as?: any;
   containerClassName?: string;
   borderClassName?: string;
   duration?: number;
   className?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny
   [key: string]: any;
 }) {
   return (
@@ -82,10 +82,10 @@ export const MovingBorder = ({
   duration?: number;
   rx?: string;
   ry?: string;
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny
   [key: string]: any;
 }) => {
-  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  // biome-ignore lint/suspicious/noExplicitAny
   const pathRef = useRef<any>();
   const progress = useMotionValue<number>(0);
 
@@ -110,6 +110,8 @@ export const MovingBorder = ({
 
   return (
     <>
+    {/* biome-ignore lint/a11y/noSvgWithoutTitle */}
+    {/* biome-ignore lint/a11y/noTitleAttribute */}
       <svg
         xmlns="http://www.w3.org/2000/svg"
         preserveAspectRatio="none"

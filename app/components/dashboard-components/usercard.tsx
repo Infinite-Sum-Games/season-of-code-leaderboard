@@ -201,7 +201,7 @@ const IssueList = ({
     {issues.length > 0 ? (
       <div className="bg-[#1a1a2e] rounded-lg shadow-inner flex flex-col overflow-hidden">
         {issues.map((issue, index) => (
-          <div key={index}>
+          <div key={issue.url}>
             <CardDescription className="flex items-center justify-between gap-2 p-3 transition-colors hover:bg-gray-800">
               <a
                 href={issue.url}

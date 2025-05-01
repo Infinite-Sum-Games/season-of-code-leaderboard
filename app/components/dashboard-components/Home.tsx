@@ -92,6 +92,7 @@ export const Home = () => {
         <div className="mt-8 flex gap-4">
           {/* GitHub Sign In Button */}
           <button
+            type="button"
             onClick={handleSignIn}
             className="px-4 py-2 sm:px-8 sm:py-3 bg-gray-800 border border-gray-400 text-white
               text-[#00000] font-semibold text-sm sm:text-lg rounded-lg

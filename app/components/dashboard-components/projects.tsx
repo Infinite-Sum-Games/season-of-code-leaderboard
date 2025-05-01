@@ -231,7 +231,7 @@ const projects = () => {
             <div className="grid grid-cols-1 gap-4">
               {ProjectData.map((project, index) => (
                 <ProjectCard
-                  key={index}
+                  key={project.projectUrl}
                   name={project.name}
                   projectUrl={project.projectUrl}
                   blurb={project.blurb}

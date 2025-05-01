@@ -32,14 +32,14 @@ const ProjectCard = (props: ProjectCardProps) => {
 
         {/* Commented out for "Coming soon" */}
         <div className="flex space-x-1 px-4">
-          {props.techstack.map((tech, index) => (
+          {props.techstack.map((tech) => (
             <div
-              key={index}
+              key={tech}
               className="text-white text-xs pl-2 py-1 rounded-lg"
             >
               <Image
                 className="center"
-                key={index}
+                key={tech}
                 src={`/icons/${tech.toLowerCase()}.svg`}
                 alt={tech}
                 width={30}
@@ -60,9 +60,9 @@ const ProjectCard = (props: ProjectCardProps) => {
         {
           <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
             <p className="text-base text-white px-3">Maintainers : </p>
-            {props.maintainer.map((maintainer, index) => (
+            {props.maintainer.map((maintainer) => (
               <a
-                key={index}
+                key={maintainer}
                 href={`https://github.com/${maintainer}`}
                 target="_blank"
                 rel="noopener noreferrer"

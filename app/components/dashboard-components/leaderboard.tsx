@@ -126,6 +126,7 @@ const Leaderboard = () => {
             </div>
             <div className="hidden min-[769px]:block text-sm sm:text-base w-[23%] text-center">
               <button
+                type='button'
                 onClick={() => sortLeaderboard('PRs')}
                 className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
               >
@@ -135,6 +136,7 @@ const Leaderboard = () => {
             </div>
             <div className="text-xs sm:text-base w-[20%] sm:w-[13%] text-right">
               <button
+                type='button'
                 onClick={() => sortLeaderboard('Bounty')}
                 className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
               >
@@ -151,7 +153,7 @@ const Leaderboard = () => {
             ) : (
               leaderboardData.map((data, index) => (
                 <Rowcards
-                  key={index}
+                  key={data.username}
                   index={index + 1}
                   avatar_url={`https://github.com/${data.username}.png`}
                   fullName={data.fullName}
