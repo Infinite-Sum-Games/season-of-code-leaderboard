@@ -15,44 +15,44 @@ export interface RowcardsProps {
 const Rowcards = (props: RowcardsProps) => {
   return (
     <Card
-      className="flex items-center p-4 mx-2 my-3 border-none h-[3.5rem] sm:h-[5.5rem]  bg-cover"
+      className="mx-2 my-3 flex h-[3.5rem] items-center border-none bg-cover p-4 sm:h-[5.5rem]"
       style={{ backgroundImage: "url('cardBackground.png')" }}
     >
-      <div className="flex items-center w-full">
-        <p className="text-base sm:text-lg text-[#f2f2f3] font-semibold sm:pl-2 w-[10%]">
+      <div className="flex w-full items-center">
+        <p className="w-[10%] font-semibold text-[#f2f2f3] text-base sm:pl-2 sm:text-lg">
           {props.index}
         </p>
 
-        <div className="w-[70%] flex items-center">
+        <div className="flex w-[70%] items-center">
           <Image
             src={props.avatar_url || '/default-avatar.png'}
             alt="profile"
             width={64}
             height={64}
-            className="rounded-full w-10 h-10 sm:w-14 sm:h-14"
+            className="h-10 w-10 rounded-full sm:h-14 sm:w-14"
           />
           <div className="flex flex-col items-start pl-4">
-            <p className=" text-sm text-[#f2f2f3] sm:text-base md:text-lg lg:text-lg max-h-10 overflow-hidden text-ellipsis whitespace-pre max-w-[5rem] min-[400px]:max-w-[10rem] min-[480px]:max-w-[16rem] min-800px:max-w-[5rem] min-[900px]:max-w-[7rem] lg:max-w-[8rem] min-1280px:max-w-[250px] min-1680px:max-w-[400px]">
+            <p className=" max-h-10 max-w-[5rem] overflow-hidden text-ellipsis whitespace-pre text-[#f2f2f3] text-sm sm:text-base md:text-lg lg:max-w-[8rem] lg:text-lg min-1280px:max-w-[250px] min-1680px:max-w-[400px] min-800px:max-w-[5rem] min-[400px]:max-w-[10rem] min-[480px]:max-w-[16rem] min-[900px]:max-w-[7rem]">
               {props.fullName}
             </p>
-            <p className="text-sm text-gray-200 hidden md:block min-800px:text-xs min-900px:text-sm">
+            <p className="hidden text-gray-200 text-sm md:block min-800px:text-xs min-900px:text-sm">
               @{props.username}
             </p>
           </div>
         </div>
 
-        <div className="w-[20%] hidden justify-center sm:flex">
+        <div className="hidden w-[20%] justify-center sm:flex">
           <GitPullRequest
-            className="bg-slate-600 rounded-full p-1"
+            className="rounded-full bg-slate-600 p-1"
             color="rgb(94 234 212)"
           />
-          <p className="text-[#f2f2f3] font-semibold text-sm sm:text-base pl-2">
+          <p className="pl-2 font-semibold text-[#f2f2f3] text-sm sm:text-base">
             {props.PRmerged}
           </p>
         </div>
 
-        <div className="w-[40%] flex items-center justify-end sm:w-[20%]">
-          <p className="text-base sm:text-2xl font-bold text-[#FFD700]">
+        <div className="flex w-[40%] items-center justify-end sm:w-[20%]">
+          <p className="font-bold text-[#FFD700] text-base sm:text-2xl">
             {props.bounty}
           </p>
         </div>

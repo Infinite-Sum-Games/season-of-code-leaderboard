@@ -14,8 +14,8 @@ const Dashboard = () => {
 
   return (
     <div className="h-fit">
-      <div className="mx-auto px-3 md:px-0 overflow-clip">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-3 justify-start items-start">
+      <div className="mx-auto overflow-clip px-3 md:px-0">
+        <div className="grid grid-cols-1 items-start justify-start gap-3 md:grid-cols-2">
           <div>
             <Navbar />
 
@@ -41,7 +41,7 @@ const Dashboard = () => {
         fill
         style={{ objectFit: 'cover' }}
         priority
-        className="object-contain md:block hidden absolur top-0 bottom-0 left-0 -z-40"
+        className="absolur -z-40 top-0 bottom-0 left-0 hidden object-contain md:block"
       />
       <Snowfall />
     </div>

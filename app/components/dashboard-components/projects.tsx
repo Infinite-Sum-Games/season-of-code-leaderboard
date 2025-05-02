@@ -215,16 +215,16 @@ const ProjectData = [
 const projects = () => {
   return (
     <div>
-      <CardHeader className="font-bold text-3xl sm:text-6xl pt-2 sm:pt-4 pb-1 sm:pb-2 px-2 sm:px-4 text-[#3abef9]">
+      <CardHeader className="px-2 pt-2 pb-1 font-bold text-3xl text-[#3abef9] sm:px-4 sm:pt-4 sm:pb-2 sm:text-6xl">
         Projects
       </CardHeader>
-      <CardDescription className="px-2 sm:px-4 pb-2 sm:pb-4 text-[#c8c7cc] text-sm sm:text-base">
+      <CardDescription className="px-2 pb-2 text-[#c8c7cc] text-sm sm:px-4 sm:pb-4 sm:text-base">
         Projects with bounties to work on.
       </CardDescription>
-      <ScrollArea className="max-h-[80vh] overflow-auto relative">
+      <ScrollArea className="relative max-h-[80vh] overflow-auto">
         <div className="grid grid-cols-1 gap-4 p-4">
           {ProjectData.length === 0 ? (
-            <div className="flex justify-center items-center h-full text-[#c8c7cc] text-2xl">
+            <div className="flex h-full items-center justify-center text-2xl text-[#c8c7cc]">
               No projects available at the moment.
             </div>
           ) : (

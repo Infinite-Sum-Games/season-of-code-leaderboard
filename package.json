@@ -6,13 +6,14 @@
     "dev": "next dev --turbopack",
     "start": "next start",
     "prepare": "husky",
-    "lint": "biome check --files-ignore-unknown=true",
+    "lint": "biome lint --write --unsafe --files-ignore-unknown=true ./app",
+    "format": "biome format --write --files-ignore-unknown=true ./app",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,json,jsonc,css,scss,html}": [
-      "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched"
+      "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched ./app"
     ]
   },
   "dependencies": {
