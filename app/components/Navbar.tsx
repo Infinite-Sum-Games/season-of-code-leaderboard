@@ -16,8 +16,8 @@ const Navbar = () => {
       <nav className="w-11/12 md:w-9/10 bg-white/90 backdrop-blur-sm border-b border-[#A7E6FF] shadow-sm rounded-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-          {/* Logo */}
-          <div className="flex-shrink-0" aria-label="Home">
+            {/* Logo */}
+            <div className="flex-shrink-0" aria-label="Home">
               <Link href="/" aria-label="Home">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 overflow-hidden flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-105">
                   <Image
@@ -30,12 +30,6 @@ const Navbar = () => {
                   />
                 </div>
               </Link>
-              {/* <Link
-              href="https://github.com/CSE-25/winter-of-code-s1"
-              className="text-base md:text-lg text-gray-800 font-semibold hover:text-[#3572ef] transition-all duration-300 ease-in-out"
-              >
-              About AmWOC
-              </Link> */}
             </div>
 
             {/* Desktop Navigation */}
@@ -49,7 +43,7 @@ const Navbar = () => {
               </div>
             </div>
 
-            {/* Register Button - Always visible on desktop */}
+            {/* Register Button - Desktop */}
             <div className="hidden md:block">
               <RegisterButton onClick={handleApplyButtonClick} />
             </div>
@@ -78,7 +72,7 @@ const Navbar = () => {
               <MobileNavLink href="/team">Team</MobileNavLink>
               <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
               <div className="mt-4 pt-4 border-t border-gray-200">
-              <RegisterButton
+                <RegisterButton
                   onClick={handleApplyButtonClick}
                   className="w-full justify-center"
                 />
@@ -92,10 +86,10 @@ const Navbar = () => {
 };
 
 // Reusable NavLink component
-const NavLink = ({ 
+const NavLink = ({
   href,
-  children
-}: { 
+  children,
+}: {
   href: string;
   children: React.ReactNode;
 }) => (
@@ -108,12 +102,13 @@ const NavLink = ({
 );
 
 // Reusable MobileNavLink component
-const MobileNavLink = ({ 
-  href, 
-  children
-}: { 
-  href: string; 
-  children: React.ReactNode }) => (
+const MobileNavLink = ({
+  href,
+  children,
+}: {
+  href: string;
+  children: React.ReactNode;
+}) => (
   <Link
     href={href}
     className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-blue-50 transition-colors duration-200"
@@ -123,12 +118,12 @@ const MobileNavLink = ({
 );
 
 // Reusable RegisterButton component
-const RegisterButton = ({ 
+const RegisterButton = ({
   onClick,
   className = '',
 }: {
   onClick: () => void;
-  className?: string 
+  className?: string;
 }) => (
   <button
     type="button"
