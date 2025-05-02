@@ -27,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="fallbackImage.jpg" type="image/jpeg" />
+        <link
+          rel="icon"
+          href="fallbackImage.jpg"
+          type="image/jpeg"
+        />
       </head>
 
       <body

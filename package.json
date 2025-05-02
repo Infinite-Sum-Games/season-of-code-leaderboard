@@ -6,11 +6,12 @@
     "dev": "next dev --turbopack",
     "start": "next start",
     "prepare": "husky",
-    "lint": "biome check --files-ignore-unknown=true"
+    "lint": "biome lint --write --unsafe --files-ignore-unknown=true ./app",
+    "format": "biome format --write --files-ignore-unknown=true ./app"
   },
   "lint-staged": {
     "*.{js,ts,jsx,tsx,json,jsonc,css,scss,html}": [
-      "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched"
+      "biome check --write --files-ignore-unknown=true --no-errors-on-unmatched ./app"
     ]
   },
   "dependencies": {
@@ -42,7 +43,6 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-icons": "^3.0.0",
-    "biome": "^0.3.3",
     "husky": "^9.1.7",
     "node-gyp-build": "^4.8.4",
     "postcss": "^8.5.3",

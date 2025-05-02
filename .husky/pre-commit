@@ -15,4 +15,5 @@ bash -c '
   fi
 '
 pnpm lint
+pnpm format
 lint-staged

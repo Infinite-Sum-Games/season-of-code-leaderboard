@@ -25,12 +25,12 @@ interface UserCardProps {
 }
 
 const LoadingCard = () => (
-  <div className="w-fit flex items-center justify-center px-4 py-8">
+  <div className="flex w-fit items-center justify-center px-4 py-8">
     <div className="w-fit max-w-md">
-      <BackgroundGradient className="p-4 rounded-xl">
-        <Card className="bg-[#050217] border border-gray-700 p-6 rounded-xl shadow-lg transition-transform transform">
+      <BackgroundGradient className="rounded-xl p-4">
+        <Card className="transform rounded-xl border border-gray-700 bg-[#050217] p-6 shadow-lg transition-transform">
           <div className="text-center text-gray-300">
-            <h2 className="text-2xl text-[#c8c7cc] font-semibold">
+            <h2 className="font-semibold text-2xl text-[#c8c7cc]">
               Searching for your profile...
             </h2>
             <p>Please wait for a while 😊</p>
@@ -42,12 +42,12 @@ const LoadingCard = () => (
 );
 
 const ErrorCard = () => (
-  <div className="w-fit flex justify-center px-4 py-8">
+  <div className="flex w-fit justify-center px-4 py-8">
     <div className="w-fit max-w-md">
-      <BackgroundGradient className="p-4 rounded-xl">
-        <Card className="bg-[#050217] border border-gray-700 p-6 rounded-xl shadow-lg transition-transform transform">
+      <BackgroundGradient className="rounded-xl p-4">
+        <Card className="transform rounded-xl border border-gray-700 bg-[#050217] p-6 shadow-lg transition-transform">
           <div className="text-center text-gray-300">
-            <h2 className="text-2xl text-[#c8c7cc] font-semibold">
+            <h2 className="font-semibold text-2xl text-[#c8c7cc]">
               Oops! Something went wrong.
             </h2>
             <p>Please try again later 😊</p>
@@ -82,43 +82,43 @@ const UserCard = () => {
 
   if (loading)
     return (
-      <div className="w-full h-screen m-auto flex flex-row justify-center items-center">
+      <div className="m-auto flex h-screen w-full flex-row items-center justify-center">
         <LoadingCard />
       </div>
     );
   if (!userData)
     return (
-      <div className="w-full h-screen flex flex-row justify-center items-center">
+      <div className="flex h-screen w-full flex-row items-center justify-center">
         <ErrorCard />
       </div>
     );
 
   return (
-    <div className="relative w-fit max-w-3xl mx-auto my-8 mt-16">
-      <BackgroundGradient className="p-4 rounded-xl">
+    <div className="relative mx-auto my-8 mt-16 w-fit max-w-3xl">
+      <BackgroundGradient className="rounded-xl p-4">
         <Spotlight fill="blue" />
-        <Card className="relative bg-[#050217] border border-gray-700 rounded-2xl shadow-lg transition-transform transform">
-          <div className="absolute inset-x-0 top-0 flex justify-center -translate-y-1/2">
-            <div className="text-8xl text-[#ffcc00] font-bold animate-glow">
+        <Card className="relative transform rounded-2xl border border-gray-700 bg-[#050217] shadow-lg transition-transform">
+          <div className="-translate-y-1/2 absolute inset-x-0 top-0 flex justify-center">
+            <div className="animate-glow font-bold text-8xl text-[#ffcc00]">
               {useLeaderboardStore.getState().getRank(userData.username)}
             </div>
           </div>
-          <div className="flex flex-col lg:flex-row items-center gap-6 p-6 pt-16">
+          <div className="flex flex-col items-center gap-6 p-6 pt-16 lg:flex-row">
             <Image
               src={`https://github.com/${userData.username}.png`}
               alt={`${userData.username} profile`}
               width={96}
               height={96}
-              className="rounded-2xl w-32 sm:w-48 h-32 sm:h-48 border border-gray-600"
+              className="h-32 w-32 rounded-2xl border border-gray-600 sm:h-48 sm:w-48"
               onError={() =>
                 console.error('Error loading GitHub profile image.')
               }
             />
-            <div className="flex flex-col items-center md:items-start text-center md:text-left">
-              <h2 className="text-2xl md:text-3xl text-[#6ee7b7] font-semibold">
+            <div className="flex flex-col items-center text-center md:items-start md:text-left">
+              <h2 className="font-semibold text-2xl text-[#6ee7b7] md:text-3xl">
                 {userData.fullname}
               </h2>
-              <p className="text-lg text-gray-300">@{userData.username}</p>
+              <p className="text-gray-300 text-lg">@{userData.username}</p>
               <p className="text-gray-400 text-sm">
                 Roll No: {userData.rollNumber}
               </p>
@@ -126,7 +126,7 @@ const UserCard = () => {
           </div>
 
           <div className="p-6 pt-0">
-            <div className="w-full flex flex-col md:flex-row gap-1 text-white">
+            <div className="flex w-full flex-col gap-1 text-white md:flex-row">
               <StatCard
                 value={userData.bounty}
                 label="Bounty Earned"
@@ -173,12 +173,15 @@ const StatCard = ({
   label: string;
   color: string;
 }) => (
-  <div className="w-full border border-gray-700 rounded-2xl flex flex-row justify-between align-middle md:justify-center gap-4 md:gap-0 md:flex-col items-center p-2 md:p-3 hover:bg-[#050217] transition-colors">
-    <p className="text-4xl font-bold" style={{ color }}>
+  <div className="flex w-full flex-row items-center justify-between gap-4 rounded-2xl border border-gray-700 p-2 align-middle transition-colors hover:bg-[#050217] md:flex-col md:justify-center md:gap-0 md:p-3">
+    <p
+      className="font-bold text-4xl"
+      style={{ color }}
+    >
       {value}
     </p>
     <div className="mt-2 flex justify-center">
-      <p className="w-full inline-flex items-center rounded-xl px-2 py-1 text-md md:text-sm font-medium text-white bg-gray-700 bg-opacity-55">
+      <p className="inline-flex w-full items-center rounded-xl bg-gray-700 bg-opacity-55 px-2 py-1 font-medium text-md text-white md:text-sm">
         {label}
       </p>
     </div>
@@ -196,10 +199,10 @@ const IssueList = ({
   emptyMessage: string;
   color: string;
 }) => (
-  <div className="text-gray-300 text-sm w-full">
-    <h3 className="mb-2 text-lg font-semibold">{title}</h3>
+  <div className="w-full text-gray-300 text-sm">
+    <h3 className="mb-2 font-semibold text-lg">{title}</h3>
     {issues.length > 0 ? (
-      <div className="bg-[#1a1a2e] rounded-lg shadow-inner flex flex-col overflow-hidden">
+      <div className="flex flex-col overflow-hidden rounded-lg bg-[#1a1a2e] shadow-inner">
         {issues.map((issue, index) => (
           <div key={issue.url}>
             <CardDescription className="flex items-center justify-between gap-2 p-3 transition-colors hover:bg-gray-800">
@@ -207,7 +210,7 @@ const IssueList = ({
                 href={issue.url}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-blue-400 hover:underline break-all transition-colors hover:text-blue-300"
+                className="break-all text-blue-400 transition-colors hover:text-blue-300 hover:underline"
               >
                 {issue.url}
               </a>
