@@ -4,13 +4,13 @@
   "files": { "ignoreUnknown": false, "ignore": [] },
   "formatter": {
     "enabled": true,
-    "useEditorconfig": true,
+    "useEditorconfig": false,
     "formatWithErrors": false,
     "indentStyle": "space",
     "indentWidth": 2,
     "lineEnding": "lf",
     "lineWidth": 80,
-    "attributePosition": "auto",
+    "attributePosition": "multiline",
     "bracketSpacing": true,
     "ignore": [
       "./node_modules",
@@ -33,7 +33,10 @@
     ]
   },
   "organizeImports": { "enabled": true },
-  "linter": { "enabled": true, "rules": { "recommended": true } },
+  "linter": {
+    "enabled": true,
+    "rules": { "recommended": true, "nursery": { "useSortedClasses": "error" } }
+  },
   "javascript": {
     "formatter": {
       "jsxQuoteStyle": "double",
@@ -43,8 +46,9 @@
       "arrowParentheses": "always",
       "bracketSameLine": false,
       "quoteStyle": "single",
-      "attributePosition": "auto",
-      "bracketSpacing": true
+      "attributePosition": "multiline",
+      "bracketSpacing": true,
+      "lineWidth": 80
     }
   }
 }

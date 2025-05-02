@@ -8,11 +8,14 @@ const Navbar = () => {
     window.location.href = 'https://forms.office.com/r/xH6GzZZhzC';
   };
   return (
-    <nav className="mt-4 absolute md:w-1/2 mx-4 w-11/12 top-0 left-0 z-50 bg-transparent backdrop-blur-sm border border-[#A7E6FF] shadow-lg rounded-lg">
-      <div className="container mx-auto flex items-center justify-between px-2 sm:px-6 py-3">
+    <nav className="absolute top-0 left-0 z-50 mx-4 mt-4 w-11/12 rounded-lg border border-[#A7E6FF] bg-transparent shadow-lg backdrop-blur-sm md:w-1/2">
+      <div className="container mx-auto flex items-center justify-between px-2 py-3 sm:px-6">
         <div className="flex items-center space-x-6">
-          <Link href="/" className="flex items-center space-x-2">
-            <div className="w-12 h-12 rounded-full overflow-hidden flex items-center justify-center shadow-lg hover:shadow-2xl transition-all duration-300 ease-in-out hover:scale-105">
+          <Link
+            href="/"
+            className="flex items-center space-x-2"
+          >
+            <div className="flex h-12 w-12 items-center justify-center overflow-hidden rounded-full shadow-lg transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-2xl">
               <Image
                 src="/acmlogonew.webp"
                 alt="Logo"
@@ -25,17 +28,17 @@ const Navbar = () => {
 
           <Link
             href="https://github.com/CSE-25/winter-of-code-s1"
-            className="text-base md:text-lg text-[#FFFFFF] font-semibold hover:text-[#3ABEF9] transition-all duration-300 ease-in-out"
+            className="font-semibold text-[#FFFFFF] text-base transition-all duration-300 ease-in-out hover:text-[#3ABEF9] md:text-lg"
           >
             About AmWOC
           </Link>
         </div>
 
-        <div className="md:flex items-center space-x-6">
+        <div className="items-center space-x-6 md:flex">
           <button
             type="button"
             onClick={handleApplyButtonClick}
-            className="px-6 py-2 bg-gray-800 border border-gray-400 text-white font-semibold text-sm sm:text-lg rounded-lg transition-all duration-300 ease-in-out hover:scale-105 focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] flex items-center gap-2 shadow-md hover:shadow-xl"
+            className="flex items-center gap-2 rounded-lg border border-gray-400 bg-gray-800 px-6 py-2 font-semibold text-sm text-white shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-xl focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] sm:text-lg"
           >
             {/* <Github size={20} /> */}
             Register

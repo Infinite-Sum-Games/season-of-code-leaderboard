@@ -42,7 +42,7 @@ const Snowfall: React.FC = () => {
   return (
     <div
       id="snowfall-container"
-      className="fixed top-0 left-0 w-screen h-screen pointer-events-none overflow-hidden -z-10"
+      className="-z-10 pointer-events-none fixed top-0 left-0 h-screen w-screen overflow-hidden"
     />
   );
 };
