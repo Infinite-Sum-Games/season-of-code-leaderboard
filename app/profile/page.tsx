@@ -1,7 +1,12 @@
-import React from 'react';
+import React from "react";
+import Profile from "../components/profile-components/profileCard";
 
 const profile = () => {
-  return <div>Profile</div>;
+  return (
+    <div>
+      <Profile></Profile>
+    </div>
+  );
 };
 
 export default profile;
