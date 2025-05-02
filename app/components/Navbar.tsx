@@ -12,14 +12,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 w-full flex justify-center mt-4 z-50">
-      <nav className="w-11/12 md:w-9/10 bg-white/90 backdrop-blur-sm border-b border-[#A7E6FF] shadow-sm rounded-lg">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center justify-between h-16">
+    <div className="fixed top-0 left-0 z-50 mt-4 flex w-full justify-center">
+      <nav className="w-11/12 rounded-lg border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm md:w-9/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+          <div className="flex h-16 items-center justify-between">
             {/* Logo */}
-            <div className="flex-shrink-0" aria-label="Home">
-              <Link href="/" aria-label="Home">
-                <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 overflow-hidden flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-105">
+            <div
+              className="flex-shrink-0"
+              aria-label="Home"
+            >
+              <Link
+                href="/"
+                aria-label="Home"
+              >
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-blue-400 shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12">
                   <Image
                     src="/acmlogonew.webp"
                     alt="ACM Logo"
@@ -33,7 +39,7 @@ const Navbar = () => {
             </div>
 
             {/* Desktop Navigation */}
-            <div className="hidden md:flex items-center justify-center flex-1">
+            <div className="hidden flex-1 items-center justify-center md:flex">
               <div className="flex space-x-6">
                 <NavLink href="/home">Home</NavLink>
                 <NavLink href="/announcements">Announcements</NavLink>
@@ -49,11 +55,11 @@ const Navbar = () => {
             </div>
 
             {/* Mobile Menu Button */}
-            <div className="md:hidden flex items-center">
+            <div className="flex items-center md:hidden">
               <button
                 type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-                className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-500 hover:bg-blue-50 focus:outline-none transition-colors duration-200"
+                className="inline-flex items-center justify-center rounded-md p-2 text-gray-700 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500 focus:outline-none"
                 aria-label="Toggle menu"
               >
                 {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
@@ -64,14 +70,14 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         {mobileMenuOpen && (
-          <div className="md:hidden bg-white border-t border-gray-200">
-            <div className="px-2 pt-2 pb-3 space-y-1 sm:px-3">
+          <div className="border-gray-200 border-t bg-white md:hidden">
+            <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
               <MobileNavLink href="/home">Home</MobileNavLink>
               <MobileNavLink href="/announcements">Announcements</MobileNavLink>
               <MobileNavLink href="/resources">Resources</MobileNavLink>
               <MobileNavLink href="/team">Team</MobileNavLink>
               <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
-              <div className="mt-4 pt-4 border-t border-gray-200">
+              <div className="mt-4 border-gray-200 border-t pt-4">
                 <RegisterButton
                   onClick={handleApplyButtonClick}
                   className="w-full justify-center"
@@ -95,7 +101,7 @@ const NavLink = ({
 }) => (
   <Link
     href={href}
-    className="px-2 py-1 text-sm font-medium text-gray-700 hover:text-blue-500 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
+    className="whitespace-nowrap px-2 py-1 font-medium text-gray-700 text-sm transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
   >
     {children}
   </Link>
@@ -111,7 +117,7 @@ const MobileNavLink = ({
 }) => (
   <Link
     href={href}
-    className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-blue-50 transition-colors duration-200"
+    className="block rounded-md px-3 py-2 font-medium text-base text-gray-700 transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
   >
     {children}
   </Link>
@@ -128,7 +134,7 @@ const RegisterButton = ({
   <button
     type="button"
     onClick={onClick}
-    className={`${className} px-4 py-2 bg-gray-800 border-gray-400 text-white text-sm font-medium rounded-md hover:bg-blue-700 focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2 transition-colors duration-200 shadow-sm hover:shadow-md whitespace-nowrap`}
+    className={`${className} whitespace-nowrap rounded-md border-gray-400 bg-gray-800 px-4 py-2 font-medium text-sm text-white shadow-sm transition-colors duration-200 hover:bg-blue-700 hover:shadow-md focus:outline-none focus:ring-2 focus:ring-blue-500 focus:ring-offset-2`}
     aria-label="Register for AmWOC"
   >
     Register
