@@ -1,9 +1,9 @@
 'use client';
-// import { Github } from "lucide-react";
-import { useState } from 'react';
+import { Menu, X } from 'lucide-react';
 import Image from 'next/image';
 import Link from 'next/link';
-import { Menu, X } from 'lucide-react';
+// import { Github } from "lucide-react";
+import { useState } from 'react';
 
 const Navbar = () => {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
@@ -16,8 +16,8 @@ const Navbar = () => {
       <nav className="w-11/12 md:w-9/10 bg-white/90 backdrop-blur-sm border-b border-[#A7E6FF] shadow-sm rounded-lg">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="flex items-center justify-between h-16">
-              {/* Logo */}
-              <div className='flex-shrink-0' aria-label="Home">
+          {/* Logo */}
+          <div className="flex-shrink-0" aria-label="Home">
               <Link href="/" aria-label="Home">
                 <div className="w-10 h-10 sm:w-12 sm:h-12 rounded-full bg-gradient-to-br from-blue-600 to-blue-400 overflow-hidden flex items-center justify-center shadow-md hover:shadow-lg transition-all duration-300 ease-in-out hover:scale-105">
                   <Image
@@ -57,6 +57,7 @@ const Navbar = () => {
             {/* Mobile Menu Button */}
             <div className="md:hidden flex items-center">
               <button
+                type="button"
                 onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
                 className="inline-flex items-center justify-center p-2 rounded-md text-gray-700 hover:text-blue-500 hover:bg-blue-50 focus:outline-none transition-colors duration-200"
                 aria-label="Toggle menu"
@@ -77,8 +78,8 @@ const Navbar = () => {
               <MobileNavLink href="/team">Team</MobileNavLink>
               <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
               <div className="mt-4 pt-4 border-t border-gray-200">
-                <RegisterButton 
-                  onClick={handleApplyButtonClick} 
+              <RegisterButton
+                  onClick={handleApplyButtonClick}
                   className="w-full justify-center"
                 />
               </div>
@@ -91,7 +92,13 @@ const Navbar = () => {
 };
 
 // Reusable NavLink component
-const NavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+const NavLink = ({ 
+  href,
+  children
+}: { 
+  href: string;
+  children: React.ReactNode;
+}) => (
   <Link
     href={href}
     className="px-2 py-1 text-sm font-medium text-gray-700 hover:text-blue-500 hover:bg-blue-50 transition-colors duration-200 whitespace-nowrap"
@@ -101,7 +108,12 @@ const NavLink = ({ href, children }: { href: string; children: React.ReactNode }
 );
 
 // Reusable MobileNavLink component
-const MobileNavLink = ({ href, children }: { href: string; children: React.ReactNode }) => (
+const MobileNavLink = ({ 
+  href, 
+  children
+}: { 
+  href: string; 
+  children: React.ReactNode }) => (
   <Link
     href={href}
     className="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:text-blue-500 hover:bg-blue-50 transition-colors duration-200"
@@ -111,7 +123,13 @@ const MobileNavLink = ({ href, children }: { href: string; children: React.React
 );
 
 // Reusable RegisterButton component
-const RegisterButton = ({ onClick, className = '' }: { onClick: () => void; className?: string }) => (
+const RegisterButton = ({ 
+  onClick,
+  className = '',
+}: {
+  onClick: () => void;
+  className?: string 
+}) => (
   <button
     type="button"
     onClick={onClick}
