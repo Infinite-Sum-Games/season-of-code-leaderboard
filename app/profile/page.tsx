@@ -1,10 +1,12 @@
 import React from "react";
 import Profile from "../components/profile-components/profileCard";
+import GraphSection from "../components/profile-components/Graph";  
 
 const profile = () => {
   return (
-    <div>
+    <div className="flex flex-col px-4 py-6">
       <Profile></Profile>
+      <GraphSection></GraphSection>
     </div>
   );
 };
