@@ -32,35 +32,35 @@ const logs: LogEntry[] = [
   {
     id: '1',
     type: 'top3',
-    user: 'Alice',
+    user: 'vijay-sb',
     timestamp: '2025-04-05T14:32:00Z',
     description: 'Alice just grabbed the #1 spot!',
   },
   {
     id: '2',
     type: 'bounty',
-    user: 'Bob',
+    user: 'KiranRajeev-KV',
     timestamp: '2025-03-05T13:00:00Z',
     description: 'Bob received a 100 point bounty reward.',
   },
   {
     id: '3',
     type: 'issue',
-    user: 'Charlie',
+    user: 'vijay-sb',
     timestamp: '2025-05-04T12:45:00Z',
     description: 'New issue "Optimize sorting algorithm" was created.',
   },
   {
     id: '4',
     type: 'bounty',
-    user: 'Charlie',
+    user: 'Ashrockzzz2003',
     timestamp: '2025-06-04T12:45:00Z',
-    description: 'Charlie received a 100 point bounty reward.',
+    description: 'Ashrockzzz2003 received a 100 point bounty reward.',
   },
   {
     id: '5',
     type: 'issue',
-    user: 'Charlie',
+    user: 'KiranRajeev-KV',
     timestamp: '2025-08-04T12:45:00Z',
     description: 'New issue "Responsive fix" was created.',
   },
@@ -165,9 +165,21 @@ export default function Logtable() {
                             {label}
                           </Badge>
                         </TableCell>
-                        <TableCell className="font-semibold text-yellow-800">
-                          {log.user}
+                        <TableCell className=" truncate font-semibold text-yellow-800">
+                          <Tooltip>
+                            <TooltipTrigger asChild>
+                              <a
+                                href={`https://github.com/${log.user}`}
+                                target="_blank"
+                                rel="noopener noreferrer"
+                              >
+                                @{log.user}
+                              </a>
+                            </TooltipTrigger>
+                            <TooltipContent>@{log.user}</TooltipContent>
+                          </Tooltip>
                         </TableCell>
+
                         <TableCell className="truncate text-yellow-700">
                           <Tooltip>
                             <TooltipTrigger asChild>
