@@ -43,6 +43,7 @@
     "@types/react": "^18",
     "@types/react-dom": "^18",
     "@types/react-icons": "^3.0.0",
+    "@types/recharts": "^1.8.29",
     "biome": "^0.3.3",
     "husky": "^9.1.7",
     "node-gyp-build": "^4.8.4",

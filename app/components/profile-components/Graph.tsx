@@ -150,7 +150,7 @@ const GraphSection = () => {
   return (
     <div
       className="relative w-full border-r border-gray-800 bg-gradient-to-b from-[#0a0531] to-[#050217] p-6 mt-8"
-      style={{ width: "66%" }}
+      style={{ width: "95%" }}
     >
       <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
         Contribution Analytics
