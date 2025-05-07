@@ -318,13 +318,13 @@ export default function Badges() {
   const sortedBadges = [...unlockedBadges, ...lockedBadges];
 
   return (
-    <div className="relative w-full min-h-screen bg-gradient-to-b from-[#050217] to-[#0a0531]">
+    <div className="relative w-full h-full bg-orange-100 rounded-lg shadow-xl">
       
       <div className="pt-6 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-2">
+        <h1 className="text-4xl font-bold text-center text-yellow-800 bg-clip-text  mb-2">
           Your Badges
         </h1>
-        <p className="text-center text-purple-200 mb-6 text-sm">
+        <p className="text-center text-yellow-800 mb-6 text-sm">
           Collect achievements as you contribute to projects
         </p>
       </div>
@@ -332,7 +332,7 @@ export default function Badges() {
       {/* Only the badges grid is scrollable */}
       <div className="px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-6xl mx-auto">
-          <div className="max-h-[75vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-transparent">
+          <div className="max-h-[145vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-transparent">
             <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6">
             {sortedBadges.map((badge) => (
               <div key={badge.id} className="transform transition-all duration-300 hover:scale-105">
