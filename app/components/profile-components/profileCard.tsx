@@ -21,7 +21,7 @@ const LoadingCard = () => (
     <div className="w-full max-w-5xl">
       <BackgroundGradient className="p-4 rounded-xl">
         <Card className="bg-[#050217] border border-gray-700 p-8 rounded-xl shadow-lg transition-transform transform">
-          <div className="text-center text-gray-300">
+          <div className="text-center text-[#E6E6FA]-300">
             <h2 className="text-3xl text-[#c8c7cc] font-semibold">
               Searching for your profile...
             </h2>
@@ -38,7 +38,7 @@ const ErrorCard = () => (
     <div className="w-full max-w-5xl">
       <BackgroundGradient className="p-4 rounded-xl">
         <Card className="bg-[#050217] border border-gray-700 p-8 rounded-xl shadow-lg transition-transform transform">
-          <div className="text-center text-gray-300">
+          <div className="text-center text-[#E6E6FA]-300">
             <h2 className="text-3xl text-[#c8c7cc] font-semibold">
               Oops! Something went wrong.
             </h2>
@@ -64,7 +64,7 @@ const BountyBar = ({
 
   return (
     <div className="relative" style={{ height: `${height}px`, width: "60px" }}>
-      <div className="absolute inset-0 bg-gray-800 bg-opacity-50 rounded-full overflow-hidden border border-gray-700">
+      <div className="absolute inset-0 bg-yellow-100 bg-opacity-50 rounded-full overflow-hidden border border-yellow-800">
         {/* Filled upto portion */}
         <div
           className="absolute bottom-0 w-full bg-gradient-to-t from-yellow-500 to-yellow-300"
@@ -79,7 +79,7 @@ const BountyBar = ({
             style={{ bottom: `${milestone}%` }}
           >
             {milestone % 50 === 0 && (
-              <span className="absolute -left-8 text-xs text-gray-400">
+              <span className="absolute -left-8 text-xs text-[#E6E6FA]-400">
                 {milestone}%
               </span>
             )}
@@ -130,15 +130,15 @@ const ProfileCard = () => {
 
   return (
     <div className="relative w-full h-[100vh]">
-      <Spotlight fill="yellow" className="hidden md:block" />
+      {/* <Spotlight fill="yellow" className="hidden md:block" /> */}
       <div
-        className="relative h-full p-6 border-r border-gray-800 bg-gradient-to-b from-[#050217] to-[#0a0531]"
+        className="relative h-full p-6 bg-orange-100 shadow-lg rounded-xl"
         style={{ width: "66%" }}
       >
         {/* Current Rank Badge */}
         <div className="absolute top-8 right-12 flex justify-center items-center">
           <div className="relative">
-            <div className="w-24 h-24 rounded-full bg-yellow-500 flex items-center justify-center">
+            <div className="w-24 h-24 rounded-full bg-gradient-to-t from-yellow-500 to-yellow-300 flex items-center justify-center shadow-lg">
               <div className="text-5xl text-black font-bold">
                 {userData.rank}
               </div>
@@ -152,7 +152,7 @@ const ProfileCard = () => {
         {/* Profile Info */}
         <div className="flex flex-col md:flex-row items-center gap-6 pt-4">
           <div className="relative">
-            <div className="w-32 h-32 rounded-full border-4 border-purple-500 p-1 bg-gradient-to-br from-purple-500 to-blue-500">
+            <div className="w-32 h-32 rounded-full border-4 border-[#5C4033] p-1 bg-yellow-100">
               <Image
                 src={`https://github.com/${userData.username}.png`}
                 alt={`${userData.username} profile`}
@@ -164,23 +164,23 @@ const ProfileCard = () => {
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold text-[#5C4033]">
               {userData.name}
             </h2>
-            <p className="text-xl text-purple-300 font-light mt-1">
+            <p className="text-xl text-[#5C4033] font-light mt-1">
               @{userData.username}
             </p>
-            <div className="flex items-center mt-3 bg-purple-900 bg-opacity-30 px-4 py-2 rounded-lg border border-purple-500">
-              <div className="w-3 h-3 rounded-full bg-green-500 mr-2"></div>
-              <span className="text-green-400">Active Hunter</span>
+            <div className="flex items-center mt-3 bg-yellow-100 bg-opacity-30 px-4 py-2 rounded-lg border border-black">
+              <div className="w-3 h-3 rounded-full bg-[#5C4033] mr-2"></div>
+              <span className="text-[#5C4033]">Active Hunter</span>
             </div>
           </div>
         </div>
 
         {/* Details Container */}
-        <div className="mt-8 flex flex-row gap-20">
+        <div className="mt-8 flex flex-row gap-20 ">
           {/* Stats Container */}
-          <div className="flex-1 flex flex-col gap-4">
+          <div className="flex-1 flex flex-col gap-4 ">
             <div className="w-full">
               <StatCard
                 value={userData.bounty}
@@ -195,7 +195,7 @@ const ProfileCard = () => {
                 <StatCard
                   value={2}
                   label="All Time Best Rank"
-                  color="#16a34a"
+                  color="#44c08a"
                   icon="🏆"
                   size="small"
                 />
@@ -214,10 +214,10 @@ const ProfileCard = () => {
 
           {/* Bounty Progress Bar */}
           <div className="flex flex-col items-start ml-4">
-            <h3 className="text-white font-semibold mb-2">Bounty Progress</h3>
+            <h3 className="text-yellow-800 font-semibold mb-2">Bounty Progress</h3>
             <div className="flex items-end gap-4">
               <BountyBar value={userData.bounty} max={1000} height={200} />
-              <div className="text-sm text-gray-400 mb-4">
+              <div className="text-sm text-yellow-800 mb-4">
                 <div>Goal: 1000</div>
               </div>
             </div>
@@ -226,7 +226,7 @@ const ProfileCard = () => {
 
         {/* Recent Activity */}
         <div className="mt-8 border-t border-gray-800 pt-4">
-          <h3 className="text-xl font-semibold text-white mb-3">
+          <h3 className="text-xl font-semibold text-[#FF8C00] mb-3">
             Recent Activity
           </h3>
           <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
@@ -265,7 +265,7 @@ const StatCard = ({
 }) => {
   return (
     <div
-      className={`bg-gray-900 bg-opacity-60 border border-gray-700 rounded-xl shadow-lg p-4 text-center transform transition-all duration-300 hover:scale-105 hover:border-gray-500 ${
+      className={`bg-sky-100 bg-opacity-60 border border-gray-700 rounded-xl shadow-lg p-4 text-center transform transition-all duration-300 hover:scale-105 hover:border-gray-500 ${
         size === "large" ? "w-full" : "flex-1"
       }`}
     >
@@ -283,7 +283,7 @@ const StatCard = ({
       <p
         className={`${
           size === "large" ? "text-sm" : "text-xs"
-        } text-gray-400 mt-1 font-medium`}
+        } text-yellow-800 mt-1 font-bold`}
       >
         {label}
       </p>
@@ -303,16 +303,16 @@ const ActivityItem = ({
   <div
     className={`flex justify-between items-center p-2 rounded-lg ${
       highlight
-        ? "bg-purple-900 bg-opacity-30 border border-purple-500"
-        : "bg-gray-900 bg-opacity-40"
+        ? "bg-sky-100 bg-opacity-30 border border-sky-400"
+        : "bg-yellow-100 bg-opacity-40 border border-yellow-400"
     }`}
   >
     <div className="flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-green-500"></div>
-      <p className="text-sm text-gray-300">{text}</p>
+      <div className="w-2 h-2 rounded-full bg-yellow-800"></div>
+      <p className="text-sm text-yellow-800">{text}</p>
     </div>
     <div>
-      <span className="text-xs text-gray-500">{time}</span>
+      <span className="text-xs text-yellow-800">{time}</span>
     </div>
   </div>
 );

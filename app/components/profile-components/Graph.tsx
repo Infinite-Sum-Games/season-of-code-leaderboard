@@ -85,7 +85,7 @@ const pieChartConfig = {
 const radarChartConfig = {
   code: {
     label: "Code Contribution",
-    color: "hsl(270, 100%, 60%)", 
+    color: "hsl(53,100%,67%)", 
   },
 } satisfies ChartConfig;
 
@@ -132,9 +132,9 @@ const GraphSection = () => {
 
   // Format data for pie chart
   const pieData = [
-    { name: "PRs Opened", value: graphData.prStats.opened, fill: "hsl(271, 49%, 58%)" },
-    { name: "PRs Merged", value: graphData.prStats.merged, fill: "hsl(271, 51%, 74%)" },
-    { name: "Issues Solved", value: graphData.prStats.issuesSolved, fill: "hsl(271, 100%, 62%, 0.62)" }
+    { name: "PRs Opened", value: graphData.prStats.opened, fill: "#f0b073" },
+    { name: "PRs Merged", value: graphData.prStats.merged, fill: "#eeea97" },
+    { name: "Issues Solved", value: graphData.prStats.issuesSolved, fill: "#9cd0e4" }
   ];
 
   // Format data for radar chart
@@ -149,17 +149,17 @@ const GraphSection = () => {
 
   return (
     <div
-      className="relative w-full border-r border-gray-800 bg-gradient-to-b from-[#0a0531] to-[#050217] p-6 mt-8"
+      className="relative w-full bg-orange-100 shadow-lg p-6 mt-8 rounded-xl"
       style={{ width: "66%" }}
     >
-      <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-transparent mb-6">
+      <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-yellow-800 mb-6">
         Contribution Analytics
       </h2>
 
       <div className="flex flex-col md:flex-row gap-6 items-stretch">
         {/* Pie Chart */}
-        <div className="flex-1 min-w-0 bg-gray-900 bg-opacity-60 border border-gray-700 rounded-xl shadow-xl p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
-          <h3 className="text-xl font-semibold text-white mb-2 text-center">
+        <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
+          <h3 className="text-xl font-semibold mb-2 text-center text-yellow-800">
             Contribution Chart
           </h3>
           <ChartContainer
@@ -177,7 +177,7 @@ const GraphSection = () => {
                 nameKey="name"
                 cx="50%"
                 cy="50%"
-                outerRadius={80}
+                outerRadius={100}
                 label={false}
               />
             </PieChart>
@@ -186,37 +186,39 @@ const GraphSection = () => {
             {pieData.map((entry, index) => (
               <div key={index} className="flex items-center gap-2">
                 <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.fill }}></div>
-                <span className="text-xs text-gray-300">{entry.name}</span>
+                <span className="text-s text-yellow-800 font-bold">{entry.name}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Radar Chart */}
-        <div className="flex-1 min-w-0 bg-gray-900 bg-opacity-60 border border-gray-700 rounded-xl shadow-xl p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
-          <h3 className="text-xl font-semibold text-white mb-2 text-center">
+        <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
+          <h3 className="text-xl font-semibold text-yellow-800 mb-2 text-center">
             Issue Distribution
           </h3>
           <ChartContainer
             config={radarChartConfig}
-            className="mx-auto h-[250px] w-full"
+            className="mx-auto h-[275px] w-full"
           >
-            <RadarChart outerRadius={75} data={radarData}>
+            <RadarChart outerRadius={100} cy={135} data={radarData} >
               <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-              <PolarGrid stroke="#444" />
+              <PolarGrid stroke="#f28b30" />
               <PolarAngleAxis
                 dataKey="attribute"
-                tick={{ fill: '#9ca3af', fontSize: 12 }}
+                tick={{ fill: '#1b497d', fontSize: 16 , dy:3 }}
+                tickLine={false}
+                tickSize={15}
               />
               <Radar
                 name="Skills"
                 dataKey="value"
-                stroke="rgba(138, 43, 226, 0.8)"
-                fill="rgba(138, 43, 226, 0.6)"
+                stroke="#f28b30"
+                fill="hsl(35,100%,57%)"
                 fillOpacity={0.6}
                 dot={{
                   r: 4,
-                  fill: "#8a2be2",
+                  fill: "#f28b30",
                   fillOpacity: 1,
                 }}
               />
