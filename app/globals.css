@@ -118,7 +118,12 @@
   }
 
   body {
-    background: linear-gradient(to left, #070f2b, #1b1a55);
+    background: linear-gradient(
+      to bottom,
+      #3a55d4 15%,
+      #609bf5 70%,
+      #a9d1f6 100%
+    );
     font-family: var(--font-geist-sans), sans-serif;
   }
 }
@@ -213,5 +218,34 @@
   100% {
     text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b, 0 0 20px
       #070f2b;
+  }
+}
+
+.animate-cloud-ltr {
+  animation: cloud-move-ltr 300s linear infinite;
+  position: fixed;
+}
+
+.animate-cloud-rtl {
+  animation: cloud-move-rtl 300s linear infinite;
+  animation-delay: 120s;
+  position: fixed;
+}
+
+@keyframes cloud-move-ltr {
+  0% {
+    left: -450px;
+  }
+  100% {
+    left: 100vw;
+  }
+}
+
+@keyframes cloud-move-rtl {
+  0% {
+    left: 100vw;
+  }
+  100% {
+    left: -450px;
   }
 }

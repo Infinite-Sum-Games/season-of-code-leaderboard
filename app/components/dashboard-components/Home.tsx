@@ -116,7 +116,7 @@ export const Home = () => {
           </a>
         </div>
       </div>
-      <div
+      {/* <div
         className="absolute z-0 animate-rotateSnowflake"
         style={{
           top: '60vh',
@@ -183,7 +183,7 @@ export const Home = () => {
           priority
           className="object-cover opacity-40"
         />
-      </div>
+      </div> */}
 
       {/* Snow Background */}
       {/* <Image
