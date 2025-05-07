@@ -133,7 +133,7 @@ const ProfileCard = () => {
       {/* <Spotlight fill="yellow" className="hidden md:block" /> */}
       <div
         className="relative h-full p-6 bg-orange-100 shadow-lg rounded-xl"
-        style={{ width: "66%" }}
+        style={{ width: "95%" }}
       >
         {/* Current Rank Badge */}
         <div className="absolute top-8 right-12 flex justify-center items-center">
