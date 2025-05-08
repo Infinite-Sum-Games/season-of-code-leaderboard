@@ -6,14 +6,15 @@ import Usercard from './components/dashboard-components/usercard';
 import './globals.css';
 import { useSession } from 'next-auth/react';
 import Navbar from './components/Navbar';
+import FlareEffect from './components/dashboard-components/FlareEffect';
 import Home from './components/dashboard-components/Home';
-import Snowfall from './components/dashboard-components/Snowfall';
 
 const Dashboard = () => {
   const { data: session } = useSession();
 
   return (
     <div className="h-fit">
+      <FlareEffect />
       <div className="mx-auto overflow-clip px-3 md:px-0">
         <div className="grid grid-cols-1 items-start justify-start gap-3 md:grid-cols-2">
           <div>

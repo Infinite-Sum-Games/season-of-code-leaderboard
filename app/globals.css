@@ -221,14 +221,15 @@
   }
 }
 
+/* made animation faster for testing */
 .animate-cloud-ltr {
-  animation: cloud-move-ltr 300s linear infinite;
+  animation: cloud-move-ltr 10s linear infinite;
   position: fixed;
 }
 
 .animate-cloud-rtl {
-  animation: cloud-move-rtl 300s linear infinite;
-  animation-delay: 120s;
+  animation: cloud-move-rtl 10s linear infinite;
+  animation-delay: 4s;
   position: fixed;
 }
 
