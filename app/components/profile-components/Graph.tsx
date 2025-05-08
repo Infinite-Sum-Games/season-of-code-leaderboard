@@ -1,6 +1,6 @@
 "use client";
 import { useEffect, useState } from "react";
-import { Pie, PieChart, PolarAngleAxis, PolarGrid, Radar, RadarChart } from "recharts";
+import { Pie, PieChart, PolarAngleAxis, PolarGrid, Radar, RadarChart, ResponsiveContainer } from "recharts";
 import { Card } from "../ui/card";
 import { BackgroundGradient } from "../ui/background-gradient";
 import type{
@@ -70,22 +70,18 @@ const ErrorGraphs = () => (
 const pieChartConfig = {
   opened: {
     label: "PRs Opened",
-    color: "hsl(271, 49%, 58%)", 
   },
   merged: {
     label: "PRs Merged",
-    color: "hsl(271, 51%, 74%)", 
   },
   solved: {
     label: "Issues Solved",
-    color: "hsl(271, 100%, 62%, 0.62)", 
   }
 } satisfies ChartConfig;
 
 const radarChartConfig = {
   code: {
     label: "Code Contribution",
-    color: "hsl(53,100%,67%)", 
   },
 } satisfies ChartConfig;
 
@@ -93,6 +89,26 @@ const GraphSection = () => {
   const [loading, setLoading] = useState<boolean>(true);
   const [graphData, setGraphData] = useState<GraphData | null>(null);
   const [error, setError] = useState<boolean>(false);
+  const [windowWidth, setWindowWidth] = useState(typeof window !== 'undefined' ? window.innerWidth : 0);
+
+  useEffect(() => {
+    // Add resize event listener
+    const handleResize = () => {
+      setWindowWidth(window.innerWidth);
+    };
+
+    if (typeof window !== 'undefined') {
+      setWindowWidth(window.innerWidth);
+      window.addEventListener('resize', handleResize);
+    }
+
+    // Cleanup
+    return () => {
+      if (typeof window !== 'undefined') {
+        window.removeEventListener('resize', handleResize);
+      }
+    };
+  }, []);
 
   useEffect(() => {
     // Simulating API fetch with dummy data
@@ -147,83 +163,107 @@ const GraphSection = () => {
     { attribute: "UI/UX", value: graphData.contributionStats.uiux }
   ];
 
+  // Determine radar chart label font size based on screen width
+  const radarLabelFontSize = windowWidth < 640 ? 9 : windowWidth < 768 ? 12 : 16;
+  
+  // Determine outer radius for radar chart based on screen width
+  const radarOuterRadius = windowWidth < 640 ? 70 : windowWidth < 768 ? 85 : 100;
+  
+  // Determine cy value for radar chart based on screen width
+  const radarCy = windowWidth < 640 ? 105 : windowWidth < 768 ? 120 : 135;
+  
+  // Determine pie chart outer radius based on screen width
+  const pieOuterRadius = windowWidth < 640 ? 70 : windowWidth < 768 ? 85 : 100;
+
   return (
     <div
-      className="relative w-full bg-orange-100 shadow-lg p-6 mt-8 rounded-xl"
+      className="relative w-full bg-orange-100 shadow-lg p-4 sm:p-6 mt-8 rounded-xl"
       style={{ width: "95%" }}
     >
-      <h2 className="text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-yellow-800 mb-6">
+      <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-yellow-800 mb-4 sm:mb-6 text-center">
         Contribution Analytics
       </h2>
 
-      <div className="flex flex-col md:flex-row gap-6 items-stretch">
+      <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 items-stretch">
         {/* Pie Chart */}
-        <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
-          <h3 className="text-xl font-semibold mb-2 text-center text-yellow-800">
+        <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-3 sm:p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
+          <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-center text-yellow-800">
             Contribution Chart
           </h3>
-          <ChartContainer
-            config={pieChartConfig}
-            className="mx-auto h-[250px] w-full"
-          >
-            <PieChart>
-              <ChartTooltip
-                cursor={false}
-                content={<ChartTooltipContent />}
-              />
-              <Pie
-                data={pieData}
-                dataKey="value"
-                nameKey="name"
-                cx="50%"
-                cy="50%"
-                outerRadius={100}
-                label={false}
-              />
-            </PieChart>
-          </ChartContainer>
-          <div className="flex justify-center gap-6 mt-2">
-            {pieData.map((entry, index) => (
-              <div key={index} className="flex items-center gap-2">
-                <div className="w-3 h-3 rounded-full" style={{ backgroundColor: entry.fill }}></div>
-                <span className="text-s text-yellow-800 font-bold">{entry.name}</span>
+          <div className="h-[200px] sm:h-[220px] md:h-[250px] w-full">
+            <ChartContainer
+              config={pieChartConfig}
+              className="mx-auto h-full w-full"
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <PieChart>
+                  <ChartTooltip
+                    cursor={false}
+                    content={<ChartTooltipContent />}
+                  />
+                  <Pie
+                    data={pieData}
+                    dataKey="value"
+                    nameKey="name"
+                    cx="50%"
+                    cy="50%"
+                    outerRadius={pieOuterRadius}
+                    label={false}
+                  />
+                </PieChart>
+              </ResponsiveContainer>
+            </ChartContainer>
+          </div>
+          <div className="flex flex-wrap justify-center gap-2 sm:gap-4 md:gap-6 mt-2">
+            {pieData.map((entry) => (
+              <div key={entry.name} className="flex items-center gap-1 sm:gap-2">
+                <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full" style={{ backgroundColor: entry.fill }}/>
+                <span className="text-xs sm:text-sm text-yellow-800 font-bold">{entry.name}</span>
               </div>
             ))}
           </div>
         </div>
 
         {/* Radar Chart */}
-        <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
-          <h3 className="text-xl font-semibold text-yellow-800 mb-2 text-center">
+        <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-3 sm:p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
+          <h3 className="text-lg sm:text-xl font-semibold text-yellow-800 mb-1 sm:mb-2 text-center">
             Issue Distribution
           </h3>
-          <ChartContainer
-            config={radarChartConfig}
-            className="mx-auto h-[275px] w-full"
-          >
-            <RadarChart outerRadius={100} cy={135} data={radarData} >
-              <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
-              <PolarGrid stroke="#f28b30" />
-              <PolarAngleAxis
-                dataKey="attribute"
-                tick={{ fill: '#1b497d', fontSize: 16 , dy:3 }}
-                tickLine={false}
-                tickSize={15}
-              />
-              <Radar
-                name="Skills"
-                dataKey="value"
-                stroke="#f28b30"
-                fill="hsl(35,100%,57%)"
-                fillOpacity={0.6}
-                dot={{
-                  r: 4,
-                  fill: "#f28b30",
-                  fillOpacity: 1,
-                }}
-              />
-            </RadarChart>
-          </ChartContainer>
+          <div className="h-[225px] sm:h-[250px] md:h-[275px] w-full">
+            <ChartContainer
+              config={radarChartConfig}
+              className="mx-auto h-full w-full"
+            >
+              <ResponsiveContainer width="100%" height="100%">
+                <RadarChart outerRadius={radarOuterRadius} cy={radarCy} data={radarData}>
+                  <ChartTooltip cursor={false} content={<ChartTooltipContent />} />
+                  <PolarGrid stroke="#f28b30" />
+                  <PolarAngleAxis
+                    dataKey="attribute"
+                    tick={{ 
+                      fill: '#1b497d', 
+                      fontSize: radarLabelFontSize,
+                      dy: windowWidth < 640 ? 1 : 3
+                    }}
+                    tickLine={false}
+                    tickSize={windowWidth < 640 ? 10 : 15}
+                  />
+                  <Radar
+                    name="Skills"
+                    dataKey="value"
+                    stroke="#f28b30"
+                    fill="hsl(35,100%,57%)"
+                    fillOpacity={0.6}
+                    dot={{
+                      r: windowWidth < 640 ? 2 : windowWidth < 768 ? 3 : 4,
+                      fill: "#f28b30",
+                      fillOpacity: 1,
+                    }}
+                  />
+                </RadarChart>
+              </ResponsiveContainer>
+            </ChartContainer>
+          </div>
         </div>
       </div>
     </div>
