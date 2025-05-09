@@ -3,16 +3,20 @@ import Image from 'next/image';
 import { useCallback, useEffect, useRef } from 'react';
 
 const CLOUD_COUNT = 5;
-const CLOUD_IMAGES = ['/upperCloud.png', '/bottomCloud.png'];
+const CLOUD_IMAGES = [
+  '/cloudImage1.png',
+  '/cloudImage2.png',
+  '/cloudImage3.png',
+];
 const OFFSET = 500;
 
 const getRandomDirection = () => (Math.random() > 0.5 ? 'ltr' : 'rtl');
 const getRandomY = () => Math.random() * window.innerHeight * 0.8;
 const getRandomSize = () => Math.random() * 0.2 + 0.3;
-const getRandomOpacity = () => Math.random() * 0.3 + 0.3;
+const getRandomOpacity = () => Math.random() * 0.3 + 0.15;
 const getRandomDuration = () => {
-  const minDuration = 60 * 2;
-  const maxDuration = 60 * 4;
+  const minDuration = 60 * 3;
+  const maxDuration = 60 * 5;
   return Math.random() * (maxDuration - minDuration) + minDuration;
 };
 
