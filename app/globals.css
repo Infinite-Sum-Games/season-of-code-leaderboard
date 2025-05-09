@@ -222,7 +222,7 @@
 }
 
 /* made animation faster for testing */
-.animate-cloud-ltr {
+/* .animate-cloud-ltr {
   animation: cloud-move-ltr 10s linear infinite;
   position: fixed;
 }
@@ -249,4 +249,4 @@
   100% {
     left: -450px;
   }
-}
+} */
