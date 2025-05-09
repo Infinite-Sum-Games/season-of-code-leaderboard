@@ -1,0 +1,221 @@
+.glare-effect-container {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;
+  height: 100vh;
+  pointer-events: none;
+  z-index: -1;
+  overflow: hidden;
+}
+
+.sun-element {
+  position: absolute;
+  width: 300px;
+  height: 300px;
+  border-radius: 50%;
+  top: -200px;
+  left: -200px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 255, 255, 0.7) 10%,
+    rgba(255, 245, 220, 0.6) 20%,
+    rgba(255, 230, 190, 0.4) 30%,
+    rgba(255, 215, 170, 0.2) 45%,
+    rgba(255, 200, 140, 0.1) 60%,
+    transparent 80%
+  );
+  filter: blur(4px);
+}
+
+.sun-glow-element {
+  position: absolute;
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  top: -50px;
+  left: -50px;
+  background: radial-gradient(
+    circle at center,
+    rgba(255, 255, 255, 0.9) 0%,
+    rgba(255, 240, 210, 0.7) 20%,
+    rgba(255, 210, 160, 0.3) 40%,
+    transparent 80%
+  );
+  filter: blur(2px);
+}
+
+.lens-glare-1 {
+  width: calc(40vmin * 0.7);
+  height: calc(40vmin * 0.7);
+  left: 45%;
+  top: 65%;
+  border-radius: 100%;
+  position: absolute;
+  background: radial-gradient(
+    closest-side circle at center,
+    transparent 50%,
+    hsl(4 10% 70% / 40%) 90%,
+    transparent 100%
+  );
+  filter: blur(5px);
+}
+
+.lens-glare-2 {
+  width: calc(40vmin * 0.4);
+  height: calc(40vmin * 0.4);
+  left: 42%;
+  top: 62%;
+  border-radius: 100%;
+  position: absolute;
+  background: hsl(4 10% 60% / 40%);
+  filter: blur(2px);
+}
+
+.sparkle {
+  position: absolute;
+  background: rgba(255, 255, 255, 0.95);
+  transform: rotate(45deg);
+  filter: blur(0.5px);
+  animation: sparkle-animation 6s infinite;
+  box-shadow: 0 0 10px 2px rgba(255, 255, 255, 0.7);
+}
+
+.sparkle-1 {
+  width: 8px;
+  height: 8px;
+  top: 120px;
+  left: 180px;
+  animation-delay: 0s;
+}
+
+.sparkle-2 {
+  width: 6px;
+  height: 6px;
+  top: 220px;
+  left: 140px;
+  animation-delay: 2s;
+}
+
+.sparkle-3 {
+  width: 10px;
+  height: 10px;
+  top: 160px;
+  left: 250px;
+  animation-delay: 4s;
+}
+
+.sparkle-4 {
+  width: 7px;
+  height: 7px;
+  top: 90px;
+  left: 220px;
+  animation-delay: 1s;
+}
+
+.sparkle-5 {
+  width: 9px;
+  height: 9px;
+  top: 200px;
+  left: 80px;
+  animation-delay: 3s;
+}
+
+.hex-glare {
+  position: absolute;
+  transform: rotate(30deg);
+  clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
+  filter: blur(3px);
+  animation: hex-animation 10s infinite alternate ease-in-out;
+}
+
+.hex-1 {
+  width: 100px;
+  height: 100px;
+  top: 90px;
+  left: 120px;
+  background: rgba(255, 215, 170, 0.25);
+  animation-delay: 0s;
+}
+
+.hex-2 {
+  width: 80px;
+  height: 80px;
+  top: 180px;
+  left: 200px;
+  background: rgba(255, 230, 180, 0.2);
+  animation-delay: 3s;
+}
+
+.hex-3 {
+  width: 60px;
+  height: 60px;
+  top: 140px;
+  left: 280px;
+  background: rgba(255, 240, 200, 0.18);
+  animation-delay: 6s;
+}
+
+@keyframes sparkle-animation {
+  0%,
+  100% {
+    opacity: 0;
+    transform: rotate(45deg) scale(0.2);
+  }
+  50% {
+    opacity: 0.9;
+    transform: rotate(45deg) scale(1);
+  }
+}
+
+@keyframes hex-animation {
+  0% {
+    opacity: 0.3;
+    transform: rotate(30deg) scale(0.9);
+  }
+  50% {
+    opacity: 0.5;
+    transform: rotate(35deg) scale(1.1);
+  }
+  100% {
+    opacity: 0.3;
+    transform: rotate(30deg) scale(0.9);
+  }
+}
+
+@media screen and (max-width: 768px) {
+  .hex-1 {
+    top: 70px;
+    left: 80px;
+  }
+  .hex-2 {
+    top: 150px;
+    left: 150px;
+  }
+  .hex-3 {
+    top: 100px;
+    left: 200px;
+  }
+
+  .sparkle-1 {
+    top: 100px;
+    left: 140px;
+  }
+  .sparkle-2 {
+    top: 180px;
+    left: 100px;
+  }
+  .sparkle-3 {
+    top: 130px;
+    left: 200px;
+  }
+  .sparkle-4 {
+    top: 80px;
+    left: 180px;
+  }
+  .sparkle-5 {
+    top: 160px;
+    left: 60px;
+  }
+}

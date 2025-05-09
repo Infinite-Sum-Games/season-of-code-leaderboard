@@ -6,15 +6,15 @@ import './globals.css';
 import { useSession } from 'next-auth/react';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
-import FlareEffect from './components/dashboard-components/FlareEffect';
 import Home from './components/dashboard-components/Home';
+import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 
 const Dashboard = () => {
   const { data: session } = useSession();
 
   return (
     <div className="h-fit">
-      <FlareEffect />
+      <SunGlareEffect />
       <Cloud />
       <div className="mx-auto overflow-clip px-3 md:px-0">
         <div className="grid grid-cols-1 items-start justify-start gap-3 md:grid-cols-2">

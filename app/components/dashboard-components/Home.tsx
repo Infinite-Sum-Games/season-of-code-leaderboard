@@ -45,7 +45,7 @@ export const Home = () => {
     <div className="relative flex h-screen w-full flex-col items-center justify-center pt-4 text-[#E3E8F1]">
       <div className="z-10 text-left">
         <h1 className="mb-6 font-bold text-4xl text-[#E3E8F1] tracking-tight sm:text-6xl">
-          <span className="text-[#3ABEF9]">Amrita</span> Winter of Code
+          <span className="text-[#3ABEF9]">Amrita</span> Summer of Code
         </h1>
 
         <p className="mb-6 max-w-md cl:text-lg text-md text-white leading-relaxed sm:mb-8 sm:text-base">
@@ -56,7 +56,7 @@ export const Home = () => {
         </p>
 
         <div className="mb-8 font-semibold text-lg">
-          <p className=" mb-2 font-light text-sm">Winter Of Code ends in</p>
+          <p className=" mb-2 font-light text-sm">Summer Of Code ends in</p>
           <div className="flex items-center gap-4 text-center">
             <div className="flex h-12 w-12 flex-col items-center justify-center rounded-lg bg-[#3ABEF9] text-[#070F2B] shadow-md sm:h-16 sm:w-16">
               <span className="font-bold text-xl sm:text-3xl">
