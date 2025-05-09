@@ -13,8 +13,8 @@ const Navbar = () => {
 
   return (
     <div className="fixed top-0 left-0 z-50 mt-4 flex w-full justify-center">
-      <nav className="w-11/12 rounded-lg border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm md:w-9/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-8">
+      <nav className="w-11/12 rounded-2xl border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm md:w-9/10">
+        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div
@@ -101,7 +101,7 @@ const NavLink = ({
 }) => (
   <Link
     href={href}
-    className="whitespace-nowrap px-2 py-1 font-medium text-gray-700 text-sm transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
+    className="whitespace-nowrap rounded-lg px-2 py-1 font-medium text-gray-700 text-md transition-colors duration-200 hover:bg-blue-50 hover:text-blue-500"
   >
     {children}
   </Link>

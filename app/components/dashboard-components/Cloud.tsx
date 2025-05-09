@@ -13,7 +13,7 @@ const getRandomOpacity = () => Math.random() * 0.3 + 0.3;
 const getRandomDuration = () => {
   const minDuration = 60 * 2;
   const maxDuration = 60 * 4;
-  return Math.random() *(maxDuration - minDuration) + minDuration;
+  return Math.random() * (maxDuration - minDuration) + minDuration;
 };
 
 const Cloud = () => {
