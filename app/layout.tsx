@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'WoC | ACM Amrita',
-  description: 'Leaderboard for Winter of Code',
+  title: 'SoC | ACM Amrita',
+  description: 'Leaderboard for Summer of Code',
 };
 
 export default function RootLayout({
