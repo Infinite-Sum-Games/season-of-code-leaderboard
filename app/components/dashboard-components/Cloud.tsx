@@ -108,7 +108,7 @@ const Cloud = () => {
         <div
           key={`${CLOUD_IMAGES[index % CLOUD_IMAGES.length]}-${index}`}
           ref={(el) => setCloudRef(el, index)}
-          className="pointer-events-none fixed z-0"
+          className="pointer-events-none fixed z--10"
           style={{ willChange: 'transform', visibility: 'hidden' }}
         >
           <Image

@@ -124,6 +124,7 @@
 
 .hex-glare {
   position: absolute;
+  z-index: 0;
   transform: rotate(30deg);
   clip-path: polygon(50% 0%, 100% 25%, 100% 75%, 50% 100%, 0% 75%, 0% 25%);
   filter: blur(3px);
@@ -186,36 +187,36 @@
 
 @media screen and (max-width: 768px) {
   .hex-1 {
-    top: 70px;
-    left: 80px;
+    top: 100px;
+    left: 40px;
   }
   .hex-2 {
-    top: 150px;
-    left: 150px;
+    top: 190px;
+    left: 120px;
   }
   .hex-3 {
-    top: 100px;
-    left: 200px;
+    top: 130px;
+    left: 160px;
   }
 
   .sparkle-1 {
-    top: 100px;
+    top: 140px;
     left: 140px;
   }
   .sparkle-2 {
-    top: 180px;
+    top: 220px;
     left: 100px;
   }
   .sparkle-3 {
-    top: 130px;
+    top: 170px;
     left: 200px;
   }
   .sparkle-4 {
-    top: 80px;
+    top: 120px;
     left: 180px;
   }
   .sparkle-5 {
-    top: 160px;
+    top: 200px;
     left: 60px;
   }
 }
