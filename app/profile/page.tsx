@@ -1,24 +1,36 @@
-import React from "react";
+import React, { useDebugValue } from "react";
 import Profile from "../components/profile-components/profileCard";
 import GraphSection from "../components/profile-components/Graph";
 import Badges from "../components/profile-components/BadgesSection";
+import SunGlareEffect from "../components/dashboard-components/SunGlareEffect";
+import { Cloud } from "lucide-react";
+import { BackgroundGradient } from "../components/ui/background-gradient";
+import { Card } from "../components/ui/card";
+
+
+
+
 
 const ProfilePage = () => {
   return (
-    <div className="flex flex-col md:flex-row px-4 py-6 bg-gradient-to-br from-yellow-200 via-white to-sky-200 shadow-xs">
-      {/* Left Side: Profile + Graph */}
-      <div className="flex flex-col md:w-[60%] gap-0">
-        <div>
-          <Profile />
+    <>
+      <SunGlareEffect />
+      <Cloud />
+      <div className="flex flex-col md:flex-row px-4 py-6">
+        {/* Left Side: Profile + Graph */}
+        <div className="flex flex-col md:w-[60%] gap-0">
+          <div>
+            <Profile />
+          </div>
+          <GraphSection />
         </div>
-        <GraphSection />
-      </div>
 
-      {/* Right Side: Badges */}
-      <div className="md:w-[40%]">
-        <Badges />
+        {/* Right Side: Badges */}
+        <div className="md:w-[40%]">
+          <Badges />
+        </div>
       </div>
-    </div>
+    </>
   );
 };
 

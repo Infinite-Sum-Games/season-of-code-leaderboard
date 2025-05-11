@@ -253,7 +253,6 @@ const dummyBadges: Badge[] = [
     unlocked: false,
   },
 ];
-
 const LoadingCard = () => (
   <div className="w-full flex items-center justify-center p-6">
     <div className="w-full max-w-5xl">
@@ -315,7 +314,6 @@ export default function Badges() {
       }
     }, 800);
   }, []);
-
   if (loading) return <LoadingCard />;
   if (error) return <ErrorCard />;
 
@@ -329,12 +327,12 @@ export default function Badges() {
   };
 
   return (
-    <div className="relative w-full h-full bg-orange-100 rounded-lg shadow-xl">
+    <div className="relative w-full h-full bg-transparent backdrop-blur-2xl shadow-lg rounded-xl">
       <div className="pt-6 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center text-yellow-800 bg-clip-text  mb-2">
+        <h1 className="text-4xl font-bold text-center text-gray-800 bg-clip-text  mb-2">
           Your Badges
         </h1>
-        <p className="text-center text-yellow-800 mb-6 text-sm">
+        <p className="text-center text-gray-800 mb-6 text-sm">
           Collect achievements as you contribute to projects
         </p>
       </div>

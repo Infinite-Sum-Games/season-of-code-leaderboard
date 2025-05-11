@@ -64,10 +64,10 @@ const BountyBar = ({
 
   return (
     <div className="relative" style={{ height: `${height}px`, width: "60px" }}>
-      <div className="absolute inset-0 bg-yellow-100 bg-opacity-50 rounded-full overflow-hidden border border-yellow-800">
+      <div className="absolute inset-0 bg-sky-100 bg-opacity-50 rounded-full overflow-hidden border border-yellow-800">
         {/* Filled upto portion */}
         <div
-          className="absolute bottom-0 w-full bg-gradient-to-t from-yellow-500 to-yellow-300"
+          className="absolute bottom-0 w-full bg-gradient-to-t from-sky-500 to-sky-300"
           style={{ height: `${percentage}%` }}
         />
 
@@ -75,7 +75,7 @@ const BountyBar = ({
         {milestones.map((milestone) => (
           <div
             key={milestone}
-            className="absolute w-full h-0.5 bg-white bg-opacity-30 flex items-center"
+            className="absolute w-full h-0.5 bg-gray-900 bg-opacity-30 flex items-center"
             style={{ bottom: `${milestone}%` }}
           >
             {milestone % 50 === 0 && (
@@ -114,13 +114,13 @@ const ProfileCard = () => {
 
     return () => clearTimeout(timeout);
   }, []);
-
   if (loading)
     return (
       <div className="w-full h-screen m-auto flex flex-row justify-center items-center">
         <LoadingCard />
       </div>
     );
+    
   if (!userData)
     return (
       <div className="w-full h-screen flex flex-row justify-center items-center">
@@ -132,18 +132,18 @@ const ProfileCard = () => {
     <div className="relative w-full h-[100vh]">
       {/* <Spotlight fill="yellow" className="hidden md:block" /> */}
       <div
-        className="relative h-full p-6 bg-orange-100 shadow-lg rounded-xl"
+        className="relative h-full p-6 bg-transparent backdrop-blur-2xl shadow-lg rounded-xl"
         style={{ width: "95%" }}
       >
         {/* Current Rank Badge */}
         <div className="absolute top-8 right-12 flex justify-center items-center">
           <div className="relative">
-            <div className="w-24 h-24 rounded-full bg-gradient-to-t from-yellow-500 to-yellow-300 flex items-center justify-center shadow-lg">
+            <div className="w-24 h-24 rounded-full bg-[#3ABEF9] flex items-center justify-center shadow-lg">
               <div className="text-5xl text-black font-bold">
                 {userData.rank}
               </div>
             </div>
-            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black text-yellow-500 text-xs font-bold px-3 py-1 rounded-full">
+            <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-black text-[#3ABEF9]  text-xs font-bold px-3 py-1 rounded-full">
               RANK
             </div>
           </div>
@@ -152,7 +152,7 @@ const ProfileCard = () => {
         {/* Profile Info */}
         <div className="flex flex-col md:flex-row items-center gap-6 pt-4">
           <div className="relative">
-            <div className="w-32 h-32 rounded-full border-4 border-[#5C4033] p-1 bg-yellow-100">
+            <div className="w-32 h-32 rounded-full border-4 border-gray-800 p-1 bg-yellow-100">
               <Image
                 src={`https://github.com/${userData.username}.png`}
                 alt={`${userData.username} profile`}
@@ -164,15 +164,15 @@ const ProfileCard = () => {
           </div>
 
           <div className="flex flex-col items-center md:items-start text-center md:text-left">
-            <h2 className="text-4xl font-bold text-[#5C4033]">
+            <h2 className="text-4xl font-bold text-gray-900">
               {userData.name}
             </h2>
-            <p className="text-xl text-[#5C4033] font-light mt-1">
+            <p className="text-xl text-gray-900 font-light mt-1">
               @{userData.username}
             </p>
             <div className="flex items-center mt-3 bg-yellow-100 bg-opacity-30 px-4 py-2 rounded-lg border border-black">
-              <div className="w-3 h-3 rounded-full bg-[#5C4033] mr-2"></div>
-              <span className="text-[#5C4033]">Active Hunter</span>
+              <div className="w-3 h-3 rounded-full bg-green-600 mr-2"></div>
+              <span className="text-green-600">Active Hunter</span>
             </div>
           </div>
         </div>
@@ -214,10 +214,10 @@ const ProfileCard = () => {
 
           {/* Bounty Progress Bar */}
           <div className="flex flex-col items-start ml-4">
-            <h3 className="text-yellow-800 font-semibold mb-2">Bounty Progress</h3>
+            <h3 className="text-gray-900 font-semibold mb-2">Bounty Progress</h3>
             <div className="flex items-end gap-4">
               <BountyBar value={userData.bounty} max={1000} height={200} />
-              <div className="text-sm text-yellow-800 mb-4">
+              <div className="text-sm text-gray-900 mb-4">
                 <div>Goal: 1000</div>
               </div>
             </div>
@@ -226,7 +226,7 @@ const ProfileCard = () => {
 
         {/* Recent Activity */}
         <div className="mt-8 border-t border-gray-800 pt-4">
-          <h3 className="text-xl font-semibold text-[#FF8C00] mb-3">
+          <h3 className="text-xl font-semibold text-gray-900 mb-3">
             Recent Activity
           </h3>
           <div className="space-y-2 max-h-40 overflow-y-auto pr-2">
@@ -283,7 +283,7 @@ const StatCard = ({
       <p
         className={`${
           size === "large" ? "text-sm" : "text-xs"
-        } text-yellow-800 mt-1 font-bold`}
+        } text-gray-900 mt-1 font-bold`}
       >
         {label}
       </p>
@@ -308,11 +308,11 @@ const ActivityItem = ({
     }`}
   >
     <div className="flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-yellow-800"></div>
-      <p className="text-sm text-yellow-800">{text}</p>
+      <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+      <p className="text-sm text-gray-900">{text}</p>
     </div>
     <div>
-      <span className="text-xs text-yellow-800">{time}</span>
+      <span className="text-xs text-gray-900">{time}</span>
     </div>
   </div>
 );

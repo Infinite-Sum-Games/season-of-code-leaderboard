@@ -31,17 +31,18 @@ export interface GraphData {
     uiux: number;
   };
 }
-
 const LoadingGraphs = () => (
-  <div className="w-full flex items-center justify-center px-4 py-8">
+  <div className="w-full flex items-center justify-center p-6">
     <div className="w-full max-w-5xl">
       <BackgroundGradient className="p-4 rounded-xl">
-        <Card className="bg-[#050217] border border-gray-700 p-8 rounded-xl shadow-lg transition-transform transform">
+        <Card className="bg-[#050217] border border-gray-700 p-8 rounded-xl shadow-lg">
           <div className="text-center text-gray-300">
             <h2 className="text-3xl text-[#c8c7cc] font-semibold">
               Loading contribution data...
             </h2>
-            <p className="mt-2 text-lg">Your stats will appear shortly 📊</p>
+            <p className="mt-2 text-lg">
+              Your stats will appear shortly 📊
+            </p>
           </div>
         </Card>
       </BackgroundGradient>
@@ -143,7 +144,7 @@ const GraphSection = () => {
     return () => clearTimeout(timeout);
   }, []);
 
-  if (loading) return <LoadingGraphs />;
+   if (loading) return <LoadingGraphs />;
   if (error || !graphData) return <ErrorGraphs />;
 
   // Format data for pie chart
@@ -177,17 +178,17 @@ const GraphSection = () => {
 
   return (
     <div
-      className="relative w-full bg-orange-100 shadow-lg p-4 sm:p-6 mt-8 rounded-xl"
+      className="relative w-full bg-transparent backdrop-blur-2xl shadow-lg rounded-xl p-4 sm:p-6 mt-8"
       style={{ width: "95%" }}
     >
-      <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-yellow-800 mb-4 sm:mb-6 text-center">
+      <h2 className="text-xl sm:text-2xl font-bold bg-gradient-to-r from-white to-purple-300 bg-clip-text text-gray-900 mb-4 sm:mb-6 text-center">
         Contribution Analytics
       </h2>
 
       <div className="flex flex-col xl:flex-row gap-4 sm:gap-6 items-stretch">
         {/* Pie Chart */}
         <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-3 sm:p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
-          <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-center text-yellow-800">
+          <h3 className="text-lg sm:text-xl font-semibold mb-1 sm:mb-2 text-center text-gray-900">
             Contribution Chart
           </h3>
           <div className="h-[200px] sm:h-[220px] md:h-[250px] w-full">
@@ -218,7 +219,7 @@ const GraphSection = () => {
             {pieData.map((entry) => (
               <div key={entry.name} className="flex items-center gap-1 sm:gap-2">
                 <div className="w-2 sm:w-3 h-2 sm:h-3 rounded-full" style={{ backgroundColor: entry.fill }}/>
-                <span className="text-xs sm:text-sm text-yellow-800 font-bold">{entry.name}</span>
+                <span className="text-xs sm:text-sm text-gray-900 font-bold">{entry.name}</span>
               </div>
             ))}
           </div>
@@ -226,7 +227,7 @@ const GraphSection = () => {
 
         {/* Radar Chart */}
         <div className="flex-1 min-w-0 bg-sky-100 bg-opacity-60 border border-yellow-800 rounded-xl shadow-xl p-3 sm:p-4 transform transition-all duration-300 hover:scale-102 hover:border-gray-500">
-          <h3 className="text-lg sm:text-xl font-semibold text-yellow-800 mb-1 sm:mb-2 text-center">
+          <h3 className="text-lg sm:text-xl font-semibold text-gray-900 mb-1 sm:mb-2 text-center">
             Issue Distribution
           </h3>
           <div className="h-[225px] sm:h-[250px] md:h-[275px] w-full">
