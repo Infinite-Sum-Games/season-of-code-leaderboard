@@ -1,8 +1,8 @@
-"use client";
-import { useEffect, useState } from "react";
-import { BackgroundGradient } from "../ui/background-gradient";
-import { Card } from "../ui/card";
-import CentralBadge from "@/app/components/profile-components/Badge";
+'use client';
+import CentralBadge from '@/app/components/profile-components/Badge';
+import { useEffect, useState } from 'react';
+import { BackgroundGradient } from '../ui/background-gradient';
+import { Card } from '../ui/card';
 
 interface Badge {
   id: number;
@@ -16,240 +16,240 @@ interface Badge {
 const dummyBadges: Badge[] = [
   {
     id: 1,
-    title: "Pull Request Pro",
-    description: "Merged 1+ Pull Request.",
-    icon: "/icon_badge.png",
+    title: 'Pull Request Pro',
+    description: 'Merged 1+ Pull Request.',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 2,
-    title: "Merge Master",
-    description: "Merged 5+ Pull Requests.",
-    icon: "/icon_badge.png",
+    title: 'Merge Master',
+    description: 'Merged 5+ Pull Requests.',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 3,
-    title: "Engineer Overachiever",
-    description: "Merged 10+ Pull Requests.",
-    icon: "/icon_badge.png",
+    title: 'Engineer Overachiever',
+    description: 'Merged 10+ Pull Requests.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 4,
-    title: "Code Crusader",
-    description: "Merged 20 Pull Requests.",
-    icon: "/icon_badge.png",
+    title: 'Code Crusader',
+    description: 'Merged 20 Pull Requests.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 5,
-    title: "Bug Spotter",
-    description: "Got 1 bug accepted (issue).",
-    icon: "/icon_badge.png",
+    title: 'Bug Spotter',
+    description: 'Got 1 bug accepted (issue).',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 6,
-    title: "Bug Hunter",
-    description: "Got 5 bugs accepted (issue).",
-    icon: "/icon_badge.png",
+    title: 'Bug Hunter',
+    description: 'Got 5 bugs accepted (issue).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 7,
-    title: "Bug Exterminator",
-    description: "Got 10 bugs accepted (issue).",
-    icon: "/icon_badge.png",
+    title: 'Bug Exterminator',
+    description: 'Got 10 bugs accepted (issue).',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 8,
-    title: "Polyglot",
-    description: "Contributed in 3 different languages.",
-    icon: "/icon_badge.png",
+    title: 'Polyglot',
+    description: 'Contributed in 3 different languages.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 9,
-    title: "Jack of All Trades",
-    description: "Contributed in 5 different languages.",
-    icon: "/icon_badge.png",
+    title: 'Jack of All Trades',
+    description: 'Contributed in 5 different languages.',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 10,
-    title: "The Scholar",
-    description: "Help out 1 person with their issue solving (in group).",
-    icon: "/icon_badge.png",
+    title: 'The Scholar',
+    description: 'Help out 1 person with their issue solving (in group).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 11,
-    title: "The Facilitator",
-    description: "Help out 3 people with issue solving (in group).",
-    icon: "/icon_badge.png",
+    title: 'The Facilitator',
+    description: 'Help out 3 people with issue solving (in group).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 12,
-    title: "The Oracle",
-    description: "Help out 5 people with issue solving (in group).",
-    icon: "/icon_badge.png",
+    title: 'The Oracle',
+    description: 'Help out 5 people with issue solving (in group).',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 13,
-    title: "Issue Assistant",
-    description: "Got 1 testing related PR merged.",
-    icon: "/icon_badge.png",
+    title: 'Issue Assistant',
+    description: 'Got 1 testing related PR merged.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 14,
-    title: "Quality Assurer",
-    description: "Got 5 testing related PRs merged.",
-    icon: "/icon_badge.png",
+    title: 'Quality Assurer',
+    description: 'Got 5 testing related PRs merged.',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 15,
-    title: "Full-fledged Alchemist",
-    description: "Contribute 10 testing related PRs.",
-    icon: "/icon_badge.png",
+    title: 'Full-fledged Alchemist',
+    description: 'Contribute 10 testing related PRs.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 16,
-    title: "Highly Creative",
-    description: "Get 2 feature suggestions accepted.",
-    icon: "/icon_badge.png",
+    title: 'Highly Creative',
+    description: 'Get 2 feature suggestions accepted.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 17,
-    title: "Doc Shaman",
-    description: "Get 2 documentation PRs accepted.",
-    icon: "/icon_badge.png",
+    title: 'Doc Shaman',
+    description: 'Get 2 documentation PRs accepted.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 18,
-    title: "Shawn",
-    description: "Reach 250 bounty points.",
-    icon: "/icon_badge.png",
+    title: 'Shawn',
+    description: 'Reach 250 bounty points.',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 19,
-    title: "Ricochet",
-    description: "Reach 500 bounty points.",
-    icon: "/icon_badge.png",
+    title: 'Ricochet',
+    description: 'Reach 500 bounty points.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 20,
-    title: "Firefinch",
-    description: "Reach 750 bounty points.",
-    icon: "/icon_badge.png",
+    title: 'Firefinch',
+    description: 'Reach 750 bounty points.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 21,
-    title: "The Scythe of Vyse",
-    description: "Reach 1000 bounty points.",
-    icon: "/icon_badge.png",
+    title: 'The Scythe of Vyse',
+    description: 'Reach 1000 bounty points.',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 22,
-    title: "Pioneers of Maximum Efforts",
-    description: "Most Rust issues solved (1st place).",
-    icon: "/icon_badge.png",
+    title: 'Pioneers of Maximum Efforts',
+    description: 'Most Rust issues solved (1st place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 23,
-    title: "Crabby Coders",
-    description: "Most Rust issues solved (2nd place).",
-    icon: "/icon_badge.png",
+    title: 'Crabby Coders',
+    description: 'Most Rust issues solved (2nd place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 24,
     title: "Strimlander's Spirit",
-    description: "Most Zig issues solved (1st place).",
-    icon: "/icon_badge.png",
+    description: 'Most Zig issues solved (1st place).',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 25,
     title: "Salamander's Toboggan",
-    description: "Most Zig issues solved (2nd place).",
-    icon: "/icon_badge.png",
+    description: 'Most Zig issues solved (2nd place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 26,
-    title: "Mambo Montalvo",
-    description: "Most Python issues solved (1st place).",
-    icon: "/icon_badge.png",
+    title: 'Mambo Montalvo',
+    description: 'Most Python issues solved (1st place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 27,
-    title: "Basilisk Defanged",
-    description: "Most Python issues solved (2nd place).",
-    icon: "/icon_badge.png",
+    title: 'Basilisk Defanged',
+    description: 'Most Python issues solved (2nd place).',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 28,
-    title: "Apex Gophers",
-    description: "Most Go issues solved (1st place).",
-    icon: "/icon_badge.png",
+    title: 'Apex Gophers',
+    description: 'Most Go issues solved (1st place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 29,
-    title: "Primal Suricats",
-    description: "Most Go issues solved (2nd place).",
-    icon: "/icon_badge.png",
+    title: 'Primal Suricats',
+    description: 'Most Go issues solved (2nd place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 30,
-    title: "Forge Dwellers",
-    description: "Most JS/TS issues solved (1st place).",
-    icon: "/icon_badge.png",
+    title: 'Forge Dwellers',
+    description: 'Most JS/TS issues solved (1st place).',
+    icon: '/icon_badge.png',
     unlocked: true,
   },
   {
     id: 31,
-    title: "Trop Killers",
-    description: "Most JS/TS issues solved (2nd place).",
-    icon: "/icon_badge.png",
+    title: 'Trop Killers',
+    description: 'Most JS/TS issues solved (2nd place).',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 32,
-    title: "Weekly Warrior",
-    description: "Make a submission accepted for each weekly challenge.",
-    icon: "/icon_badge.png",
+    title: 'Weekly Warrior',
+    description: 'Make a submission accepted for each weekly challenge.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 33,
-    title: "Pirate of Documentation",
-    description: "Contribute to 10 issues in the same language.",
-    icon: "/icon_badge.png",
+    title: 'Pirate of Documentation',
+    description: 'Contribute to 10 issues in the same language.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
   {
     id: 34,
-    title: "Unwavering",
-    description: "Got a PR accepted every week for a month.",
-    icon: "/icon_badge.png",
+    title: 'Unwavering',
+    description: 'Got a PR accepted every week for a month.',
+    icon: '/icon_badge.png',
     unlocked: false,
   },
 ];
@@ -260,7 +260,7 @@ const LoadingCard = () => (
         <Card className="bg-[#050217] border border-gray-700 p-8 rounded-xl shadow-lg">
           <div className="text-center text-gray-300">
             <div className="flex justify-center mb-4">
-              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500"></div>
+              <div className="animate-spin rounded-full h-12 w-12 border-t-2 border-b-2 border-purple-500" />
             </div>
             <h2 className="text-3xl text-[#c8c7cc] font-semibold">
               Loading badges...
@@ -308,7 +308,7 @@ export default function Badges() {
         setBadges(dummyBadges);
         setLoading(false);
       } catch (err) {
-        console.error("Failed to load badges", err);
+        console.error('Failed to load badges', err);
         setError(true);
         setLoading(false);
       }
@@ -344,23 +344,26 @@ export default function Badges() {
               {sortedBadges.map((badge) => (
                 <div
                   key={badge.id}
-                  className="transform transition-all duration-300 hover:scale-105 cursor-pointer"
-                  onClick={() => handleBadgeClick(badge.id)}
-                  onMouseEnter={() => setHoveredBadgeId(badge.id)}
+                  onClick={() => setHoveredBadgeId(badge.id)}
+                  onKeyDown={(e) => {
+                    if (e.key === 'Enter' || e.key === ' ') {
+                      setHoveredBadgeId(badge.id);
+                    }
+                  }}
                   onMouseLeave={() => setHoveredBadgeId(null)}
                 >
                   <CentralBadge
                     variant={
                       hoveredBadgeId === badge.id
-                        ? "Expanded"
+                        ? 'Expanded'
                         : !badge.unlocked
-                        ? "Locked"
-                        : "Collapsed"
+                          ? 'Locked'
+                          : 'Collapsed'
                     }
                     title={badge.title}
                     description={badge.description}
                     date={badge.date}
-                    icon={badge.icon || "🏆"}
+                    icon={badge.icon || '🏆'}
                   />
                 </div>
               ))}

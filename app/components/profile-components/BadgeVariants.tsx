@@ -1,7 +1,5 @@
-import Image from "next/image";
-import React from "react";
-
-
+import Image from 'next/image';
+import React from 'react';
 
 interface ExpandedProps {
   title: string;
@@ -20,18 +18,12 @@ interface LockedProps {
   icon: string;
 }
 
-
-
-
-
 export function Expanded({ title, description, date, icon }: ExpandedProps) {
   return (
-    <div
-      className={`relative w-[150px] mx-auto mt-20 overflow-visible`}
-    >
+    <div className={'relative w-[150px] mx-auto mt-20 overflow-visible'}>
       <div className="absolute -top-12 left-1/2 transform -translate-x-1/2 w-24 h-24 z-10 rounded-full overflow-hidden">
         <Image
-          src={icon}                                                                                    
+          src={icon}
           alt="Badge Icon"
           width={96}
           height={96}
@@ -44,7 +36,9 @@ export function Expanded({ title, description, date, icon }: ExpandedProps) {
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 300 480"
           preserveAspectRatio="none"
+          aria-labelledby="ribbonTitle"
         >
+          <title id="ribbonTitle">Ribbon background decoration</title>
           {Array.from({ length: 16 }).map((_, i) => {
             const yOffset = i * 30 - 50;
             const pathData = Array.from({ length: 61 })
@@ -54,12 +48,13 @@ export function Expanded({ title, description, date, icon }: ExpandedProps) {
                   yOffset +
                   Math.sin(xPos / 30) * 15 +
                   Math.sin((xPos + i * 30) / 20) * 10;
-                return `${x === 0 ? "M" : "L"}${xPos},${yPos}`;
+                return `${x === 0 ? 'M' : 'L'}${xPos},${yPos}`;
               })
-              .join(" ");
+              .join(' ');
 
             return (
               <path
+                // biome-ignore lint/suspicious/noArrayIndexKey: key can be an array index here
                 key={i}
                 d={pathData}
                 stroke="rgba(25, 10, 40, 0.5)"
@@ -88,9 +83,7 @@ export function Expanded({ title, description, date, icon }: ExpandedProps) {
 
 export function Collapsed({ title, icon }: CollapsedProps) {
   return (
-    <div
-      className={`relative w-[100px] mx-auto mt-20 overflow-visible`}
-    >
+    <div className={'relative w-[100px] mx-auto mt-20 overflow-visible'}>
       <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 z-10 rounded-full overflow-hidden">
         <Image
           src={icon}
@@ -106,7 +99,9 @@ export function Collapsed({ title, icon }: CollapsedProps) {
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 300 480"
           preserveAspectRatio="none"
+          aria-labelledby="ribbonTitle1"
         >
+          <title id="ribbonTitle1">Ribbon background decoration</title>
           {Array.from({ length: 16 }).map((_, i) => {
             const yOffset = i * 30 - 50;
             const pathData = Array.from({ length: 61 })
@@ -116,12 +111,13 @@ export function Collapsed({ title, icon }: CollapsedProps) {
                   yOffset +
                   Math.sin(xPos / 30) * 15 +
                   Math.sin((xPos + i * 30) / 20) * 10;
-                return `${x === 0 ? "M" : "L"}${xPos},${yPos}`;
+                return `${x === 0 ? 'M' : 'L'}${xPos},${yPos}`;
               })
-              .join(" ");
+              .join(' ');
 
             return (
               <path
+                // biome-ignore lint/suspicious/noArrayIndexKey: key can be an array index here
                 key={i}
                 d={pathData}
                 stroke="rgba(25, 10, 40, 0.5)"
@@ -142,9 +138,7 @@ export function Collapsed({ title, icon }: CollapsedProps) {
 
 export function Locked({ title, icon }: LockedProps) {
   return (
-    <div
-      className={`relative w-[100px] mx-auto mt-20 overflow-visible`}
-    >
+    <div className={'relative w-[100px] mx-auto mt-20 overflow-visible'}>
       <div className="absolute -top-10 left-1/2 transform -translate-x-1/2 w-20 h-20 rounded-full z-10 flex items-center justify-center overflow-hidden ">
         <Image
           src={icon}
@@ -159,7 +153,9 @@ export function Locked({ title, icon }: LockedProps) {
           className="absolute inset-0 w-full h-full"
           viewBox="0 0 300 480"
           preserveAspectRatio="none"
+          aria-labelledby="ribbonTitle2"
         >
+          <title id="ribbonTitle2">Ribbon background decoration</title>
           {Array.from({ length: 16 }).map((_, i) => {
             const yOffset = i * 30 - 50;
             const pathData = Array.from({ length: 61 })
@@ -169,12 +165,13 @@ export function Locked({ title, icon }: LockedProps) {
                   yOffset +
                   Math.sin(xPos / 30) * 15 +
                   Math.sin((xPos + i * 30) / 20) * 10;
-                return `${x === 0 ? "M" : "L"}${xPos},${yPos}`;
+                return `${x === 0 ? 'M' : 'L'}${xPos},${yPos}`;
               })
-              .join(" ");
+              .join(' ');
 
             return (
               <path
+                // biome-ignore lint/suspicious/noArrayIndexKey: key can be an array index here
                 key={i}
                 d={pathData}
                 stroke="rgba(255, 255, 255, 0.08)"

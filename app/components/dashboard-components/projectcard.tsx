@@ -51,7 +51,10 @@ const ProjectCard = (props: ProjectCardProps) => {
             </div>
           ))}
         </div>
-        <CardDescription className="px-6 text-1xl text-gray-500">          {props.blurb}</CardDescription>
+        <CardDescription className="px-6 text-1xl text-gray-500">
+          {' '}
+          {props.blurb}
+        </CardDescription>
 
         {/* <CardDescription className="text-1xl px-6 text-gray-300">
           Details coming soon 🎉

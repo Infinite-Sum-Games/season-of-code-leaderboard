@@ -1,15 +1,11 @@
-import React, { useDebugValue } from "react";
-import Profile from "../components/profile-components/profileCard";
-import GraphSection from "../components/profile-components/Graph";
-import Badges from "../components/profile-components/BadgesSection";
-import SunGlareEffect from "../components/dashboard-components/SunGlareEffect";
-import { Cloud } from "lucide-react";
-import { BackgroundGradient } from "../components/ui/background-gradient";
-import { Card } from "../components/ui/card";
-
-
-
-
+import { Cloud } from 'lucide-react';
+import React, { useDebugValue } from 'react';
+import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
+import Badges from '../components/profile-components/BadgesSection';
+import GraphSection from '../components/profile-components/Graph';
+import Profile from '../components/profile-components/profileCard';
+import { BackgroundGradient } from '../components/ui/background-gradient';
+import { Card } from '../components/ui/card';
 
 const ProfilePage = () => {
   return (

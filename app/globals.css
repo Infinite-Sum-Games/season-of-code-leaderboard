@@ -129,7 +129,7 @@
   }
 
   .custom-font {
-    font-family: 'Caesar Dressing', cursive;
+    font-family: "Caesar Dressing", cursive;
   }
 }
 
@@ -227,18 +227,18 @@
 
 @keyframes glow {
   0% {
-    text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b,
-      0 0 20px #070f2b;
+    text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b, 0 0 20px
+      #070f2b;
   }
 
   50% {
-    text-shadow: 0 0 10px #1b1a55, 0 0 20px #1b1a55, 0 0 30px #070f2b,
-      0 0 40px #070f2b;
+    text-shadow: 0 0 10px #1b1a55, 0 0 20px #1b1a55, 0 0 30px #070f2b, 0 0 40px
+      #070f2b;
   }
 
   100% {
-    text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b,
-      0 0 20px #070f2b;
+    text-shadow: 0 0 5px #1b1a55, 0 0 10px #1b1a55, 0 0 15px #070f2b, 0 0 20px
+      #070f2b;
   }
 }
 

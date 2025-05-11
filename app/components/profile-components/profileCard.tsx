@@ -1,11 +1,11 @@
-"use client";
-import useLeaderboardStore from "@/app/useLeaderboardStore";
-import { useSession } from "next-auth/react";
-import Image from "next/image";
-import { useEffect, useState } from "react";
-import { BackgroundGradient } from "../ui/background-gradient";
-import { Card } from "../ui/card";
-import { Spotlight } from "../ui/spotlight";
+'use client';
+import useLeaderboardStore from '@/app/useLeaderboardStore';
+import { useSession } from 'next-auth/react';
+import Image from 'next/image';
+import { useEffect, useState } from 'react';
+import { BackgroundGradient } from '../ui/background-gradient';
+import { Card } from '../ui/card';
+import { Spotlight } from '../ui/spotlight';
 
 export interface Profile {
   name: string;
@@ -63,7 +63,10 @@ const BountyBar = ({
   const milestones = [25, 50, 75, 100];
 
   return (
-    <div className="relative" style={{ height: `${height}px`, width: "60px" }}>
+    <div
+      className="relative"
+      style={{ height: `${height}px`, width: '60px' }}
+    >
       <div className="absolute inset-0 bg-sky-100 bg-opacity-50 rounded-full overflow-hidden border border-yellow-800">
         {/* Filled upto portion */}
         <div
@@ -83,7 +86,7 @@ const BountyBar = ({
                 {milestone}%
               </span>
             )}
-            <div className="absolute -right-2 w-2 h-2 rounded-full bg-white"></div>
+            <div className="absolute -right-2 w-2 h-2 rounded-full bg-white" />
           </div>
         ))}
       </div>
@@ -98,8 +101,8 @@ const ProfileCard = () => {
 
   useEffect(() => {
     const dummyData: Profile = {
-      name: "Jayadev D",
-      username: "FLASH2332",
+      name: 'Jayadev D',
+      username: 'FLASH2332',
       rank: 7,
       allTimeRank: 2,
       bounty: 500,
@@ -109,7 +112,7 @@ const ProfileCard = () => {
     const timeout = setTimeout(() => {
       setUserData(dummyData);
       setLoading(false);
-      console.log("Loaded user data:", dummyData);
+      console.log('Loaded user data:', dummyData);
     }, 1000);
 
     return () => clearTimeout(timeout);
@@ -120,7 +123,7 @@ const ProfileCard = () => {
         <LoadingCard />
       </div>
     );
-    
+
   if (!userData)
     return (
       <div className="w-full h-screen flex flex-row justify-center items-center">
@@ -133,7 +136,7 @@ const ProfileCard = () => {
       {/* <Spotlight fill="yellow" className="hidden md:block" /> */}
       <div
         className="relative h-full p-6 bg-transparent backdrop-blur-2xl shadow-lg rounded-xl"
-        style={{ width: "95%" }}
+        style={{ width: '95%' }}
       >
         {/* Current Rank Badge */}
         <div className="absolute top-8 right-12 flex justify-center items-center">
@@ -171,7 +174,7 @@ const ProfileCard = () => {
               @{userData.username}
             </p>
             <div className="flex items-center mt-3 bg-yellow-100 bg-opacity-30 px-4 py-2 rounded-lg border border-black">
-              <div className="w-3 h-3 rounded-full bg-green-600 mr-2"></div>
+              <div className="w-3 h-3 rounded-full bg-green-600 mr-2" />
               <span className="text-green-600">Active Hunter</span>
             </div>
           </div>
@@ -214,9 +217,15 @@ const ProfileCard = () => {
 
           {/* Bounty Progress Bar */}
           <div className="flex flex-col items-start ml-4">
-            <h3 className="text-gray-900 font-semibold mb-2">Bounty Progress</h3>
+            <h3 className="text-gray-900 font-semibold mb-2">
+              Bounty Progress
+            </h3>
             <div className="flex items-end gap-4">
-              <BountyBar value={userData.bounty} max={1000} height={200} />
+              <BountyBar
+                value={userData.bounty}
+                max={1000}
+                height={200}
+              />
               <div className="text-sm text-gray-900 mb-4">
                 <div>Goal: 1000</div>
               </div>
@@ -255,34 +264,34 @@ const StatCard = ({
   label,
   color,
   icon,
-  size = "small",
+  size = 'small',
 }: {
   value: number;
   label: string;
   color: string;
   icon: string;
-  size?: "small" | "large";
+  size?: 'small' | 'large';
 }) => {
   return (
     <div
       className={`bg-sky-100 bg-opacity-60 border border-gray-700 rounded-xl shadow-lg p-4 text-center transform transition-all duration-300 hover:scale-105 hover:border-gray-500 ${
-        size === "large" ? "w-full" : "flex-1"
+        size === 'large' ? 'w-full' : 'flex-1'
       }`}
     >
       <div className="flex justify-center mb-1">
-        <span className={`${size === "large" ? "text-2xl" : "text-xl"}`}>
+        <span className={`${size === 'large' ? 'text-2xl' : 'text-xl'}`}>
           {icon}
         </span>
       </div>
       <p
-        className={`${size === "large" ? "text-4xl" : "text-3xl"} font-bold`}
+        className={`${size === 'large' ? 'text-4xl' : 'text-3xl'} font-bold`}
         style={{ color }}
       >
         {value}
       </p>
       <p
         className={`${
-          size === "large" ? "text-sm" : "text-xs"
+          size === 'large' ? 'text-sm' : 'text-xs'
         } text-gray-900 mt-1 font-bold`}
       >
         {label}
@@ -303,12 +312,12 @@ const ActivityItem = ({
   <div
     className={`flex justify-between items-center p-2 rounded-lg ${
       highlight
-        ? "bg-sky-100 bg-opacity-30 border border-sky-400"
-        : "bg-yellow-100 bg-opacity-40 border border-yellow-400"
+        ? 'bg-sky-100 bg-opacity-30 border border-sky-400'
+        : 'bg-yellow-100 bg-opacity-40 border border-yellow-400'
     }`}
   >
     <div className="flex items-center gap-2">
-      <div className="w-2 h-2 rounded-full bg-gray-900"></div>
+      <div className="w-2 h-2 rounded-full bg-gray-900" />
       <p className="text-sm text-gray-900">{text}</p>
     </div>
     <div>

@@ -1,6 +1,6 @@
-import { Collapsed, Expanded, Locked } from "./BadgeVariants";
+import { Collapsed, Expanded, Locked } from './BadgeVariants';
 
-type BadgeVariant = "Collapsed" | "Expanded" | "Locked";
+type BadgeVariant = 'Collapsed' | 'Expanded' | 'Locked';
 
 export interface BadgeProps {
   variant: BadgeVariant;
@@ -18,19 +18,28 @@ export default function Badge({
   icon,
 }: BadgeProps) {
   switch (variant) {
-    case "Expanded":
+    case 'Expanded':
       return (
         <Expanded
           title={title}
-          description={description ? description : "No Description"}
-          date={date ? date : "no date"}
+          description={description ? description : 'No Description'}
+          date={date ? date : 'no date'}
           icon={icon}
         />
       );
-    case "Locked":
-      return <Locked title={title} icon={icon} />;
-    case "Collapsed":
+    case 'Locked':
+      return (
+        <Locked
+          title={title}
+          icon={icon}
+        />
+      );
     default:
-      return <Collapsed title={title} icon={icon} />;
+      return (
+        <Collapsed
+          title={title}
+          icon={icon}
+        />
+      );
   }
 }
