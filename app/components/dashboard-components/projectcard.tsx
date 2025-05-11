@@ -13,12 +13,15 @@ export interface ProjectCardProps {
 const ProjectCard = (props: ProjectCardProps) => {
   return (
     <Card
-      className="bg-cover border-1 pb-4"
+      className="border-1 bg-cover pb-4"
       style={{ backgroundImage: "url('cardBackground2.png')" }}
     >
       <div className="flex flex-col space-y-2">
-        <CardHeader className="text-2xl sm:text-3xl text-[#ffffff] font-semibold pb-1">
-          <a href={props.projectUrl} className="flex">
+        <CardHeader className="pb-1 font-semibold text-2xl text-[#ffffff] sm:text-3xl">
+          <a
+            href={props.projectUrl}
+            className="flex"
+          >
             <Image
               src="/icons/github.svg"
               alt="GitHub"
@@ -33,7 +36,10 @@ const ProjectCard = (props: ProjectCardProps) => {
         {/* Commented out for "Coming soon" */}
         <div className="flex space-x-1 px-4">
           {props.techstack.map((tech) => (
-            <div key={tech} className="text-white text-xs pl-2 py-1 rounded-lg">
+            <div
+              key={tech}
+              className="rounded-lg py-1 pl-2 text-white text-xs"
+            >
               <Image
                 className="center"
                 key={tech}
@@ -46,7 +52,7 @@ const ProjectCard = (props: ProjectCardProps) => {
           ))}
         </div>
 
-        <CardDescription className="text-1xl px-6 text-gray-300">
+        <CardDescription className="px-6 text-1xl text-gray-300">
           {props.blurb}
         </CardDescription>
 
@@ -55,15 +61,15 @@ const ProjectCard = (props: ProjectCardProps) => {
         </CardDescription> */}
 
         {
-          <div className="flex flex-row space-x-2 px-3 pt-4 items-center">
-            <p className="text-base text-white px-3">Maintainers : </p>
+          <div className="flex flex-row items-center space-x-2 px-3 pt-4">
+            <p className="px-3 text-base text-white">Maintainers : </p>
             {props.maintainer.map((maintainer) => (
               <a
                 key={maintainer}
                 href={`https://github.com/${maintainer}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block mr-2"
+                className="mr-2 inline-block"
               >
                 <Image
                   src={`https://github.com/${maintainer}.png`}

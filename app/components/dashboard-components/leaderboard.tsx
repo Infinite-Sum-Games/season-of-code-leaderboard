@@ -102,52 +102,61 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="bg-transparent border-none px-1 md:px-8 rounded-2xl z-50 w-full">
-      <Tabs defaultValue="leaderboard" className="w-full">
-        <TabsList className="flex flex-row justify-between bg-[#1d1e3a] text-sm sm:text-base text-white h-10 w-full">
-          <TabsTrigger className="w-full" value="leaderboard">
+    <Card className="z-50 w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
+      <Tabs
+        defaultValue="leaderboard"
+        className="w-full"
+      >
+        <TabsList className="flex h-10 w-full flex-row justify-between bg-[#1d1e3a] text-sm text-white sm:text-base">
+          <TabsTrigger
+            className="w-full"
+            value="leaderboard"
+          >
             Leaderboard
           </TabsTrigger>
-          <TabsTrigger className="w-full" value="projects">
+          <TabsTrigger
+            className="w-full"
+            value="projects"
+          >
             Projects
           </TabsTrigger>
         </TabsList>
         <TabsContent value="leaderboard">
-          <CardHeader className="font-bold text-3xl sm:text-6xl pt-2 sm:pt-4 pb-1 sm:pb-2 px-2 sm:px-4 text-[#3abef9]">
+          <CardHeader className="px-2 pt-2 pb-1 font-bold text-3xl text-[#3abef9] sm:px-4 sm:pt-4 sm:pb-2 sm:text-6xl">
             Leaderboard
           </CardHeader>
-          <CardDescription className="px-2 sm:px-4 pb-2 sm:pb-4 text-[#c8c7cc] text-sm sm:text-base">
+          <CardDescription className="px-2 pb-2 text-[#c8c7cc] text-sm sm:px-4 sm:pb-4 sm:text-base">
             Refresh the page to see real-time leaderboard updates.
           </CardDescription>
-          <div className="flex bg-[#1d1b2e] mx-1 sm:mx-2 p-2 sm:p-4 text-white sm:font-semibold rounded-lg">
-            <div className="text-xs sm:text-base w-[10%] text-left">Rank</div>
-            <div className="text-xs sm:text-base w-[70%] text-left pl-4 sm:pl-16">
+          <div className="mx-1 flex rounded-lg bg-[#1d1b2e] p-2 text-white sm:mx-2 sm:p-4 sm:font-semibold">
+            <div className="w-[10%] text-left text-xs sm:text-base">Rank</div>
+            <div className="w-[70%] pl-4 text-left text-xs sm:pl-16 sm:text-base">
               Name
             </div>
-            <div className="hidden min-[769px]:block text-sm sm:text-base w-[23%] text-center">
+            <div className="hidden w-[23%] text-center text-sm sm:text-base min-[769px]:block">
               <button
                 type="button"
                 onClick={() => sortLeaderboard('PRs')}
-                className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
+                className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
               >
                 PR Merged
                 {getSortIcon('PRs')}
               </button>
             </div>
-            <div className="text-xs sm:text-base w-[20%] sm:w-[13%] text-right">
+            <div className="w-[20%] text-right text-xs sm:w-[13%] sm:text-base">
               <button
                 type="button"
                 onClick={() => sortLeaderboard('Bounty')}
-                className="flex items-center justify-center gap-2 hover:text-[#3abef9] transition-colors duration-200"
+                className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
               >
                 Bounties
                 {getSortIcon('Bounty')}
               </button>
             </div>
           </div>
-          <ScrollArea className="max-h-[60vh] sm:max-h-[75vh] overflow-y-auto overflow-x-hidden relative">
+          <ScrollArea className="relative max-h-[60vh] overflow-y-auto overflow-x-hidden sm:max-h-[75vh]">
             {!leaderboardData || leaderboardData.length === 0 ? (
-              <div className="text-center text-2xl text-[#c8c7cc] p-4">
+              <div className="p-4 text-center text-2xl text-[#c8c7cc]">
                 Loading Leaderboard...
               </div>
             ) : (

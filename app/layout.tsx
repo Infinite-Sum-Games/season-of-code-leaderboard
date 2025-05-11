@@ -15,8 +15,8 @@ const geistMono = localFont({
 });
 
 export const metadata: Metadata = {
-  title: 'WoC | ACM Amrita',
-  description: 'Leaderboard for Winter of Code',
+  title: 'SoC | ACM Amrita',
+  description: 'Leaderboard for Summer of Code',
 };
 
 export default function RootLayout({
@@ -27,7 +27,11 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="fallbackImage.jpg" type="image/jpeg" />
+        <link
+          rel="icon"
+          href="fallbackImage.jpg"
+          type="image/jpeg"
+        />
       </head>
 
       <body

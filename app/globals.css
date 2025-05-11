@@ -139,7 +139,12 @@
   }
 
   body {
-    background: linear-gradient(to left, #070f2b, #1b1a55);
+    background: linear-gradient(
+      to bottom,
+      #3a55d4 15%,
+      #609bf5 70%,
+      #a9d1f6 100%
+    );
     font-family: var(--font-geist-sans), sans-serif;
   }
 }
@@ -236,3 +241,33 @@
       0 0 20px #070f2b;
   }
 }
+
+/* made animation faster for testing */
+/* .animate-cloud-ltr {
+  animation: cloud-move-ltr 10s linear infinite;
+  position: fixed;
+}
+
+.animate-cloud-rtl {
+  animation: cloud-move-rtl 10s linear infinite;
+  animation-delay: 4s;
+  position: fixed;
+}
+
+@keyframes cloud-move-ltr {
+  0% {
+    left: -450px;
+  }
+  100% {
+    left: 100vw;
+  }
+}
+
+@keyframes cloud-move-rtl {
+  0% {
+    left: 100vw;
+  }
+  100% {
+    left: -450px;
+  }
+} */
