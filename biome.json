@@ -35,7 +35,7 @@
   "organizeImports": { "enabled": true },
   "linter": {
     "enabled": true,
-    "rules": { "recommended": true, "nursery": { "useSortedClasses": "error" } }
+    "rules": { "recommended": true }
   },
   "javascript": {
     "formatter": {
