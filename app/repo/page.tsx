@@ -350,13 +350,16 @@ const ReposPage = () => {
   const desktopView = (
     <div className="flex flex-col gap-6 md:flex-row">
       {/* Repo List */}
-      <div className="w-full flex-shrink-0 rounded-lg bg-gray-900 p-4 shadow-lg md:w-1/2 lg:w-5/12">
-        <h2 className="mb-3 flex items-center border-gray-700 border-b pb-2 font-semibold text-2xl text-gray-200">
-          <GitBranch className="mr-2 h-6 w-6 text-blue-400" />
+      <div className="w-full flex-shrink-0 rounded-lg bg-blue-300/30 backdrop-blur-md p-4 shadow-lg md:w-1/2 lg:w-5/12">
+        <h2 className="mb-3 flex items-center border-gray-700 border-b pb-2 font-semibold text-2xl text-white">
+          <GitBranch
+            className="mr-2 h-6 w-6"
+            color="white"
+          />
           Repositories{' '}
-          <span className="ml-2 text-blue-400">({repositories.length})</span>
+          <span className="ml-2 text-white">({repositories.length})</span>
         </h2>
-        <div className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 h-[70vh] overflow-y-auto pr-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 h-[70vh] overflow-y-auto">
           <div className="space-y-3">
             {repositories.map((repo) => (
               <button
@@ -369,12 +372,7 @@ const ReposPage = () => {
                   }
                 }}
                 aria-pressed={selectedRepoId === repo.id}
-                className={cn(
-                  'cursor-pointer rounded-lg transition-all duration-200 hover:translate-y-[-2px] hover:shadow-md w-full',
-                  selectedRepoId === repo.id
-                    ? 'bg-gray-800 ring-2 ring-blue-500'
-                    : 'hover:ring-1 hover:ring-blue-400',
-                )}
+                className="cursor-pointer rounded-lg w-full"
               >
                 <RepoCard {...repo} />
               </button>
@@ -390,13 +388,16 @@ const ReposPage = () => {
       </div>
 
       {/* Issues List */}
-      <div className="w-full rounded-lg bg-gray-900 p-4 shadow-lg md:w-1/2 lg:w-7/12">
+      <div className="w-full rounded-lg bg-blue-300/30 backdrop-blur-md p-4 shadow-lg md:w-1/2 lg:w-7/12">
         <div className="mb-3 flex items-center justify-between border-gray-700 border-b pb-2">
-          <h2 className="flex items-center font-semibold text-2xl text-gray-200">
-            <Code className="mr-2 h-6 w-6 text-purple-400" />
+          <h2 className="flex items-center font-semibold text-2xl text-white">
+            <Code
+              className="mr-2 h-6 w-6"
+              color="white"
+            />
             Issues
             {selectedRepo && (
-              <span className="ml-2 text-lg text-purple-400">
+              <span className="ml-2 text-lg text-green-500">
                 ({selectedRepo.name})
               </span>
             )}
@@ -407,7 +408,7 @@ const ReposPage = () => {
               size="sm"
               type="button"
               onClick={clearSelection}
-              className="border border-gray-700 text-gray-300 transition-colors hover:bg-gray-800 hover:text-red-400"
+              className="border border-gray-200 text-white transition-colors hover:bg-blue-400 hover:text-red-900"
             >
               <XCircle className="mr-1 h-4 w-4" /> Clear
             </Button>
@@ -741,8 +742,8 @@ const ReposPage = () => {
   return (
     <div className="container mx-auto mt-4 p-6">
       {/* Header Section with improved visuals */}
-      <div className="mb-6 rounded-lg bg-gradient-to-r from-gray-900 to-gray-800 p-6 shadow-lg">
-        <h1 className="mb-2 bg-gradient-to-r from-blue-400 to-purple-600 bg-clip-text font-bold text-4xl text-transparent sm:text-6xl">
+      <div className="mb-6 rounded-lg bg-blue-300/30 backdrop-blur-md p-6 shadow-lg">
+        <h1 className="mb-2 bg-clip-text font-bold text-4xl text-white sm:text-6xl">
           Repositories & Issues
         </h1>
         <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between">

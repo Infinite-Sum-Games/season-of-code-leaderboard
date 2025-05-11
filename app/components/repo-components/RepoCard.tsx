@@ -1,19 +1,19 @@
 import { Badge } from '@/app/components/ui/badge';
 import {
   Card,
-  CardContent,
+  CardContent, // Note: CardContent is imported but not used in the provided snippet. Will keep it if you plan to use it.
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
-import { Progress } from '@/app/components/ui/progress';
+// import { Progress } from '@/app/components/ui/progress'; // Not used in the snippet
 import type { ReposData } from '@/app/store/useRepositoryStore';
 import { ChevronRight, Github } from 'lucide-react';
 import React from 'react';
 
 const RepoCard = (props: ReposData) => {
   return (
-    <Card className="mb-4 border-2 border-[#535C91] shadow-md w-full">
+    <Card className="bg-[#93B6F6] border border-white/20 shadow-md w-full">
       <div className="flex h-full flex-row items-center justify-between">
         <div>
           <CardHeader className="pb-1">
@@ -21,13 +21,13 @@ const RepoCard = (props: ReposData) => {
               <CardTitle className="mb-0">
                 <a
                   href={props.url}
-                  className="text-xl font-semibold md:text-2xl flex flex-row items-center"
+                  className="text-xl font-semibold md:text-2xl flex flex-row items-center text-indigo-900 hover:text-pink-900" // Updated text color
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Github
                     className="hidden md:block mr-2"
-                    color="#227727"
+                    color="indigo"
                   />
                   {props.name}
                 </a>
@@ -40,10 +40,11 @@ const RepoCard = (props: ReposData) => {
                   key={username}
                   target="_blank"
                   rel="noopener noreferrer"
+                  className="text-green-300 hover:text-amber-100"
                 >
                   <span
                     key={username}
-                    className="text-green-500 text-sm"
+                    className="text-sm"
                   >
                     @{username}
                     {index < props.maintainerUsernames.length - 1 && ', '}
@@ -52,7 +53,7 @@ const RepoCard = (props: ReposData) => {
               ))}
             </div>
           </CardHeader>
-          <CardDescription className="mt-0 ml-6">
+          <CardDescription className="mt-0 ml-6 text-indigo-950">
             {props.description}
           </CardDescription>
           <div className="mx-6 mt-3 mb-5 flex flex-row flex-wrap items-center gap-2">
@@ -60,7 +61,7 @@ const RepoCard = (props: ReposData) => {
               <Badge
                 key={techname}
                 variant="outline"
-                className="flex items-center px-2 py-1 text-sm bg-yellow-300/10"
+                className="flex items-center px-2 py-1 text-sm bg-[#5decffd3] border-white/30"
               >
                 <img
                   className="mr-2"
@@ -69,15 +70,19 @@ const RepoCard = (props: ReposData) => {
                   width={16}
                   height={16}
                 />
-                <span className="text-gray-600">{techname}</span>{' '}
+                <span className="text-indigo-600">{techname}</span>{' '}
+                {/* Updated badge text color */}
               </Badge>
             ))}
           </div>
         </div>
 
         {/* The right arrow head */}
-        <div className="mr-4 cursor-pointer rounded-full p-2 hover:bg-yellow-100">
-          <ChevronRight className="h-6 w-6" />
+        <div className="mr-4 cursor-pointer rounded-full p-2 hover:bg-white/10">
+          {' '}
+          {/* Updated hover background */}
+          <ChevronRight className="h-6 w-6 text-white" />{' '}
+          {/* Updated icon color */}
         </div>
       </div>
     </Card>
