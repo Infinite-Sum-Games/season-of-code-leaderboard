@@ -370,7 +370,7 @@ const ReposPage = () => {
                 }}
                 aria-pressed={selectedRepoId === repo.id}
                 className={cn(
-                  'cursor-pointer rounded-lg transition-all duration-200 hover:translate-y-[-2px] hover:shadow-md',
+                  'cursor-pointer rounded-lg transition-all duration-200 hover:translate-y-[-2px] hover:shadow-md w-full',
                   selectedRepoId === repo.id
                     ? 'bg-gray-800 ring-2 ring-blue-500'
                     : 'hover:ring-1 hover:ring-blue-400',
