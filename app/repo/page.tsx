@@ -195,7 +195,7 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="border-gray-600 bg-gray-800 text-gray-200 hover:border-gray-500 hover:bg-gray-700"
+          className="border-gray-600 bg-gray-800 text-gray-200 hover:bg-gray-800 hover:border-blue-400 hover:text-gray-200"
         >
           <Filter className="mr-1 h-4 w-4 text-blue-400" />
           <span>Filter</span>
@@ -205,14 +205,14 @@ const ReposPage = () => {
         </Button>
       </DropdownMenuTrigger>
       <DropdownMenuContent className="border-gray-600 bg-gray-800 text-gray-200">
-        <DropdownMenuLabel className="text-gray-300">
+        <DropdownMenuLabel className="text-blue-400">
           Filter Issues
         </DropdownMenuLabel>
         <DropdownMenuSeparator className="bg-gray-600" />
         <DropdownMenuItem
           onClick={() => setIssueFilter('all')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueFilter === 'all' && 'bg-gray-700 font-medium',
           )}
         >
@@ -224,11 +224,11 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueFilter('claimed')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueFilter === 'claimed' && 'bg-gray-700 font-medium',
           )}
         >
-          <span className="text-green-300">Claimed</span>
+          <span className="text-gray-200">Claimed</span>
           {issueFilter === 'claimed' && (
             <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
           )}
@@ -236,11 +236,11 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueFilter('unclaimed')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueFilter === 'unclaimed' && 'bg-gray-700 font-medium',
           )}
         >
-          <span className="text-amber-300">Unclaimed</span>
+          <span className="text-gray-200">Unclaimed</span>
           {issueFilter === 'unclaimed' && (
             <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
           )}
@@ -248,11 +248,11 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueFilter('completed')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueFilter === 'completed' && 'bg-gray-700 font-medium',
           )}
         >
-          <span className="text-green-400">Completed</span>
+          <span className="text-gray-200">Completed</span>
           {issueFilter === 'completed' && (
             <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
           )}
@@ -260,11 +260,11 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueFilter('active')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueFilter === 'active' && 'bg-gray-700 font-medium',
           )}
         >
-          <span className="text-blue-400">Active</span>
+          <span className="text-gray-200">Active</span>
           {issueFilter === 'active' && (
             <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
           )}
@@ -280,7 +280,7 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="border-gray-600 bg-gray-800 text-gray-200 hover:border-gray-500 hover:bg-gray-700"
+          className="border-gray-600 bg-gray-800 text-gray-200 hover:bg-gray-800 hover:border-purple-600 hover:text-gray-200"
         >
           <SortAsc className="mr-1 h-4 w-4 text-purple-400" />
           <span>Sort</span>
@@ -297,7 +297,7 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueSort('newest')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueSort === 'newest' && 'bg-gray-700 font-medium',
           )}
         >
@@ -309,7 +309,7 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueSort('oldest')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueSort === 'oldest' && 'bg-gray-700 font-medium',
           )}
         >
@@ -321,7 +321,7 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueSort('bounty-high')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueSort === 'bounty-high' && 'bg-gray-700 font-medium',
           )}
         >
@@ -333,7 +333,7 @@ const ReposPage = () => {
         <DropdownMenuItem
           onClick={() => setIssueSort('bounty-low')}
           className={cn(
-            'cursor-pointer hover:bg-gray-700',
+            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
             issueSort === 'bounty-low' && 'bg-gray-700 font-medium',
           )}
         >
@@ -397,8 +397,8 @@ const ReposPage = () => {
             />
             Issues
             {selectedRepo && (
-              <span className="ml-2 text-lg text-green-500">
-                ({selectedRepo.name})
+              <span className="ml-2 text-lg text-white/80">
+                - &nbsp;{selectedRepo.name}
               </span>
             )}
           </h2>
