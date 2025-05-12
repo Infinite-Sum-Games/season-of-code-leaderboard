@@ -220,33 +220,3 @@
       #070f2b;
   }
 }
-
-/* made animation faster for testing */
-/* .animate-cloud-ltr {
-  animation: cloud-move-ltr 10s linear infinite;
-  position: fixed;
-}
-
-.animate-cloud-rtl {
-  animation: cloud-move-rtl 10s linear infinite;
-  animation-delay: 4s;
-  position: fixed;
-}
-
-@keyframes cloud-move-ltr {
-  0% {
-    left: -450px;
-  }
-  100% {
-    left: 100vw;
-  }
-}
-
-@keyframes cloud-move-rtl {
-  0% {
-    left: 100vw;
-  }
-  100% {
-    left: -450px;
-  }
-} */
