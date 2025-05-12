@@ -69,23 +69,23 @@ const Navbar = () => {
         </div>
 
         {/* Mobile Menu */}
-        {mobileMenuOpen && (
-          <div className="border-gray-200 border-t bg-white md:hidden">
-            <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
-              <MobileNavLink href="/home">Home</MobileNavLink>
-              <MobileNavLink href="/announcements">Announcements</MobileNavLink>
-              <MobileNavLink href="/resources">Resources</MobileNavLink>
-              <MobileNavLink href="/team">Team</MobileNavLink>
-              <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
-              <div className="mt-4 border-gray-200 border-t pt-4">
-                <RegisterButton
-                  onClick={handleApplyButtonClick}
-                  className="w-full justify-center"
-                />
-              </div>
+        <div
+          className={`overflow-hidden rounded-xl border-gray-200 border-t bg-white transition-all duration-400 ease-in-out md:hidden ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+        >
+          <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
+            <MobileNavLink href="/home">Home</MobileNavLink>
+            <MobileNavLink href="/announcements">Announcements</MobileNavLink>
+            <MobileNavLink href="/resources">Resources</MobileNavLink>
+            <MobileNavLink href="/team">Team</MobileNavLink>
+            <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
+            <div className="mt-4 border-gray-200 border-t pt-4">
+              <RegisterButton
+                onClick={handleApplyButtonClick}
+                className="w-full justify-center"
+              />
             </div>
           </div>
-        )}
+        </div>
       </nav>
     </div>
   );
