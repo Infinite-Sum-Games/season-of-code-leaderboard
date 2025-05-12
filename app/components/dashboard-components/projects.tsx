@@ -221,7 +221,7 @@ const projects = () => {
       <CardDescription className="px-2 pb-2 text-[#c8c7cc] text-sm sm:px-4 sm:pb-4 sm:text-base">
         Projects with bounties to work on.
       </CardDescription>
-      <ScrollArea className="relative max-h-[80vh] overflow-auto">
+      <ScrollArea className="relative max-h-[63vh] overflow-auto">
         <div className="grid grid-cols-1 gap-4 p-4">
           {ProjectData.length === 0 ? (
             <div className="flex h-full items-center justify-center text-2xl text-[#c8c7cc]">

@@ -24,39 +24,114 @@ const Leaderboard = () => {
   );
   const [sortOrder, setSortOrder] = useState<'asc' | 'desc'>('desc');
 
+  // useEffect(() => {
+  //   const getLeaderboardData = async () => {
+  //     try {
+  //       const request = await fetch('/api/leaderboard', {
+  //         method: 'GET',
+  //         headers: {
+  //           'Content-Type': 'application/json',
+  //         },
+  //       });
+
+  //       if (request.status !== 200) {
+  //         console.log('Error fetching leaderboard data', request.status);
+  //       }
+
+  //       const data = await request.json();
+  //       setLeaderboardData(data.leaderboard);
+
+  //       data.leaderboard.forEach((userData: TUserData, index: number) => {
+  //         const rank = index + 1;
+  //         setUser(
+  //           userData.fullName,
+  //           userData.username,
+  //           rank,
+  //           userData.bounty,
+  //           userData.accountActive,
+  //           userData._count,
+  //         );
+  //       });
+  //     } catch (error) {
+  //       console.log('Error fetching leaderboard data', error);
+  //     }
+  //   };
+  //   getLeaderboardData();
+  // }, [setUser]);
+
   useEffect(() => {
-    const getLeaderboardData = async () => {
-      try {
-        const request = await fetch('/api/leaderboard', {
-          method: 'GET',
-          headers: {
-            'Content-Type': 'application/json',
-          },
-        });
+    const mockData: TUserData[] = [
+      {
+        fullName: 'Alice Johnson',
+        username: 'alicejohnson',
+        bounty: 120,
+        accountActive: true,
+        _count: { Solution: '15' },
+      },
+      {
+        fullName: 'Bob Smith',
+        username: 'bobsmith',
+        bounty: 85,
+        accountActive: true,
+        _count: { Solution: '20' },
+      },
+      {
+        fullName: 'Charlie Brown',
+        username: 'charliebrown',
+        bounty: 60,
+        accountActive: false,
+        _count: { Solution: '10' },
+      },
+      {
+        fullName: 'Daisy Ridley',
+        username: 'daisyridley',
+        bounty: 100,
+        accountActive: true,
+        _count: { Solution: '25' },
+      },
+      {
+        fullName: 'Ethan Hunt',
+        username: 'ethanhunt',
+        bounty: 150,
+        accountActive: true,
+        _count: { Solution: '30' },
+      },
+      {
+        fullName: 'Ethan Hunt',
+        username: 'ethanhunt1',
+        bounty: 150,
+        accountActive: true,
+        _count: { Solution: '30' },
+      },
+      {
+        fullName: 'Ethan Hunt',
+        username: 'ethanhunt2',
+        bounty: 150,
+        accountActive: true,
+        _count: { Solution: '30' },
+      },
+      {
+        fullName: 'Ethan Hunt',
+        username: 'ethanhunt3',
+        bounty: 150,
+        accountActive: true,
+        _count: { Solution: '30' },
+      },
+    ];
 
-        if (request.status !== 200) {
-          console.log('Error fetching leaderboard data', request.status);
-        }
+    setLeaderboardData(mockData);
 
-        const data = await request.json();
-        setLeaderboardData(data.leaderboard);
-
-        data.leaderboard.forEach((userData: TUserData, index: number) => {
-          const rank = index + 1;
-          setUser(
-            userData.fullName,
-            userData.username,
-            rank,
-            userData.bounty,
-            userData.accountActive,
-            userData._count,
-          );
-        });
-      } catch (error) {
-        console.log('Error fetching leaderboard data', error);
-      }
-    };
-    getLeaderboardData();
+    mockData.forEach((userData, index) => {
+      const rank = index + 1;
+      setUser(
+        userData.fullName,
+        userData.username,
+        rank,
+        userData.bounty,
+        userData.accountActive,
+        userData._count,
+      );
+    });
   }, [setUser]);
 
   const sortLeaderboard = (criteria: 'PRs' | 'Bounty') => {
@@ -102,7 +177,7 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="z-50 w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
+    <Card className="z-50 h-[85vh] w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
       <Tabs
         defaultValue="leaderboard"
         className="w-full"
@@ -154,7 +229,7 @@ const Leaderboard = () => {
               </button>
             </div>
           </div>
-          <ScrollArea className="relative max-h-[60vh] overflow-y-auto overflow-x-hidden sm:max-h-[75vh]">
+          <ScrollArea className="relative max-h-[60vh] overflow-y-auto overflow-x-hidden sm:max-h-[54vh]">
             {!leaderboardData || leaderboardData.length === 0 ? (
               <div className="p-4 text-center text-2xl text-[#c8c7cc]">
                 Loading Leaderboard...
