@@ -1,6 +1,6 @@
-"use client";
+'use client';
 
-import React from "react";
+import React from 'react';
 
 interface VerticalBountyBarProps {
   value: number;
@@ -26,7 +26,7 @@ function VerticalBountyBar({
         style={{ height: `${percentage}%` }}
       >
         {/* black dot on top of fill */}
-        <div className="w-6 h-2 bg-black rounded-full mx-auto shadow rounded-full" />
+        <div className="w-6 h-2 bg-black mx-auto shadow rounded-full" />
       </div>
     </div>
   );

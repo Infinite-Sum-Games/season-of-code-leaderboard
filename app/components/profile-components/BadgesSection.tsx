@@ -1,5 +1,6 @@
 'use client';
 import CentralBadge from '@/app/components/profile-components/Badge';
+import { Lock } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { BackgroundGradient } from '../ui/background-gradient';
 import { Card } from '../ui/card';
@@ -295,6 +296,30 @@ const ErrorCard = () => (
   </div>
 );
 
+const BadgesSkeleton = () => (
+  <div className="relative w-full max-w-4xl mx-auto h-full bg-white/10 backdrop-blur-xl shadow-xl rounded-2xl p-4 animate-pulse">
+    <div className="pt-6 px-4 sm:px-6 lg:px-8">
+      <div className="h-8 w-48 rounded bg-gray-300/30 mx-auto mb-2" />
+      <div className="h-4 w-64 rounded bg-gray-300/20 mx-auto mb-6" />
+    </div>
+    <div className="px-4 sm:px-6 lg:px-8 pb-8">
+      <div className="max-w-6xl mx-auto">
+        <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8">
+          {[1, 2, 3, 4, 5, 6, 7, 8].map((x) => (
+            <div
+              key={`skeleton-${x}`}
+              className="flex flex-col items-center"
+            >
+              <div className="w-20 h-20 rounded-full bg-gray-300/30 mb-[-40px] z-10" />
+              <div className="w-[100px] h-[150px] rounded-xl bg-gray-300/20 mt-8" />
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </div>
+);
+
 export default function Badges() {
   const [badges, setBadges] = useState<Badge[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
@@ -314,7 +339,7 @@ export default function Badges() {
       }
     }, 800);
   }, []);
-  if (loading) return <LoadingCard />;
+  if (loading) return <BadgesSkeleton />;
   if (error) return <ErrorCard />;
 
   const unlockedBadges = badges.filter((badge) => badge.unlocked);
@@ -322,51 +347,77 @@ export default function Badges() {
 
   const sortedBadges = [...unlockedBadges, ...lockedBadges];
 
-  const handleBadgeClick = (badgeId: number) => {
-    setExpandedBadgeId(expandedBadgeId === badgeId ? null : badgeId);
-  };
-
   return (
-    <div className="relative w-full h-full bg-transparent backdrop-blur-2xl shadow-lg rounded-xl">
+    <div className="relative w-full max-w-lg ml-auto mr-auto md:max-w-4xl h-full bg-white/10 backdrop-blur-xl shadow-xl rounded-2xl p-2">
       <div className="pt-6 px-4 sm:px-6 lg:px-8">
-        <h1 className="text-4xl font-bold text-center text-gray-800 bg-clip-text  mb-2">
+        <h1 className="text-4xl font-bold text-center text-white bg-clip-text mb-2">
           Your Badges
         </h1>
-        <p className="text-center text-gray-800 mb-6 text-sm">
+        <p className="text-center text-white mb-6 text-sm">
           Collect achievements as you contribute to projects
         </p>
       </div>
 
       <div className="px-4 sm:px-6 lg:px-8 pb-8">
         <div className="max-w-6xl mx-auto">
-          <div className="max-h-[145vh] overflow-y-auto pr-2 scrollbar-thin scrollbar-thumb-purple-500 scrollbar-track-transparent">
-            <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-6">
-              {sortedBadges.map((badge) => (
-                <div
-                  key={badge.id}
-                  onClick={() => setHoveredBadgeId(badge.id)}
-                  onKeyDown={(e) => {
-                    if (e.key === 'Enter' || e.key === ' ') {
-                      setHoveredBadgeId(badge.id);
-                    }
-                  }}
-                  onMouseLeave={() => setHoveredBadgeId(null)}
-                >
-                  <CentralBadge
-                    variant={
-                      hoveredBadgeId === badge.id
-                        ? 'Expanded'
-                        : !badge.unlocked
-                          ? 'Locked'
-                          : 'Collapsed'
-                    }
-                    title={badge.title}
-                    description={badge.description}
-                    date={badge.date}
-                    icon={badge.icon || '🏆'}
-                  />
-                </div>
-              ))}
+          <div className="overflow-y-auto pr-2">
+            <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-4 gap-8 pt-12">
+              {sortedBadges.map((badge, idx) => {
+                // Determine tooltip alignment for edge badges
+                const isFirstCol = idx % 4 === 0;
+                const isLastCol = (idx + 1) % 4 === 0;
+                let tooltipAlign = 'left-1/2 -translate-x-1/2';
+                if (isFirstCol) tooltipAlign = 'left-0 translate-x-0';
+                if (isLastCol) tooltipAlign = 'right-0 translate-x-0';
+                return (
+                  <div
+                    key={badge.id}
+                    className="relative group cursor-pointer"
+                    onMouseEnter={() => setHoveredBadgeId(badge.id)}
+                    onMouseLeave={() => setHoveredBadgeId(null)}
+                    onFocus={() => setHoveredBadgeId(badge.id)}
+                    onBlur={() => setHoveredBadgeId(null)}
+                  >
+                    <CentralBadge
+                      variant={
+                        hoveredBadgeId === badge.id
+                          ? 'Expanded'
+                          : !badge.unlocked
+                            ? 'Locked'
+                            : 'Collapsed'
+                      }
+                      title={badge.title}
+                      description={badge.description}
+                      date={badge.date}
+                      icon={badge.icon || '🏆'}
+                    />
+                    {/* Tooltip */}
+                    {hoveredBadgeId === badge.id && (
+                      <div
+                        className={`absolute ${tooltipAlign} top-full mt-3 z-20 w-56 bg-white/90 text-gray-900 rounded-xl shadow-lg p-4 text-xs font-medium animate-fade-in border border-blue-200 transition-all duration-500`}
+                      >
+                        <div className="font-bold text-base mb-1">
+                          {badge.title}
+                        </div>
+                        <div className="mb-1">{badge.description}</div>
+                        {badge.unlocked ? (
+                          <div className="text-green-600 font-semibold">
+                            Unlocked
+                          </div>
+                        ) : (
+                          <div className="text-gray-400 font-semibold flex items-center gap-1">
+                            <Lock className="w-4 h-4" />
+                            Locked
+                          </div>
+                        )}
+                        {badge.date && (
+                          <div className="text-blue-500 mt-1">{badge.date}</div>
+                        )}
+                      </div>
+                    )}
+                  </div>
+                );
+              })}
             </div>
           </div>
         </div>

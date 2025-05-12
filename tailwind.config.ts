@@ -1,8 +1,6 @@
 import type { Config } from 'tailwindcss';
-import defaultTheme from 'tailwindcss/defaultTheme';
 
 export default {
-  darkMode: ['class'],
   content: [
     './pages/**/*.{js,ts,jsx,tsx,mdx}',
     './components/**/*.{js,ts,jsx,tsx,mdx}',
@@ -13,11 +11,6 @@ export default {
       animation: {
         spotlight: 'spotlight 2s ease .75s 1 forwards',
         rotateSnowflake: 'rotateSnowflake 10s linear infinite',
-      },
-      fontFamily: {
-        cinzel: ['var(--font-cinzel)', ...defaultTheme.fontFamily.serif],
-        cormorant: ['var(--font-cormorant)', ...defaultTheme.fontFamily.serif],
-        spectral: ['var(--font-spectral)', ...defaultTheme.fontFamily.serif],
       },
       keyframes: {
         spotlight: {

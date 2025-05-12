@@ -127,10 +127,6 @@
     border-left: 10px solid transparent;
     border-bottom: 10px solid rgba(0, 0, 0, 0.2); /* Simulated fold shadow */
   }
-
-  .custom-font {
-    font-family: "Caesar Dressing", cursive;
-  }
 }
 
 @layer base {
@@ -145,7 +141,6 @@
       #609bf5 70%,
       #a9d1f6 100%
     );
-    font-family: var(--font-geist-sans), sans-serif;
   }
 }
 
