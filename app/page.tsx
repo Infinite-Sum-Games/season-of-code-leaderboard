@@ -13,26 +13,25 @@ const Dashboard = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="h-fit">
+    <div className="relative flex h-screen w-full flex-col overflow-hidden">
       <SunGlareEffect />
       <Cloud />
-      <div className="mx-auto overflow-clip px-3 md:px-0">
-        <div className="grid grid-cols-1 items-start justify-start gap-3 md:grid-cols-2">
-          <div>
-            <Navbar />
 
-            {session?.user ? (
-              <div className="w-full pt-20">
-                <Usercard />
-              </div>
-            ) : (
-              <Home />
-            )}
+      <div className="h-[80px] shrink-0">
+        <Navbar />
+      </div>
+
+      <div className="relative flex flex-1 overflow-hidden px-18 py-4">
+        <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex h-full flex-col overflow-hidden">
+            <div className="min-h-0 flex-1 overflow-hidden">
+              {session?.user ? <Usercard /> : <Home />}
+            </div>
           </div>
 
           <Separator className="md:hidden" />
 
-          <div className="relative mt-24">
+          <div className="flex h-full flex-col overflow-hidden">
             <Leaderboard />
           </div>
         </div>
