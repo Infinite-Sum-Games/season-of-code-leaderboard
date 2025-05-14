@@ -25,7 +25,7 @@ export interface Profile {
 }
 
 const Spinner = () => (
-  <Loader2 className="animate-spin h-8 w-8 text-blue-400 mb-4" />
+  <Loader2 className="animate-spin h-8 w-8 text-gray-600 mb-4" />
 );
 
 const LoadingCard = () => (
@@ -33,10 +33,10 @@ const LoadingCard = () => (
     <div className="w-full max-w-md mx-auto">
       <div className="rounded-2xl bg-[#101624] bg-opacity-90 shadow-2xl px-8 py-10 flex flex-col items-center border-2 border-blue-900/30">
         <Spinner />
-        <h2 className="text-2xl font-semibold text-white mb-2 text-center">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
           Searching for your profile...
         </h2>
-        <p className="text-base text-blue-200 text-center">
+        <p className="text-base text-gray-600 text-center">
           Please wait for a while <span className="animate-pulse">😊</span>
         </p>
       </div>
@@ -49,10 +49,10 @@ const ErrorCard = () => (
     <div className="w-full max-w-md mx-auto">
       <div className="rounded-2xl bg-[#101624] bg-opacity-90 shadow-2xl px-8 py-10 flex flex-col items-center border-2 border-red-900/30">
         <AlertCircle className="w-12 h-12 text-red-500 mb-4" />
-        <h2 className="text-2xl font-semibold text-white mb-2 text-center">
+        <h2 className="text-2xl font-semibold text-gray-800 mb-2 text-center">
           Oops! Something went wrong.
         </h2>
-        <p className="text-base text-blue-200 text-center">
+        <p className="text-base text-gray-600 text-center">
           Please try again later <span className="animate-pulse">😊</span>
         </p>
       </div>
@@ -83,7 +83,7 @@ const BountyBar = ({
         {milestones.map((milestone) => (
           <span
             key={milestone}
-            className="text-[12px] text-blue-200 font-medium"
+            className="text-[12px] text-gray-600 font-medium"
             style={{ minWidth: 32, textAlign: 'center' }}
           >
             {milestone}%
@@ -114,7 +114,7 @@ const BountyBar = ({
         )}
         {/* Value inside filled part */}
         <span
-          className="absolute left-2 top-1/2 -translate-y-1/2 text-xs font-bold text-white z-10"
+          className="absolute left-2 top-1/2 -translate-y-1/2 text-xs font-bold text-gray-800 z-10"
           style={{ textShadow: '0 1px 4px rgba(0,0,0,0.25)' }}
         >
           {value}
@@ -127,22 +127,25 @@ const BountyBar = ({
 };
 
 const ProfileSkeleton = () => (
-  <div className="relative md:w-4xl ml-auto mr-auto min-h-[60vh] bg-gradient-to-br">
+  <div className="relative md:w-full ml-auto mr-auto min-h-[60vh] bg-gradient-to-br">
     <div className="absolute inset-0 bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
     <div className="relative mx-auto max-w-7xl px-4 py-8">
       <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl animate-pulse">
-        <div className="p-8">
-          <div className="flex flex-col md:flex-row items-center gap-8">
-            <div className="w-32 h-32 rounded-full bg-gray-300/30" />
+        <div className="p-4 md:p-8">
+          {/* Header Section */}
+          <div className="flex flex-col md:flex-row items-center gap-4 md:gap-8">
+            <div className="w-24 h-24 md:w-32 md:h-32 rounded-full bg-gray-300/30" />
             <div className="flex flex-col items-center md:items-start text-center md:text-left gap-2">
               <div className="h-8 w-48 rounded bg-gray-300/30" />
               <div className="h-5 w-32 rounded bg-gray-300/20" />
             </div>
           </div>
-          <div className="mt-8 w-full flex flex-col lg:flex-row gap-8">
-            <div className="flex-1 flex flex-col gap-4">
+
+          {/* Stats Section */}
+          <div className="mt-8 w-full flex flex-col lg:flex-row gap-4 md:gap-8">
+            <div className="w-full lg:flex-1 flex flex-col gap-4">
               <div className="bg-white/10 rounded-xl overflow-hidden shadow-lg divide-y divide-white/10">
-                <div className="flex flex-row items-center justify-between px-6 py-4 gap-4 md:gap-3">
+                <div className="flex flex-wrap justify-between px-4 py-4 gap-2">
                   {[1, 2, 3].map((i) => (
                     <div
                       key={i}
@@ -153,21 +156,22 @@ const ProfileSkeleton = () => (
                     </div>
                   ))}
                 </div>
-                <div className="flex flex-col items-center justify-center px-6 py-4 min-w-[80px]">
+                <div className="flex flex-col items-center justify-center px-4 py-4">
                   <div className="h-4 w-16 rounded bg-gray-300/20 mb-2" />
                   <div className="h-5 w-16 rounded-full bg-gray-300/30" />
                 </div>
               </div>
             </div>
           </div>
+
           {/* Analytics Skeleton */}
-          <div className="flex-[2] flex flex-col gap-6 mt-8">
-            <div className="flex flex-col md:flex-row gap-6">
-              <div className="flex-1 min-w-0 rounded-xl flex flex-col items-center">
+          <div className="w-full flex flex-col gap-4 md:gap-6 mt-8">
+            <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+              <div className="w-full md:flex-1 rounded-xl flex flex-col items-center">
                 <div className="h-6 w-32 rounded bg-gray-300/20 mb-2" />
                 <div className="h-[200px] w-full rounded-xl bg-gray-300/20" />
               </div>
-              <div className="flex-1 min-w-0 rounded-xl flex flex-col items-center">
+              <div className="w-full md:flex-1 rounded-xl flex flex-col items-center">
                 <div className="h-6 w-32 rounded bg-gray-300/20 mb-2" />
                 <div className="h-[220px] w-full rounded-xl bg-gray-300/20" />
               </div>
@@ -259,14 +263,16 @@ const ProfileCard = () => {
   return (
     <>
       <div className="relative w-lg md:w-4xl ml-auto mr-auto min-h-[60vh] bg-gradient-to-br">
+        {/* Background with subtle frosted glass effect */}
         <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        <div className="relative mx-auto max-w-7xl px-4 py-8">
-          <div className="relative overflow-hidden rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl">
+        <div className="relative mx-auto max-w-7xl py-8">
+          {/* Main Profile Card with Enhanced Frosted Glass Effect */}
+          <div className="relative overflow-hidden rounded-2xl bg-white/20 backdrop-blur-2xl shadow-2xl border border-white/30">
             {/* Rank Badge - adjusted for overlap */}
             <div className="absolute -top-3 -right-3 flex justify-center items-center">
               <div className="relative">
                 <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg ring-4 ring-white/20">
-                  <div className="text-4xl text-white font-bold">
+                  <div className="text-4xl text-gray-800 font-bold">
                     {userData.rank}
                   </div>
                 </div>
@@ -288,7 +294,7 @@ const ProfileCard = () => {
                       className="rounded-full transition-transform duration-300 group-hover:brightness-110"
                     />
                   </div>
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-white text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-all duration-300 group-hover:shadow-blue-500/25 group-hover:shadow-xl">
+                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-gray-800 text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-all duration-300 group-hover:shadow-blue-500/25 group-hover:shadow-xl">
                     Contributor
                   </div>
                 </div>
@@ -296,18 +302,20 @@ const ProfileCard = () => {
                   <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
                     {userData.name}
                   </h2>
-                  <p className="text-xl text-blue-200 font-light mt-1">
+                  <p className="text-xl text-gray-600 font-light mt-1">
                     @{userData.username}
                   </p>
                 </div>
               </div>
 
               <div className="mt-8 w-full flex flex-col lg:flex-row gap-8">
-                <div className="flex-1 flex flex-col gap-4">
-                  <div className="bg-white/10 rounded-xl overflow-hidden shadow-lg divide-y divide-white/10">
-                    <div className="flex flex-row items-center justify-between px-6 py-4 gap-4 md:gap-6">
+                {/* Stats Container with Enhanced Frosted Glass Effect */}
+                <div className="flex-1 flex flex-col gap-4 max-w-full">
+                  <div className="bg-white/25 backdrop-blur-2xl rounded-xl overflow-hidden shadow-lg border border-white/30 divide-y divide-white/10">
+                    {/* Stats Row */}
+                    <div className="flex flex-wrap justify-between px-4 py-3 md:px-6 md:py-4 gap-3">
                       <div className="flex flex-col items-center md:items-start">
-                        <span className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                        <span className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 flex items-center gap-2">
                           <span
                             role="img"
                             aria-label="bounty"
@@ -316,12 +324,12 @@ const ProfileCard = () => {
                           </span>
                           {userData.bounty}
                         </span>
-                        <span className="text-xs text-blue-200 font-medium mt-1">
+                        <span className="text-xs text-gray-600 font-medium mt-1">
                           Bounty Points
                         </span>
                       </div>
                       <div className="flex flex-col items-center md:items-start">
-                        <span className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                        <span className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 flex items-center gap-2">
                           <span
                             role="img"
                             aria-label="trophy"
@@ -330,12 +338,12 @@ const ProfileCard = () => {
                           </span>
                           {userData.allTimeRank}
                         </span>
-                        <span className="text-xs text-blue-200 font-medium mt-1">
+                        <span className="text-xs text-gray-600 font-medium mt-1">
                           All Time Best Rank
                         </span>
                       </div>
                       <div className="flex flex-col items-center md:items-start">
-                        <span className="text-2xl md:text-3xl font-bold text-white flex items-center gap-2">
+                        <span className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 flex items-center gap-2">
                           <span
                             role="img"
                             aria-label="pending"
@@ -344,32 +352,36 @@ const ProfileCard = () => {
                           </span>
                           {userData.pendingIssues}
                         </span>
-                        <span className="text-xs text-blue-200 font-medium mt-1">
+                        <span className="text-xs text-gray-600 font-medium mt-1">
                           Pending Issues
                         </span>
                       </div>
                     </div>
-                    <div className="flex flex-col items-center justify-center px-6 py-4 min-w-[120px]">
-                      <h3 className="text-sm font-semibold text-white mb-2">
+
+                    {/* Bounty Progress */}
+                    <div className="flex flex-col items-center justify-center px-4 py-3 md:px-6 md:py-4 w-full">
+                      <h3 className="text-sm font-semibold text-gray-800 mb-2">
                         Bounty Progress
                       </h3>
-                      <BountyBar
-                        value={userData.bounty}
-                        max={1000}
-                        width={220}
-                      />
+                      <div className="w-full max-w-xs">
+                        <BountyBar
+                          value={userData.bounty}
+                          max={1000}
+                          width="100%"
+                        />
+                      </div>
                     </div>
                   </div>
 
                   {/* Analytics */}
-                  <div className="flex-[2] flex flex-col gap-6 mt-8">
-                    <div className="flex flex-col md:flex-row gap-6">
-                      {/* Pie Chart */}
-                      <div className="flex-1 min-w-0 rounded-xl">
-                        <h3 className="text-lg font-semibold mb-2 text-center text-white">
+                  <div className="w-full flex flex-col gap-4 md:gap-6 mt-6 md:mt-8">
+                    <div className="flex flex-col md:flex-row gap-4 md:gap-6">
+                      {/* Pie Chart with Enhanced Frosted Glass Container */}
+                      <div className="w-full md:flex-1 bg-white/25 backdrop-blur-2xl rounded-xl border border-white/30 shadow-lg p-3 md:p-4 overflow-hidden">
+                        <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center text-gray-800">
                           Contribution Chart
                         </h3>
-                        <div className="h-[200px] w-full">
+                        <div className="h-[160px] md:h-[180px] w-full max-w-full">
                           <ChartContainer
                             config={pieChartConfig}
                             className="h-full w-full"
@@ -388,36 +400,37 @@ const ProfileCard = () => {
                                   nameKey="name"
                                   cx="50%"
                                   cy="50%"
-                                  outerRadius={80}
+                                  outerRadius={60}
                                   label={false}
                                 />
                               </PieChart>
                             </ResponsiveContainer>
                           </ChartContainer>
                         </div>
-                        <div className="flex flex-wrap justify-center gap-4 mt-2">
+                        <div className="flex flex-wrap justify-center gap-2 mt-2">
                           {pieData.map((entry) => (
                             <div
                               key={entry.name}
-                              className="flex items-center gap-2"
+                              className="flex items-center gap-1"
                             >
                               <div
-                                className="w-3 h-3 rounded-full"
+                                className="w-2 h-2 rounded-full"
                                 style={{ backgroundColor: entry.fill }}
                               />
-                              <span className="text-xs text-white font-bold">
+                              <span className="text-xs text-gray-800 font-bold">
                                 {entry.name}
                               </span>
                             </div>
                           ))}
                         </div>
                       </div>
-                      {/* Radar Chart */}
-                      <div className="flex-1 min-w-0 rounded-xl">
-                        <h3 className="text-lg font-semibold text-white mb-2 text-center">
+
+                      {/* Radar Chart with Enhanced Frosted Glass Container */}
+                      <div className="w-full md:flex-1 bg-white/25 backdrop-blur-2xl rounded-xl border border-white/30 shadow-lg p-3 md:p-4 overflow-hidden">
+                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3 text-center">
                           Issue Distribution
                         </h3>
-                        <div className="h-[220px] w-full">
+                        <div className="h-[180px] md:h-[200px] w-full max-w-full">
                           <ChartContainer
                             config={radarChartConfig}
                             className="h-full w-full"
@@ -427,8 +440,8 @@ const ProfileCard = () => {
                               height="100%"
                             >
                               <RadarChart
-                                outerRadius={80}
-                                cy={110}
+                                outerRadius={60}
+                                cy={90}
                                 data={radarData}
                               >
                                 <ChartTooltip
@@ -437,7 +450,7 @@ const ProfileCard = () => {
                                 <PolarGrid stroke="#f28b30" />
                                 <PolarAngleAxis
                                   dataKey="attribute"
-                                  tick={{ fill: '#fff', fontSize: 12 }}
+                                  tick={{ fill: '#fff', fontSize: 10 }}
                                   tickLine={false}
                                 />
                                 <Radar
@@ -447,7 +460,7 @@ const ProfileCard = () => {
                                   fill="#4ade80"
                                   fillOpacity={0.6}
                                   dot={{
-                                    r: 3,
+                                    r: 2,
                                     fill: '#22c55e',
                                     fillOpacity: 1,
                                   }}
@@ -488,13 +501,15 @@ const ActivityItem = ({
     <div className="absolute inset-0 bg-gradient-to-r from-blue-500/0 via-blue-500/5 to-purple-500/0 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
     <div className="flex items-center gap-3 relative">
       <div
-        className={`w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-125 ${highlight ? 'bg-blue-400' : 'bg-blue-200'}`}
+        className={`w-2 h-2 rounded-full transition-transform duration-300 group-hover:scale-125 ${
+          highlight ? 'bg-blue-400' : 'bg-blue-200'
+        }`}
       />
-      <p className="text-white transition-colors duration-300 group-hover:text-blue-200">
+      <p className="text-gray-800 transition-colors duration-300 group-hover:text-gray-600">
         {text}
       </p>
     </div>
-    <span className="text-sm text-blue-200 transition-colors duration-300 group-hover:text-white relative">
+    <span className="text-sm text-gray-600 transition-colors duration-300 group-hover:text-gray-800 relative">
       {time}
     </span>
   </div>
@@ -502,8 +517,10 @@ const ActivityItem = ({
 
 // Recent Activity Section
 export const RecentActivitySection = () => (
-  <div className="w-full max-w-5xl mx-auto mt-10 bg-white/10 backdrop-blur-xl shadow-xl rounded-2xl p-8">
-    <h3 className="text-xl font-semibold text-white mb-4">Recent Activity</h3>
+  <div className="w-full max-w-5xl mx-auto mt-10 bg-white/10 backdrop-blur-xl shadow-xl rounded-2xl p-8 border border-white/20">
+    <h3 className="text-xl font-semibold text-gray-800 mb-4">
+      Recent Activity
+    </h3>
     <div className="space-y-3 max-h-48 overflow-y-auto pr-2 custom-scrollbar">
       <ActivityItem
         text="Solved issue #423: Database optimization"
