@@ -177,8 +177,8 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="z-50 h-[85vh] w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
-      <Tabs
+    <Card className="z-50 h-fit w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
+      {/* <Tabs
         defaultValue="leaderboard"
         className="w-full"
       >
@@ -196,64 +196,64 @@ const Leaderboard = () => {
             Projects
           </TabsTrigger>
         </TabsList>
-        <TabsContent value="leaderboard">
-          <CardHeader className="px-2 pt-2 pb-1 font-bold text-3xl text-[#3abef9] sm:px-4 sm:pt-4 sm:pb-2 sm:text-6xl">
-            Leaderboard
-          </CardHeader>
-          <CardDescription className="px-2 pb-2 text-[#c8c7cc] text-sm sm:px-4 sm:pb-4 sm:text-base">
-            Refresh the page to see real-time leaderboard updates.
-          </CardDescription>
-          <div className="mx-1 flex rounded-lg bg-[#1d1b2e] p-2 text-white sm:mx-2 sm:p-4 sm:font-semibold">
-            <div className="w-[10%] text-left text-xs sm:text-base">Rank</div>
-            <div className="w-[70%] pl-4 text-left text-xs sm:pl-16 sm:text-base">
-              Name
-            </div>
-            <div className="hidden w-[23%] text-center text-sm sm:text-base min-[769px]:block">
-              <button
-                type="button"
-                onClick={() => sortLeaderboard('PRs')}
-                className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
-              >
-                PR Merged
-                {getSortIcon('PRs')}
-              </button>
-            </div>
-            <div className="w-[20%] text-right text-xs sm:w-[13%] sm:text-base">
-              <button
-                type="button"
-                onClick={() => sortLeaderboard('Bounty')}
-                className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
-              >
-                Bounties
-                {getSortIcon('Bounty')}
-              </button>
-            </div>
+        <TabsContent value="leaderboard"> */}
+      <CardHeader className="px-2 pt-2 pb-1 font-bold text-3xl text-slate-800 sm:px-4 sm:pt-4 sm:pb-2 sm:text-6xl">
+        Leaderboard
+      </CardHeader>
+      <CardDescription className="px-2 pb-2 text-[#c8c7cc] text-sm sm:px-4 sm:pb-4 sm:text-base">
+        Refresh the page to see real-time leaderboard updates.
+      </CardDescription>
+      <div className="mx-1 flex rounded-lg bg-[#1d1b2e] p-2 text-white sm:mx-2 sm:p-4 sm:font-semibold">
+        <div className="w-[10%] text-left text-xs sm:text-base">Rank</div>
+        <div className="w-[70%] pl-4 text-left text-xs sm:pl-16 sm:text-base">
+          Name
+        </div>
+        <div className="hidden w-[23%] text-center text-sm sm:text-base min-[769px]:block">
+          <button
+            type="button"
+            onClick={() => sortLeaderboard('PRs')}
+            className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
+          >
+            PR Merged
+            {getSortIcon('PRs')}
+          </button>
+        </div>
+        <div className="w-[20%] text-right text-xs sm:w-[13%] sm:text-base">
+          <button
+            type="button"
+            onClick={() => sortLeaderboard('Bounty')}
+            className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
+          >
+            Bounties
+            {getSortIcon('Bounty')}
+          </button>
+        </div>
+      </div>
+      <ScrollArea className="relative max-h-[60vh] overflow-y-auto overflow-x-hidden sm:h-fit">
+        {!leaderboardData || leaderboardData.length === 0 ? (
+          <div className="p-4 text-center text-2xl text-[#c8c7cc]">
+            Loading Leaderboard...
           </div>
-          <ScrollArea className="relative max-h-[60vh] overflow-y-auto overflow-x-hidden sm:max-h-[54vh]">
-            {!leaderboardData || leaderboardData.length === 0 ? (
-              <div className="p-4 text-center text-2xl text-[#c8c7cc]">
-                Loading Leaderboard...
-              </div>
-            ) : (
-              leaderboardData.map((data, index) => (
-                <Rowcards
-                  key={data.username}
-                  index={index + 1}
-                  avatar_url={`https://github.com/${data.username}.png`}
-                  fullName={data.fullName}
-                  username={data.username}
-                  PRmerged={Number.parseInt(data._count.Solution)}
-                  bounty={data.bounty}
-                />
-              ))
-            )}
-          </ScrollArea>
-        </TabsContent>
+        ) : (
+          leaderboardData.map((data, index) => (
+            <Rowcards
+              key={data.username}
+              index={index + 1}
+              avatar_url={`https://github.com/${data.username}.png`}
+              fullName={data.fullName}
+              username={data.username}
+              PRmerged={Number.parseInt(data._count.Solution)}
+              bounty={data.bounty}
+            />
+          ))
+        )}
+      </ScrollArea>
+      {/* </TabsContent> */}
 
-        <TabsContent value="projects">
+      {/* <TabsContent value="projects">
           <Projects />
         </TabsContent>
-      </Tabs>
+      </Tabs> */}
     </Card>
   );
 };

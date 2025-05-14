@@ -8,31 +8,30 @@ import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
 import Home from './components/dashboard-components/Home';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
-
 const Dashboard = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="h-fit">
+    <div className="min-h-screen">
       <SunGlareEffect />
       <Cloud />
       <div className="mx-auto overflow-clip px-3 md:px-0">
         <div className="grid grid-cols-1 items-start justify-start gap-3 md:grid-cols-2">
-          <div>
-            <Navbar />
+          <Navbar />
 
-            {session?.user ? (
-              <div className="w-full pt-20">
-                <Usercard />
-              </div>
-            ) : (
+          {session?.user ? (
+            <div className="w-full pt-20">
+              <Usercard />
+            </div>
+          ) : (
+            <div className="w-full pt-28">
               <Home />
-            )}
-          </div>
+            </div>
+          )}
 
           <Separator className="md:hidden" />
 
-          <div className="relative mt-24">
+          <div className="relative mt-28">
             <Leaderboard />
           </div>
         </div>
