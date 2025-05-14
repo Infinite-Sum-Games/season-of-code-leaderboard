@@ -210,7 +210,7 @@ const Leaderboard = () => {
       <ScrollArea className="mt-2 min-h-0 flex-grow overflow-y-auto">
         {leaderboardData.length === 0 ? (
           <div className="py-8 text-center text-white/60 text-xl">
-            Loading...
+            Loading Leaderboard...
           </div>
         ) : (
           leaderboardData.map((data, index) => (

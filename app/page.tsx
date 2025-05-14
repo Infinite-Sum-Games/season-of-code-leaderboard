@@ -1,7 +1,6 @@
 'use client';
 import { Separator } from '@/app/components/ui/separator';
 import Leaderboard from './components/dashboard-components/leaderboard';
-import Usercard from './components/dashboard-components/usercard';
 import './globals.css';
 import { useSession } from 'next-auth/react';
 import Navbar from './components/Navbar';
@@ -24,8 +23,8 @@ const Dashboard = () => {
       <div className="relative flex flex-1 overflow-hidden px-18 py-4">
         <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-2">
           <div className="flex h-full flex-col overflow-hidden">
-            <div className="min-h-0 flex-1 overflow-hidden">
-              {session?.user ? <Usercard /> : <Home />}
+            <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
+              {session?.user ? <div>{/* Title & LogTable */}</div> : <Home />}
             </div>
           </div>
 
