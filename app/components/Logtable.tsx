@@ -205,7 +205,7 @@ export default function Logtable() {
                       {currentTime.toLocaleTimeString()}
                     </span>
                   ) : (
-                    <span className="text-xs">--:--:--</span> // prevents layout shift
+                    <span className="text-xs">--:--:--</span>
                   )}
                 </Badge>
               </div>

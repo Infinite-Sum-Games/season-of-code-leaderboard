@@ -174,15 +174,15 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="z-10 flex h-full w-full flex-col rounded-2xl border border-white/30 bg-white/20 p-4 backdrop-blur-md">
-      <CardHeader className="pb-1 font-bold text-4xl text-white">
+    <Card className="z-10 flex h-full w-full flex-col rounded-2xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
+      <CardHeader className="pb-1 font-bold text-4xl text-gray-800">
         Leaderboard
       </CardHeader>
-      <CardDescription className="pb-4 text-white/70">
+      <CardDescription className="pb-4 text-gray-600">
         Refresh the page to see real-time leaderboard updates.
       </CardDescription>
 
-      <div className="flex items-center rounded-lg bg-white/10 px-3 py-2 font-semibold text-white backdrop-blur-sm">
+      <div className="flex items-center rounded-lg bg-white/10 px-3 py-2 font-semibold text-gray-800 backdrop-blur-md">
         <div className="w-[25%] md:w-[10%]">#</div>
         <div className="w-[60%] md:w-[50%]">Name</div>
         <div className="hidden w-[30%] text-center md:block">
@@ -216,7 +216,7 @@ const Leaderboard = () => {
           leaderboardData.map((data, index) => (
             <div
               key={data.username}
-              className="my-1 flex items-center rounded-lg bg-white/5 px-3 py-2 text-white backdrop-blur-sm"
+              className="my-1 flex items-center rounded-lg bg-white/10 px-3 py-2 text-gray-800 backdrop-blur-md"
             >
               <div className="w-[10%]">{index + 1}</div>
               <div className="flex w-[60%] items-center gap-2 md:w-[40%]">
@@ -227,7 +227,7 @@ const Leaderboard = () => {
                 />
                 <div>
                   <div className="font-semibold">{data.fullName}</div>
-                  <div className="text-sm text-white/60">@{data.username}</div>
+                  <div className="text-gray-600 text-sm">@{data.username}</div>
                 </div>
               </div>
               <div className="hidden w-[25%] text-center md:block">
