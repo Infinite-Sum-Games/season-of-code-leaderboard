@@ -445,7 +445,7 @@ const ProfileCard = () => {
                               <PolarGrid stroke="#f28b30" />
                               <PolarAngleAxis
                                 dataKey="attribute"
-                                tick={{ fill: '#fff', fontSize: 10 }}
+                                tick={{ fill: '#2e2e2e', fontSize: 10 }}
                                 tickLine={false}
                               />
                               <Radar
