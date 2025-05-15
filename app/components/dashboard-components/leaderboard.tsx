@@ -4,8 +4,6 @@ import useLeaderboardStore from '@/app/useLeaderboardStore';
 import { useEffect, useState } from 'react';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'; // Import sorting icons
 import { Card, CardDescription, CardHeader } from '../ui/card';
-import { Tabs, TabsContent, TabsList, TabsTrigger } from '../ui/tabs';
-import Projects from './projects';
 import Rowcards from './rowcards';
 
 export type TUserData = {
@@ -178,25 +176,6 @@ const Leaderboard = () => {
 
   return (
     <Card className="z-50 max-h-screen w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
-      {/* <Tabs
-        defaultValue="leaderboard"
-        className="w-full"
-      >
-        <TabsList className="flex h-10 w-full flex-row justify-between bg-[#1d1e3a] text-sm text-white sm:text-base">
-          <TabsTrigger
-            className="w-full"
-            value="leaderboard"
-          >
-            Leaderboard
-          </TabsTrigger>
-          <TabsTrigger
-            className="w-full"
-            value="projects"
-          >
-            Projects
-          </TabsTrigger>
-        </TabsList>
-        <TabsContent value="leaderboard"> */}
       <CardHeader className="px-2 pt-2 pb-1 font-bold text-3xl text-slate-800 sm:px-4 sm:pt-4 sm:pb-2 sm:text-6xl">
         Leaderboard
       </CardHeader>
@@ -248,12 +227,6 @@ const Leaderboard = () => {
           ))
         )}
       </ScrollArea>
-      {/* </TabsContent> */}
-
-      {/* <TabsContent value="projects">
-          <Projects />
-        </TabsContent>
-      </Tabs> */}
     </Card>
   );
 };

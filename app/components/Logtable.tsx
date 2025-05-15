@@ -2,14 +2,7 @@
 
 import type React from 'react';
 
-import {
-  Activity,
-  Bug,
-  Clock,
-  Sparkles,
-  Trophy,
-  UserCircle2,
-} from 'lucide-react';
+import { Activity, Bug, Clock, Sparkles, Trophy } from 'lucide-react';
 import { useEffect, useState } from 'react';
 import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
 import { Badge } from './ui/badge';

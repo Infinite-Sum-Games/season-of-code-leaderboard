@@ -1,44 +1,47 @@
 'use client';
 import { Github } from 'lucide-react';
 import { signIn } from 'next-auth/react';
-import Image from 'next/image';
-import React, { useState, useEffect } from 'react';
 import Logtable from '../Logtable';
+
+// Winter theme stuff is commented out.
+
+// import Image from 'next/image';
+// import React, { useState, useEffect } from 'react';
 
 const handleSignIn = async () => {
   await signIn('github');
 };
 
 export const Home = () => {
-  const [timeLeft, setTimeLeft] = useState({
-    days: 0,
-    hours: 0,
-    minutes: 0,
-    seconds: 0,
-  });
+  // const [timeLeft, setTimeLeft] = useState({
+  //   days: 0,
+  //   hours: 0,
+  //   minutes: 0,
+  //   seconds: 0,
+  // });
 
-  useEffect(() => {
-    const targetDate = new Date('2025-08-15T00:00:00');
+  // useEffect(() => {
+  //   const targetDate = new Date('2025-08-15T00:00:00');
 
-    const calculateTimeLeft = () => {
-      const now = new Date();
-      const difference = targetDate.getTime() - now.getTime();
+  //   const calculateTimeLeft = () => {
+  //     const now = new Date();
+  //     const difference = targetDate.getTime() - now.getTime();
 
-      if (difference > 0) {
-        setTimeLeft({
-          days: Math.floor(difference / (1000 * 60 * 60 * 24)),
-          hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
-          minutes: Math.floor((difference / (1000 * 60)) % 60),
-          seconds: Math.floor((difference / 1000) % 60),
-        });
-      } else {
-        setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
-      }
-    };
+  //     if (difference > 0) {
+  //       setTimeLeft({
+  //         days: Math.floor(difference / (1000 * 60 * 60 * 24)),
+  //         hours: Math.floor((difference / (1000 * 60 * 60)) % 24),
+  //         minutes: Math.floor((difference / (1000 * 60)) % 60),
+  //         seconds: Math.floor((difference / 1000) % 60),
+  //       });
+  //     } else {
+  //       setTimeLeft({ days: 0, hours: 0, minutes: 0, seconds: 0 });
+  //     }
+  //   };
 
-    const timer = setInterval(calculateTimeLeft, 1000);
-    return () => clearInterval(timer);
-  }, []);
+  //   const timer = setInterval(calculateTimeLeft, 1000);
+  //   return () => clearInterval(timer);
+  // }, []);
 
   return (
     <div className="relative flex w-full flex-col items-center px-4 text-[#E3E8F1] sm:px-10">
