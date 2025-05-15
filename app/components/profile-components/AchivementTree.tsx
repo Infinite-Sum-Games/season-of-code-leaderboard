@@ -1,4 +1,4 @@
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import BadgeNode from './BadgeNode';
 import { categories } from './data';
 import type { Badge, Category, Connection } from './types';
@@ -13,6 +13,25 @@ export default function AchievementTree({
   badges: Badge[];
   onClick: (badge: Badge) => void;
 }) {
+  // Add state for responsive calculations
+  const [isMobile, setIsMobile] = useState(false);
+
+  // Add useEffect to handle responsive detection
+  useEffect(() => {
+    const checkScreenSize = () => {
+      setIsMobile(window.innerWidth < 640); // Same breakpoint as sm: in Tailwind
+    };
+
+    // Initial check
+    checkScreenSize();
+
+    // Add event listener for resize
+    window.addEventListener('resize', checkScreenSize);
+
+    // Cleanup
+    return () => window.removeEventListener('resize', checkScreenSize);
+  }, []);
+
   const categoryBadges = badges.filter(
     (b: Badge) => b.category === category.id,
   );
@@ -40,6 +59,10 @@ export default function AchievementTree({
       }
     }
   }
+
+  // Calculate responsive scales
+  const badgeWidth = isMobile ? 80 : 100; // Reduce width on mobile
+  const badgeHeight = isMobile ? 32 : 40; // Reduce height on mobile
 
   // Special layout for "lang_mastery" category (Language Competition)
   if (category.id === 'lang_mastery') {
@@ -75,6 +98,12 @@ export default function AchievementTree({
       },
     ];
 
+    // Scale vertical connections for mobile
+    const verticalLineHeight = isMobile ? 110 : 132;
+    const verticalX = isMobile ? 40 : 72; // Center of badge
+    const verticalY1 = isMobile ? 56 : 72; // Center of first badge
+    const verticalY2 = isMobile ? 110 : 136; // Center of second badge
+
     return (
       <div className="mb-4">
         <div className="flex items-center gap-2 mb-2">
@@ -84,7 +113,7 @@ export default function AchievementTree({
           </h2>
         </div>
 
-        <div className="grid grid-cols-3 sm:grid-cols-3 gap-2">
+        <div className="grid grid-cols-2 sm:grid-cols-3 gap-2">
           {languageGroups.map((group) => (
             <div
               key={`language-${group.language}`}
@@ -97,9 +126,10 @@ export default function AchievementTree({
 
               {/* Connection Lines for this language group */}
               <svg
-                className="absolute top-8 w-full h-[132px] pointer-events-none"
+                className="absolute top-8 w-full h-full pointer-events-none"
                 aria-hidden="true"
                 role="presentation"
+                style={{ height: verticalLineHeight }}
               >
                 <title>Connection lines between badges</title>
                 {Object.values(connections)
@@ -116,18 +146,13 @@ export default function AchievementTree({
 
                     if (!fromBadge || !toBadge) return null;
 
-                    // Vertical connection for paired badges (e.g., 1st and 2nd place)
-                    const x = 40; // Center of badge (w-16/2 = 32px, adjusted)
-                    const fromY = 40; // Center of first badge
-                    const toY = 104; // Center of second badge (first badge center + h-16 + gap-2)
-
                     return (
                       <line
                         key={`conn-${conn.from}-${conn.to}`}
-                        x1={x}
-                        y1={fromY}
-                        x2={x}
-                        y2={toY}
+                        x1={verticalX}
+                        y1={verticalY1}
+                        x2={verticalX}
+                        y2={verticalY2}
                         stroke={conn.unlocked ? '#4ADE80' : '#6B7280'}
                         strokeWidth="2"
                         strokeDasharray={conn.unlocked ? '' : '4,4'}
@@ -184,20 +209,18 @@ export default function AchievementTree({
 
             if (!fromBadge || !toBadge) return null;
 
-            // Calculate positions for straight horizontal lines
-            const badgeWidth = 80; // w-16 (64px) + mx-2 (16px total margin)
+            // Calculate positions for straight horizontal lines with responsive scaling
             const fromX =
               (fromBadge.position - 1) * badgeWidth + badgeWidth / 2;
             const toX = (toBadge.position - 1) * badgeWidth + badgeWidth / 2;
-            const y = 40; // Center vertically (h-16/2 = 32px + border adjustments)
 
             return (
               <line
                 key={`conn-${conn.from}-${conn.to}`}
                 x1={fromX}
-                y1={y}
+                y1={badgeHeight}
                 x2={toX}
-                y2={y}
+                y2={badgeHeight}
                 stroke={conn.unlocked ? '#4ADE80' : '#6B7280'}
                 strokeWidth="2"
                 strokeDasharray={conn.unlocked ? '' : '4,4'}
@@ -207,13 +230,13 @@ export default function AchievementTree({
         </svg>
 
         {/* Badges */}
-        <div className="flex items-center">
+        <div className="flex flex-wrap items-center">
           {categoryBadges
             .sort((a: Badge, b: Badge) => a.position - b.position)
             .map((badge: Badge) => (
               <div
                 key={badge.id}
-                className="mx-2 first:ml-0 last:mr-0"
+                className="mx-1 sm:mx-2 first:ml-0 last:mr-0"
                 style={{ order: badge.position }}
               >
                 <BadgeNode
