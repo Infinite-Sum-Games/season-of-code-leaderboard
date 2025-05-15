@@ -42,7 +42,7 @@ export const Home = () => {
   }, []);
 
   return (
-    <div className="relative flex h-screen w-full flex-col items-center justify-center pt-4 text-[#E3E8F1]">
+    <div className="relative flex w-full flex-col items-center justify-center pt-4 text-[#E3E8F1]">
       <div className="z-10 text-left">
         <h1 className="mb-6 font-bold text-4xl text-[#E3E8F1] tracking-tight sm:text-5xl">
           <span className="text-[#3ABEF9]">Amrita</span> Summer of Code
@@ -96,7 +96,7 @@ export const Home = () => {
           <button
             type="button"
             onClick={handleSignIn}
-            className="flex transform items-center justify-center gap-1 rounded-lg border border-gray-400 bg-gray-800 font-semibold text-[#00000] text-sm text-white transition duration-300 ease-in-out hover:scale-102 hover:bg-[#3ABEF9] hover:text-[#E3E8F1] focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] sm:gap-3 sm:px-8 sm:py-3 sm:text-lg"
+            className="flex transform cursor-pointer items-center justify-center gap-1 rounded-lg border border-gray-400 bg-gray-800 px-4 py-2 font-semibold text-[#00000] text-sm text-white transition duration-300 ease-in-out hover:scale-102 hover:bg-[#3ABEF9] hover:text-black focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] sm:gap-3 sm:px-8 sm:py-3 sm:text-lg"
           >
             <Github size={20} />
             Log in with GitHub

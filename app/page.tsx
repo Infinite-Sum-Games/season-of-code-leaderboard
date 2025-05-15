@@ -12,15 +12,15 @@ const Dashboard = () => {
   const { data: session } = useSession();
 
   return (
-    <div className="relative flex h-screen w-full flex-col overflow-hidden">
+    <div className="relative flex h-auto w-full flex-col overflow-hidden md:h-screen">
       <SunGlareEffect />
       <Cloud />
 
-      <div className="h-[80px] shrink-0">
+      <div className="z-20 h-[80px] shrink-0">
         <Navbar />
       </div>
 
-      <div className="relative flex flex-1 overflow-hidden px-18 py-4">
+      <div className="relative flex flex-1 overflow-hidden px-6 py-8 md:px-18 md:py-4">
         <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-2">
           <div className="flex h-full flex-col overflow-hidden">
             <div className="flex min-h-0 flex-1 items-center justify-center overflow-hidden">
