@@ -1,7 +1,7 @@
 'use client';
 import { Lock } from 'lucide-react';
-// src/components/AchievementSystem/BadgeNode.tsx
-import { useState } from 'react';
+import { useCallback, useEffect, useRef, useState } from 'react';
+import { createPortal } from 'react-dom';
 import type { Badge, Connection, TierStyles } from './types';
 
 interface BadgeNodeProps {
@@ -12,6 +12,11 @@ interface BadgeNodeProps {
   connectionStates?: Record<string, Connection>;
 }
 
+interface TooltipPosition {
+  x: number;
+  y: number;
+}
+
 function BadgeNode({
   badge,
   allBadges,
@@ -20,6 +25,45 @@ function BadgeNode({
   connectionStates,
 }: BadgeNodeProps) {
   const [hovered, setHovered] = useState(false);
+  const [tooltipPosition, setTooltipPosition] = useState<TooltipPosition>({
+    x: 0,
+    y: 0,
+  });
+  const nodeRef = useRef<HTMLButtonElement>(null);
+  const [portalContainer, setPortalContainer] = useState<HTMLElement | null>(
+    null,
+  );
+
+  // Initialize portal container on mount
+  useEffect(() => {
+    setPortalContainer(document.body);
+  }, []);
+
+  const updateTooltipPosition = useCallback(() => {
+    if (nodeRef.current) {
+      const rect = nodeRef.current.getBoundingClientRect();
+      setTooltipPosition({
+        x: rect.left + rect.width / 2,
+        y: rect.top,
+      });
+    }
+  }, []);
+
+  // Update tooltip position when hovered changes or on scroll events
+  useEffect(() => {
+    if (hovered) {
+      updateTooltipPosition();
+
+      const handleScroll = () => {
+        updateTooltipPosition();
+      };
+
+      window.addEventListener('scroll', handleScroll, true);
+      return () => {
+        window.removeEventListener('scroll', handleScroll, true);
+      };
+    }
+  }, [hovered, updateTooltipPosition]);
 
   const tierStyles: TierStyles = {
     bronze: 'from-amber-600 via-amber-700 to-orange-800 border-amber-400',
@@ -52,6 +96,7 @@ function BadgeNode({
   return (
     <div className="relative">
       <button
+        ref={nodeRef}
         type="button"
         className={`relative w-16 h-16 md:w-20 md:h-20 rounded-full border-2 cursor-pointer transition-all duration-300 ${
           badge.unlocked
@@ -144,37 +189,49 @@ function BadgeNode({
         )}
       </button>
 
-      {hovered && (
-        <div className="absolute z-20 w-40 bg-white/75 backdrop-blur-md rounded-xl shadow-lg border border-white/50 p-2 -translate-x-1/2 left-1/2 bottom-full mb-2">
-          <h3
-            className={`text-xs font-bold ${
-              badge.unlocked ? 'text-gray-900' : 'text-gray-700'
-            }`}
+      {hovered &&
+        portalContainer &&
+        createPortal(
+          <div
+            className="fixed z-50 w-40 bg-white/75 backdrop-blur-md rounded-xl shadow-lg border border-white/50 p-2"
+            style={{
+              left: `${tooltipPosition.x}px`,
+              top: `${tooltipPosition.y - 10}px`,
+              transform: 'translate(-50%, -100%)',
+            }}
           >
-            {badge.title}
-          </h3>
-          <p className="text-[10px] text-gray-700 mt-1">{badge.description}</p>
-          {!badge.unlocked && badge.progress !== undefined && (
-            <div className="mt-1">
-              <div className="w-full bg-white/10 rounded-full h-1">
-                <div
-                  className="bg-blue-400 h-1 rounded-full"
-                  style={{ width: `${badge.progress}%` }}
-                />
-              </div>
-              <p className="text-[10px] text-gray-400 mt-1">
-                {badge.progress}% Complete
-              </p>
-            </div>
-          )}
-          {badge.unlocked && badge.date && (
-            <p className="text-[10px] text-blue-300 mt-1">
-              Unlocked on {badge.date}
+            <h3
+              className={`text-xs font-bold ${
+                badge.unlocked ? 'text-gray-900' : 'text-gray-700'
+              }`}
+            >
+              {badge.title}
+            </h3>
+            <p className="text-[10px] text-gray-700 mt-1">
+              {badge.description}
             </p>
-          )}
-          <div className="absolute w-2 h-2 bg-white/10 rotate-45 -bottom-1 left-1/2 -ml-1 border-b border-r border-white/20" />
-        </div>
-      )}
+            {!badge.unlocked && badge.progress !== undefined && (
+              <div className="mt-1">
+                <div className="w-full bg-white/10 rounded-full h-1">
+                  <div
+                    className="bg-blue-400 h-1 rounded-full"
+                    style={{ width: `${badge.progress}%` }}
+                  />
+                </div>
+                <p className="text-[10px] text-gray-400 mt-1">
+                  {badge.progress}% Complete
+                </p>
+              </div>
+            )}
+            {badge.unlocked && badge.date && (
+              <p className="text-[10px] text-blue-300 mt-1">
+                Unlocked on {badge.date}
+              </p>
+            )}
+            <div className="absolute w-2 h-2 bg-white/10 rotate-45 bottom-[-4px] left-1/2 -ml-1 border-b border-r border-white/20" />
+          </div>,
+          portalContainer,
+        )}
     </div>
   );
 }

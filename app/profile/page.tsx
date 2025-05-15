@@ -19,7 +19,7 @@ const ProfilePage = () => {
           </div>
 
           {/* Achievement Card - Takes 1 column, matches Profile height, hides vertical overflow */}
-          <div className="col-span-1 w-full h-full overflow-y-hidden">
+          <div className="col-span-1 w-full">
             <GameAchievementSystem />
           </div>
         </div>
