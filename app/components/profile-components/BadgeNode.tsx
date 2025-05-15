@@ -34,6 +34,19 @@ function BadgeNode({
     null,
   );
 
+  const [isMobile, setIsMobile] = useState(false);
+
+  useEffect(() => {
+    const handleResize = () => {
+      setIsMobile(window.innerWidth < 768);
+    };
+
+    handleResize();
+    window.addEventListener('resize', handleResize);
+
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Initialize portal container on mount
   useEffect(() => {
     setPortalContainer(document.body);
@@ -51,7 +64,7 @@ function BadgeNode({
 
   // Update tooltip position when hovered changes or on scroll events
   useEffect(() => {
-    if (hovered) {
+    if (hovered && !isMobile) {
       updateTooltipPosition();
 
       const handleScroll = () => {
@@ -63,7 +76,7 @@ function BadgeNode({
         window.removeEventListener('scroll', handleScroll, true);
       };
     }
-  }, [hovered, updateTooltipPosition]);
+  }, [hovered, updateTooltipPosition, isMobile]);
 
   const tierStyles: TierStyles = {
     bronze: 'from-amber-600 via-amber-700 to-orange-800 border-amber-400',
@@ -191,6 +204,7 @@ function BadgeNode({
 
       {hovered &&
         portalContainer &&
+        !isMobile &&
         createPortal(
           <div
             className="fixed z-50 w-40 bg-white/75 backdrop-blur-md rounded-xl shadow-lg border border-white/50 p-2"
