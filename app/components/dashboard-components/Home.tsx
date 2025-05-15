@@ -1,6 +1,7 @@
 'use client';
 import { Github } from 'lucide-react';
 import { signIn } from 'next-auth/react';
+import { useSession } from 'next-auth/react';
 
 // Winter theme stuff is commented out.
 
@@ -12,6 +13,8 @@ const handleSignIn = async () => {
 };
 
 export const Home = () => {
+  const { data: session } = useSession();
+
   // const [timeLeft, setTimeLeft] = useState({
   //   days: 0,
   //   hours: 0,
@@ -92,17 +95,18 @@ export const Home = () => {
         </div> */}
 
         {/* GitHub Login Button */}
-        <div className="mt-2 flex">
-          <button
-            type="button"
-            onClick={handleSignIn}
-            className="flex transform cursor-pointer gap-1 rounded-lg border border-gray-400 bg-gray-800 px-4 py-2 font-semibold text-[#00000] text-sm text-white transition duration-300 ease-in-out hover:scale-102 focus:outline-none focus:ring-1 sm:gap-3 sm:px-4 sm:py-3 sm:text-md"
-          >
-            <Github size={20} />
-            Log in with GitHub
-          </button>
-        </div>
-
+        {!session?.user && (
+          <div className="mt-2 flex">
+            <button
+              type="button"
+              onClick={handleSignIn}
+              className="flex transform cursor-pointer gap-1 rounded-lg border border-gray-400 bg-gray-800 px-4 py-2 font-semibold text-[#00000] text-sm text-white transition duration-300 ease-in-out hover:scale-102 focus:outline-none focus:ring-1 sm:gap-3 sm:px-4 sm:py-3 sm:text-md"
+            >
+              <Github size={20} />
+              Log in with GitHub
+            </button>
+          </div>
+        )}
         {/* Credits
         <div className="mt-4 flex justify-center items-center text-gray-300 text-xs sm:text-sm">
           <p className="mr-1">Made by</p>

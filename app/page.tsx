@@ -2,14 +2,15 @@
 import { Separator } from '@/app/components/ui/separator';
 import Leaderboard from './components/dashboard-components/leaderboard';
 import './globals.css';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
 import Logtable from './components/Logtable';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
 import Home from './components/dashboard-components/Home';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
+
 const Dashboard = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return (
     <div className="relative flex h-auto w-full flex-col overflow-hidden md:h-screen">
