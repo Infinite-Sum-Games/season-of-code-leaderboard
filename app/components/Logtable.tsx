@@ -132,11 +132,16 @@ export default function Logtable() {
   const [activeTab, setActiveTab] = useState('all');
   const [filteredLogs, setFilteredLogs] = useState(logs);
   const [newActivity, setNewActivity] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
+    setCurrentTime(new Date());
+
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
+
     return () => clearInterval(timer);
   }, []); // to check current time for the clock
 
@@ -158,7 +163,7 @@ export default function Logtable() {
 
   return (
     <TooltipProvider>
-      <div className="relative h-fit w-full px-4 sm:px-6 lg:px-6">
+      <div className="relative h-fit w-full px-4 sm:px-6 lg:px-4">
         <Card className="mx-auto mb-2 w-full max-w-5xl overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
           <CardHeader className="bg-white/10 p-6 pb-2 backdrop-blur-md">
             <div className="flex items-center justify-between">
@@ -188,9 +193,13 @@ export default function Logtable() {
                   className="flex items-center gap-1 bg-white/30 backdrop-blur-md"
                 >
                   <Clock className="h-3 w-3" />
-                  <span className="text-xs">
-                    {currentTime.toLocaleTimeString()}
-                  </span>
+                  {hasMounted && currentTime ? (
+                    <span className="text-xs">
+                      {currentTime.toLocaleTimeString()}
+                    </span>
+                  ) : (
+                    <span className="text-xs">--:--:--</span> // prevents layout shift
+                  )}
                 </Badge>
               </div>
             </div>
