@@ -69,6 +69,13 @@ const logs: LogEntry[] = [
     timestamp: '2025-05-04T12:45:00Z',
     description: 'New issue "Optimize sorting algorithm" was created.',
   },
+  {
+    id: '6',
+    type: 'issue',
+    user: 'adithya-menon-r',
+    timestamp: '2025-05-15T01:00:00Z',
+    description: 'New issue "Fix responsiveness" was created.',
+  },
 ];
 
 const typeMeta: Record<
@@ -163,7 +170,7 @@ export default function Logtable() {
 
   return (
     <TooltipProvider>
-      <div className="flex h-full w-full px-4 sm:px-6 lg:px-4">
+      <div className="flex h-[500px] w-full px-2 sm:h-full sm:px-6 lg:px-4">
         <Card className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
           <CardHeader className="shrink-0 bg-white/10 p-4 pb-2 backdrop-blur-md">
             <div className="flex items-center justify-between">
@@ -347,7 +354,7 @@ export default function Logtable() {
           </CardContent>
 
           <CardFooter className="flex shrink-0 items-center justify-between border-white/20 border-t bg-white/10 p-3 backdrop-blur-md">
-            <div className="text-gray-700 text-xs">
+            <div className="max-w-[180px] truncate text-gray-700 text-xs sm:max-w-full">
               Live updates • Last activity: {getTimeAgo(logs[0].timestamp)}
             </div>
           </CardFooter>

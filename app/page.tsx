@@ -27,6 +27,9 @@ const Dashboard = () => {
               <div className="shrink-0">
                 <Home />
               </div>
+
+              <Separator className="md:hidden" />
+
               <div className="min-h-0 flex-1">
                 <Logtable />
               </div>
