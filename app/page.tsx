@@ -20,12 +20,16 @@ const Dashboard = () => {
         <Navbar />
       </div>
 
-      <div className="relative flex flex-1 overflow-hidden px-6 py-8 md:px-18 md:py-4">
+      <div className="relative flex flex-1 flex-col overflow-hidden px-6 py-8 md:px-18 md:py-4">
         <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-2">
           <div className="flex h-full flex-col overflow-hidden">
-            <div className="flex min-h-0 flex-1 flex-col items-center justify-center space-y-4 overflow-hidden">
-              <Home />
-              <Logtable />
+            <div className="flex min-h-0 flex-1 flex-col space-y-4 overflow-hidden">
+              <div className="shrink-0">
+                <Home />
+              </div>
+              <div className="min-h-0 flex-1">
+                <Logtable />
+              </div>
             </div>
           </div>
 

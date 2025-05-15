@@ -43,7 +43,7 @@ export const Home = () => {
   // }, []);
 
   return (
-    <div className="relative flex w-full flex-col px-4 pt-4 text-[#E3E8F1]">
+    <div className="relative flex w-full flex-col px-4 text-[#E3E8F1]">
       <div className="z-10 text-left">
         <h1 className="mb-4 font-bold text-4xl text-[#E3E8F1] tracking-tight sm:text-4xl">
           <span className="text-[#3ABEF9]">Amrita</span> Summer of Code
