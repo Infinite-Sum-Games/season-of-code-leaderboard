@@ -8,6 +8,8 @@ export interface BadgeProps {
   description?: string;
   date?: string;
   icon: string;
+  tier: string;
+  progress?: number;
 }
 
 export default function Badge({
@@ -16,6 +18,8 @@ export default function Badge({
   description,
   date,
   icon,
+  tier,
+  progress,
 }: BadgeProps) {
   switch (variant) {
     case 'Expanded':
@@ -23,8 +27,10 @@ export default function Badge({
         <Expanded
           title={title}
           description={description ? description : 'No Description'}
-          date={date ? date : 'no date'}
+          date={date ? date : 'No Date'}
           icon={icon}
+          tier={tier}
+          progress={progress}
         />
       );
     case 'Locked':
@@ -32,6 +38,8 @@ export default function Badge({
         <Locked
           title={title}
           icon={icon}
+          tier={tier}
+          progress={progress}
         />
       );
     default:
@@ -39,6 +47,7 @@ export default function Badge({
         <Collapsed
           title={title}
           icon={icon}
+          tier={tier}
         />
       );
   }
