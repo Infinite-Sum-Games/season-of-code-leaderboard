@@ -36,10 +36,10 @@ function GameAchievementSystem() {
 
   return (
     <div className="relative mx-auto w-full max-w-[100%] sm:px-6 lg:px-0 py-8">
-      <div className="bg-white/10 backdrop-blur-2xl text-gray-900 p-3 rounded-4xl h-full overflow-y-auto custom-scrollbar">
+      <div className="bg-white/20 backdrop-blur-2xl text-gray-900 p-3 rounded-4xl h-full overflow-y-auto custom-scrollbar shadow-2xl border border-white/30">
         <div className="max-w-full mx-auto">
           {/* Header */}
-          <div className="mb-4 bg-white/15 backdrop-blur-md rounded-2xl p-4 border border-white/20 shadow-xl">
+          <div className="mb-4 bg-white/25 backdrop-blur-2xl rounded-xl p-4 border border-white/30 divide-y divide-white/10">
             <div className="flex flex-col items-center">
               <h1 className="text-2xl font-bold text-gray-900 mb-2">
                 Developer Achievement System
