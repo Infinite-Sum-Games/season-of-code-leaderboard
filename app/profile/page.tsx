@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar';
 import Cloud from '../components/dashboard-components/Cloud';
 import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
-import GameAchievementSystem from '../components/profile-components/BadgesSection';
+import GameAchievementSystem from '../components/profile-components/GameAchivementSystem';
 import Profile from '../components/profile-components/profileCard';
 
 const ProfilePage = () => {
