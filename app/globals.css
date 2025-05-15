@@ -236,3 +236,33 @@
       #070f2b;
   }
 }
+
+.badge-futuristic {
+  clip-path: polygon(
+    0% 0%,
+    /* Top-left */ 100% 0%,
+    /* Top-right */ 100% 70%,
+    /* Right vertical edge */ 85% 85%,
+    /* Bottom-right inward cut */ 70% 100%,
+    /* Bottom inward edge */ 30% 100%,
+    /* Bottom inward edge */ 15% 85%,
+    /* Bottom-left inward cut */ 0% 70% /* Left vertical edge */
+  );
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
+}
+
+.badge-futuristic:hover {
+  box-shadow: 0 0 15px 4px rgba(93, 156, 255, 0.6);
+}
+
+.badge-futuristic::before {
+  content: "";
+  position: absolute;
+  inset: 4px;
+  border: 2px solid rgba(34, 34, 34, 0.15);
+  clip-path: inherit;
+  border-radius: inherit;
+  z-index: -1;
+}

@@ -268,18 +268,17 @@ const ProfileCard = () => {
         {/* Main Profile Card */}
         <div className="relative overflow-hidden rounded-2xl bg-white/20 backdrop-blur-2xl shadow-2xl border border-white/30">
           {/* Rank Badge */}
-          <div className="absolute -top-3 -right-3 flex justify-center items-center">
+          <div className="absolute top-3 right-3 flex justify-center items-center">
             <div className="relative">
-              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg ring-4 ring-white/20">
-                <div className="text-3xl sm:text-4xl text-gray-800 font-bold">
-                  {userData.rank}
-                </div>
+              <div className="badge-futuristic w-16 h-16 sm:w-20 sm:h-20 bg-gradient-to-br from-slate-100 via-gray-300 to-slate-200 text-gray-900 shadow-xl ring-4 ring-white/10 flex items-center justify-center text-3xl sm:text-4xl font-bold">
+                {userData.rank}
               </div>
-              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-blue-600 text-xs font-bold px-3 py-1 rounded-full shadow-md">
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-blue-600 text-xs font-bold px-3 py-1 rounded-full shadow-md z-20">
                 RANK
               </div>
             </div>
           </div>
+
           <div className="p-4 sm:p-6 lg:p-8">
             <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
               {/* Profile Info */}
