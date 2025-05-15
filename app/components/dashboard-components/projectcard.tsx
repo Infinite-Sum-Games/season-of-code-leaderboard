@@ -51,8 +51,8 @@ const ProjectCard = (props: ProjectCardProps) => {
             </div>
           ))}
         </div>
-
-        <CardDescription className="px-6 text-1xl text-gray-300">
+        <CardDescription className="px-6 text-1xl text-gray-500">
+          {' '}
           {props.blurb}
         </CardDescription>
 
