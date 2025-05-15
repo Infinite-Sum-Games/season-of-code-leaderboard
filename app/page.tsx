@@ -24,14 +24,14 @@ const Dashboard = () => {
               <Usercard />
             </div>
           ) : (
-            <div className="w-full pt-28">
+            <div className="w-full pt-24">
               <Home />
             </div>
           )}
 
           <Separator className="md:hidden" />
 
-          <div className="relative mt-28">
+          <div className="relative mt-24">
             <Leaderboard />
           </div>
         </div>

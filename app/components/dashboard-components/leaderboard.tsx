@@ -177,7 +177,7 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="z-50 h-fit w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
+    <Card className="z-50 max-h-screen w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
       {/* <Tabs
         defaultValue="leaderboard"
         className="w-full"

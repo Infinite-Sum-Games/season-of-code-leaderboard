@@ -47,7 +47,6 @@ const logs: LogEntry[] = [
     user: 'vijay-sb',
     timestamp: '2025-04-05T14:32:00Z',
     description: 'Alice just grabbed the #1 spot!',
-    avatar: '/placeholder.svg?height=40&width=40',
   },
   {
     id: '2',
@@ -55,7 +54,6 @@ const logs: LogEntry[] = [
     user: 'KiranRajeev-KV',
     timestamp: '2025-03-05T13:00:00Z',
     description: 'Bob received a 100 point bounty reward.',
-    avatar: '/placeholder.svg?height=40&width=40',
   },
   {
     id: '3',
@@ -63,7 +61,6 @@ const logs: LogEntry[] = [
     user: 'vijay-sb',
     timestamp: '2025-05-04T12:45:00Z',
     description: 'New issue "Optimize sorting algorithm" was created.',
-    avatar: '/placeholder.svg?height=40&width=40',
   },
   {
     id: '4',
@@ -71,7 +68,6 @@ const logs: LogEntry[] = [
     user: 'KiranRajeev-KV',
     timestamp: '2025-03-05T13:00:00Z',
     description: 'Bob received a 100 point bounty reward.',
-    avatar: '/placeholder.svg?height=40&width=40',
   },
   {
     id: '5',
@@ -79,7 +75,6 @@ const logs: LogEntry[] = [
     user: 'vijay-sb',
     timestamp: '2025-05-04T12:45:00Z',
     description: 'New issue "Optimize sorting algorithm" was created.',
-    avatar: '/placeholder.svg?height=40&width=40',
   },
 ];
 
@@ -170,13 +165,15 @@ export default function Logtable() {
 
   return (
     <TooltipProvider>
-      <div className="relative w-full px-4 sm:px-6 lg:px-6">
-        <Card className="mx-auto w-full max-w-5xl overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
+      <div className="relative h-fit w-full px-4 sm:px-6 lg:px-6">
+        <Card className="mx-auto mb-2 w-full max-w-5xl overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
           <CardHeader className="bg-white/10 pb-2 backdrop-blur-md">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div
-                  className={`rounded-full bg-white/20 p-2 backdrop-blur-md ${newActivity ? 'animate-pulse' : ''}`}
+                  className={`rounded-full bg-white/20 p-2 backdrop-blur-md ${
+                    newActivity ? 'animate-pulse' : ''
+                  }`}
                 >
                   <Activity className="h-5 w-5 text-blue-500" />
                 </div>
@@ -240,7 +237,7 @@ export default function Logtable() {
           </CardHeader>
 
           <CardContent className="p-0">
-            <ScrollArea className="max-h-[33vh] overflow-y-auto p-4">
+            <ScrollArea className="h-[38vh] overflow-y-auto p-4">
               <div className="timeline-container relative">
                 <div className="absolute top-0 bottom-0 left-[22px] w-0.5 bg-white/30" />
 
@@ -253,10 +250,14 @@ export default function Logtable() {
                   return (
                     <div
                       key={`${log.id}-${index}`}
-                      className={`relative mb-6 pl-12 ${isFirst ? 'animate-fade-in' : ''}`}
+                      className={`relative mb-6 pl-12 ${
+                        isFirst ? 'animate-fade-in' : ''
+                      }`}
                     >
                       <div
-                        className={`absolute top-0 left-0 z-10 ${isFirst ? `animate-pulse-${pulseColor}` : ''}`}
+                        className={`absolute top-0 left-0 z-10 ${
+                          isFirst ? `animate-pulse-${pulseColor}` : ''
+                        }`}
                       >
                         <div className="relative rounded-full border border-white/50 bg-white/30 p-2 backdrop-blur-md">
                           <Icon className={`h-5 w-5 ${iconColor}`} />
@@ -272,9 +273,10 @@ export default function Logtable() {
                         <div className="mb-2 flex items-center gap-2">
                           <Avatar className="h-6 w-6">
                             <AvatarImage
-                              src={log.avatar || '/placeholder.svg'}
+                              src={`https://github.com/${log.user}.png`}
                               alt={log.user}
                             />
+
                             <AvatarFallback>
                               {log.user.substring(0, 2).toUpperCase()}
                             </AvatarFallback>

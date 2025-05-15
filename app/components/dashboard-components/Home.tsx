@@ -43,18 +43,18 @@ export const Home = () => {
   return (
     <div className="relative flex w-full flex-col items-center px-4 text-[#E3E8F1] sm:px-10">
       <div className="z-10 mb-6 w-full max-w-screen-lg text-center">
-        <h1 className="mb-2 font-bold text-3xl text-[#E3E8F1] tracking-tight sm:text-5xl md:text-6xl">
+        <h1 className="font-bold text-3xl text-[#E3E8F1] tracking-tight sm:text-5xl md:text-6xl">
           <span className="text-slate-800">Amrita</span> Summer of Code
         </h1>
 
-        <p className="mx-auto mb-4 max-w-md text-sm text-white leading-relaxed sm:text-base">
+        {/* <p className="mx-auto mb-4 max-w-md text-sm text-white leading-relaxed sm:text-base">
           Join{' '}
           <span className="font-medium text-slate-800">
             Amrita Vishwa Vidyapeetham
           </span>
           's coding community to learn, collaborate, and build impactful
           projects.
-        </p>
+        </p> */}
 
         {/* Countdown Timer */}
         {/* <div className="mb-6">
@@ -111,7 +111,7 @@ export const Home = () => {
 
       {/* Log Table */}
       <div className="flex w-full justify-center">
-        <div className="h-fit w-full max-w-screen-md px-2 ">
+        <div className="max-h-screen w-full max-w-screen-md px-2 ">
           <Logtable />
         </div>
       </div>
