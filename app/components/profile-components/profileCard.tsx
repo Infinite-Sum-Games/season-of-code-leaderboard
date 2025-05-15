@@ -261,214 +261,204 @@ const ProfileCard = () => {
   };
 
   return (
-    <>
-      <div className="relative w-lg md:w-4xl ml-auto mr-auto min-h-[60vh] bg-gradient-to-br">
-        {/* Background with subtle frosted glass effect */}
-        <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
-        <div className="relative mx-auto max-w-7xl py-8">
-          {/* Main Profile Card with Enhanced Frosted Glass Effect */}
-          <div className="relative overflow-hidden rounded-2xl bg-white/20 backdrop-blur-2xl shadow-2xl border border-white/30">
-            {/* Rank Badge - adjusted for overlap */}
-            <div className="absolute -top-3 -right-3 flex justify-center items-center">
-              <div className="relative">
-                <div className="w-20 h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg ring-4 ring-white/20">
-                  <div className="text-4xl text-gray-800 font-bold">
-                    {userData.rank}
-                  </div>
+    <div className="relative w-full min-h-[60vh] bg-gradient-to-br">
+      {/* Background with subtle frosted glass effect */}
+      <div className="absolute inset-0 bg-[url('/grid.svg')] bg-center [mask-image:linear-gradient(180deg,white,rgba(255,255,255,0))]" />
+      <div className="relative mx-auto w-full max-w-[100%] px-4 sm:px-6 lg:px-8 py-8">
+        {/* Main Profile Card */}
+        <div className="relative overflow-hidden rounded-2xl bg-white/20 backdrop-blur-2xl shadow-2xl border border-white/30">
+          {/* Rank Badge */}
+          <div className="absolute -top-3 -right-3 flex justify-center items-center">
+            <div className="relative">
+              <div className="w-16 h-16 sm:w-20 sm:h-20 rounded-full bg-gradient-to-br from-blue-500 to-purple-600 flex items-center justify-center shadow-lg ring-4 ring-white/20">
+                <div className="text-3xl sm:text-4xl text-gray-800 font-bold">
+                  {userData.rank}
                 </div>
-                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-blue-600 text-xs font-bold px-3 py-1 rounded-full shadow-md">
-                  RANK
-                </div>
+              </div>
+              <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-white text-blue-600 text-xs font-bold px-3 py-1 rounded-full shadow-md">
+                RANK
               </div>
             </div>
-            <div className="p-8">
-              <div className="flex flex-col md:flex-row items-center gap-8">
-                {/* Profile Info */}
-                <div className="relative group">
-                  <div className="w-32 h-32 rounded-full ring-4 ring-white/20 p-1 bg-gradient-to-br from-blue-500 to-purple-600 transition-all duration-300 group-hover:ring-blue-500/50">
-                    <Image
-                      src={`https://github.com/${userData.username}.png`}
-                      alt={`${userData.username} profile`}
-                      width={128}
-                      height={128}
-                      className="rounded-full transition-transform duration-300 group-hover:brightness-110"
-                    />
-                  </div>
-                  <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-gray-800 text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-all duration-300 group-hover:shadow-blue-500/25 group-hover:shadow-xl">
-                    Contributor
-                  </div>
+          </div>
+          <div className="p-4 sm:p-6 lg:p-8">
+            <div className="flex flex-col sm:flex-row items-center gap-6 sm:gap-8">
+              {/* Profile Info */}
+              <div className="relative group">
+                <div className="w-24 h-24 sm:w-32 sm:h-32 rounded-full ring-4 ring-white/20 p-1 bg-gradient-to-br from-blue-500 to-purple-inker transition-all duration-300 group-hover:ring-blue-500/50">
+                  <Image
+                    src={`https://github.com/${userData.username}.png`}
+                    alt={`${userData.username} profile`}
+                    width={128}
+                    height={128}
+                    className="rounded-full transition-transform duration-300 group-hover:brightness-110"
+                  />
                 </div>
-                <div className="flex flex-col items-center md:items-start text-center md:text-left">
-                  <h2 className="text-4xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
-                    {userData.name}
-                  </h2>
-                  <p className="text-xl text-gray-600 font-light mt-1">
-                    @{userData.username}
-                  </p>
+                <div className="absolute -bottom-2 left-1/2 transform -translate-x-1/2 bg-gradient-to-r from-blue-500 to-purple-600 text-gray-800 text-xs font-bold px-4 py-1 rounded-full shadow-lg transition-all duration-300 group-hover:shadow-blue-500/25 group-hover:shadow-xl">
+                  Contributor
                 </div>
               </div>
+              <div className="flex flex-col items-center sm:items-start text-center sm:text-left">
+                <h2 className="text-2xl sm:text-4xl font-bold bg-gradient-to-r from-white to-blue-200 bg-clip-text text-transparent">
+                  {userData.name}
+                </h2>
+                <p className="text-lg sm:text-xl text-gray-600 font-light mt-1">
+                  @{userData.username}
+                </p>
+              </div>
+            </div>
 
-              <div className="mt-8 w-full flex flex-col lg:flex-row gap-8">
-                {/* Stats Container with Enhanced Frosted Glass Effect */}
-                <div className="flex-1 flex flex-col gap-4 max-w-full">
-                  <div className="bg-white/25 backdrop-blur-2xl rounded-xl overflow-hidden shadow-lg border border-white/30 divide-y divide-white/10">
-                    {/* Stats Row */}
-                    <div className="flex flex-wrap justify-between px-4 py-3 md:px-6 md:py-4 gap-3">
-                      <div className="flex flex-col items-center md:items-start">
-                        <span className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 flex items-center gap-2">
-                          <span
-                            role="img"
-                            aria-label="bounty"
-                          >
-                            💰
-                          </span>
-                          {userData.bounty}
+            <div className="mt-6 sm:mt-8 w-full flex flex-col lg:flex-row gap-6 sm:gap-8">
+              {/* Stats Container */}
+              <div className="flex-1 flex flex-col gap-4 w-full">
+                <div className="bg-white/25 backdrop-blur-2xl rounded-xl overflow-hidden shadow-lg border border-white/30 divide-y divide-white/10">
+                  {/* Stats Row */}
+                  <div className="flex flex-wrap justify-between px-4 py-3 sm:px-6 sm:py-4 gap-3">
+                    <div className="flex flex-col items-center sm:items-start">
+                      <span className="text-lg sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
+                        <span
+                          role="img"
+                          aria-label="bounty"
+                        >
+                          💰
                         </span>
-                        <span className="text-xs text-gray-600 font-medium mt-1">
-                          Bounty Points
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center md:items-start">
-                        <span className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 flex items-center gap-2">
-                          <span
-                            role="img"
-                            aria-label="trophy"
-                          >
-                            🏆
-                          </span>
-                          {userData.allTimeRank}
-                        </span>
-                        <span className="text-xs text-gray-600 font-medium mt-1">
-                          All Time Best Rank
-                        </span>
-                      </div>
-                      <div className="flex flex-col items-center md:items-start">
-                        <span className="text-xl md:text-2xl lg:text-3xl font-bold text-gray-800 flex items-center gap-2">
-                          <span
-                            role="img"
-                            aria-label="pending"
-                          >
-                            ⏳
-                          </span>
-                          {userData.pendingIssues}
-                        </span>
-                        <span className="text-xs text-gray-600 font-medium mt-1">
-                          Pending Issues
-                        </span>
-                      </div>
+                        {userData.bounty}
+                      </span>
+                      <span className="text-xs text-gray-600 font-medium mt-1">
+                        Bounty Points
+                      </span>
                     </div>
-
-                    {/* Bounty Progress */}
-                    <div className="flex flex-col items-center justify-center px-4 py-3 md:px-6 md:py-4 w-full">
-                      <h3 className="text-sm font-semibold text-gray-800 mb-2">
-                        Bounty Progress
-                      </h3>
-                      <div className="w-full max-w-xs">
-                        <BountyBar
-                          value={userData.bounty}
-                          max={1000}
-                          width="100%"
-                        />
-                      </div>
+                    <div className="flex flex-col items-center sm:items-start">
+                      <span className="text-lg sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
+                        <span
+                          role="img"
+                          aria-label="trophy"
+                        >
+                          🏆
+                        </span>
+                        {userData.allTimeRank}
+                      </span>
+                      <span className="text-xs text-gray-600 font-medium mt-1">
+                        All Time Best Rank
+                      </span>
+                    </div>
+                    <div className="flex flex-col items-center sm:items-start">
+                      <span className="text-lg sm:text-2xl font-bold text-gray-800 flex items-center gap-2">
+                        <span
+                          role="img"
+                          aria-label="pending"
+                        >
+                          ⏳
+                        </span>
+                        {userData.pendingIssues}
+                      </span>
+                      <span className="text-xs text-gray-600 font-medium mt-1">
+                        Pending Issues
+                      </span>
                     </div>
                   </div>
 
-                  {/* Analytics */}
-                  <div className="w-full flex flex-col gap-4 md:gap-6 mt-6 md:mt-8">
-                    <div className="flex flex-col md:flex-row gap-4 md:gap-6">
-                      {/* Pie Chart with Enhanced Frosted Glass Container */}
-                      <div className="w-full md:flex-1 bg-white/25 backdrop-blur-2xl rounded-xl border border-white/30 shadow-lg p-3 md:p-4 overflow-hidden">
-                        <h3 className="text-base md:text-lg font-semibold mb-2 md:mb-3 text-center text-gray-800">
-                          Contribution Chart
-                        </h3>
-                        <div className="h-[160px] md:h-[180px] w-full max-w-full">
-                          <ChartContainer
-                            config={pieChartConfig}
-                            className="h-full w-full"
-                          >
-                            <ResponsiveContainer
-                              width="100%"
-                              height="100%"
-                            >
-                              <PieChart>
-                                <ChartTooltip
-                                  content={<ChartTooltipContent />}
-                                />
-                                <Pie
-                                  data={pieData}
-                                  dataKey="value"
-                                  nameKey="name"
-                                  cx="50%"
-                                  cy="50%"
-                                  outerRadius={60}
-                                  label={false}
-                                />
-                              </PieChart>
-                            </ResponsiveContainer>
-                          </ChartContainer>
-                        </div>
-                        <div className="flex flex-wrap justify-center gap-2 mt-2">
-                          {pieData.map((entry) => (
-                            <div
-                              key={entry.name}
-                              className="flex items-center gap-1"
-                            >
-                              <div
-                                className="w-2 h-2 rounded-full"
-                                style={{ backgroundColor: entry.fill }}
-                              />
-                              <span className="text-xs text-gray-800 font-bold">
-                                {entry.name}
-                              </span>
-                            </div>
-                          ))}
-                        </div>
-                      </div>
+                  {/* Bounty Progress */}
+                  <div className="flex flex-col items-center justify-center px-4 py-3 sm:px-6 sm:py-4 w-full">
+                    <h3 className="text-sm font-semibold text-gray-800 mb-2">
+                      Bounty Progress
+                    </h3>
+                    <div className="w-full max-w-xs">
+                      <BountyBar
+                        value={userData.bounty}
+                        max={1000}
+                        width="100%"
+                      />
+                    </div>
+                  </div>
+                </div>
 
-                      {/* Radar Chart with Enhanced Frosted Glass Container */}
-                      <div className="w-full md:flex-1 bg-white/25 backdrop-blur-2xl rounded-xl border border-white/30 shadow-lg p-3 md:p-4 overflow-hidden">
-                        <h3 className="text-base md:text-lg font-semibold text-gray-800 mb-2 md:mb-3 text-center">
-                          Issue Distribution
-                        </h3>
-                        <div className="h-[180px] md:h-[200px] w-full max-w-full">
-                          <ChartContainer
-                            config={radarChartConfig}
-                            className="h-full w-full"
+                {/* Analytics */}
+                <div className="w-full flex flex-col gap-4 sm:gap-6 mt-6 sm:mt-8">
+                  <div className="flex flex-col sm:flex-row gap-4 sm:gap-6">
+                    {/* Pie Chart */}
+                    <div className="w-full sm:flex-1 bg-white/25 backdrop-blur-2xl rounded-xl border border-white/30 shadow-lg p-3 sm:p-4 overflow-hidden">
+                      <h3 className="text-base font-semibold mb-2 text-center text-gray-800">
+                        Contribution Chart
+                      </h3>
+                      <div className="h-[160px] sm:h-[180px] w-full max-w-full">
+                        <ChartContainer
+                          config={pieChartConfig}
+                          className="h-full w-full"
+                        >
+                          <ResponsiveContainer
+                            width="100%"
+                            height="100%"
                           >
-                            <ResponsiveContainer
-                              width="100%"
-                              height="100%"
-                            >
-                              <RadarChart
+                            <PieChart>
+                              <ChartTooltip content={<ChartTooltipContent />} />
+                              <Pie
+                                data={pieData}
+                                dataKey="value"
+                                nameKey="name"
+                                cx="50%"
+                                cy="50%"
                                 outerRadius={60}
-                                cy={90}
-                                data={radarData}
-                              >
-                                <ChartTooltip
-                                  content={<ChartTooltipContent />}
-                                />
-                                <PolarGrid stroke="#f28b30" />
-                                <PolarAngleAxis
-                                  dataKey="attribute"
-                                  tick={{ fill: '#fff', fontSize: 10 }}
-                                  tickLine={false}
-                                />
-                                <Radar
-                                  name="Skills"
-                                  dataKey="value"
-                                  stroke="#22c55e"
-                                  fill="#4ade80"
-                                  fillOpacity={0.6}
-                                  dot={{
-                                    r: 2,
-                                    fill: '#22c55e',
-                                    fillOpacity: 1,
-                                  }}
-                                />
-                              </RadarChart>
-                            </ResponsiveContainer>
-                          </ChartContainer>
-                        </div>
+                                label={false}
+                              />
+                            </PieChart>
+                          </ResponsiveContainer>
+                        </ChartContainer>
+                      </div>
+                      <div className="flex flex-wrap justify-center gap-2 mt-2">
+                        {pieData.map((entry) => (
+                          <div
+                            key={entry.name}
+                            className="flex items-center gap-1"
+                          >
+                            <div
+                              className="w-2 h-2 rounded-full"
+                              style={{ backgroundColor: entry.fill }}
+                            />
+                            <span className="text-xs text-gray-800 font-bold">
+                              {entry.name}
+                            </span>
+                          </div>
+                        ))}
+                      </div>
+                    </div>
+
+                    {/* Radar Chart */}
+                    <div className="w-full sm:flex-1 bg-white/25 backdrop-blur-2xl rounded-xl border border-white/30 shadow-lg p-3 sm:p-4 overflow-hidden">
+                      <h3 className="text-base font-semibold text-gray-800 mb-2 text-center">
+                        Issue Distribution
+                      </h3>
+                      <div className="h-[180px] sm:h-[200px] w-full max-w-full">
+                        <ChartContainer
+                          config={radarChartConfig}
+                          className="h-full w-full"
+                        >
+                          <ResponsiveContainer
+                            width="100%"
+                            height="100%"
+                          >
+                            <RadarChart
+                              outerRadius={60}
+                              cy={90}
+                              data={radarData}
+                            >
+                              <ChartTooltip content={<ChartTooltipContent />} />
+                              <PolarGrid stroke="#f28b30" />
+                              <PolarAngleAxis
+                                dataKey="attribute"
+                                tick={{ fill: '#fff', fontSize: 10 }}
+                                tickLine={false}
+                              />
+                              <Radar
+                                name="Skills"
+                                dataKey="value"
+                                stroke="#22c55e"
+                                fill="#4ade80"
+                                fillOpacity={0.6}
+                                dot={{ r: 2, fill: '#22c55e', fillOpacity: 1 }}
+                              />
+                            </RadarChart>
+                          </ResponsiveContainer>
+                        </ChartContainer>
                       </div>
                     </div>
                   </div>
@@ -478,7 +468,7 @@ const ProfileCard = () => {
           </div>
         </div>
       </div>
-    </>
+    </div>
   );
 };
 

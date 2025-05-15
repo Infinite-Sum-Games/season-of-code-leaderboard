@@ -1,6 +1,7 @@
 import { Collapsed, Expanded, Locked } from './BadgeVariants';
 
 type BadgeVariant = 'Collapsed' | 'Expanded' | 'Locked';
+type Tier = 'bronze' | 'silver' | 'gold' | 'diamond';
 
 export interface BadgeProps {
   variant: BadgeVariant;
@@ -8,7 +9,7 @@ export interface BadgeProps {
   description?: string;
   date?: string;
   icon: string;
-  tier: string;
+  tier: Tier;
   progress?: number;
 }
 

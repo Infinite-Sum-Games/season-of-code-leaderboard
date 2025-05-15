@@ -1,7 +1,7 @@
 import Navbar from '../components/Navbar';
 import Cloud from '../components/dashboard-components/Cloud';
 import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
-import Badges from '../components/profile-components/BadgesSection';
+import GameAchievementSystem from '../components/profile-components/BadgesSection';
 import Profile from '../components/profile-components/profileCard';
 
 const ProfilePage = () => {
@@ -10,9 +10,19 @@ const ProfilePage = () => {
       <SunGlareEffect />
       <Cloud />
       <Navbar />
-      <div className="flex flex-col px-4 py-6 mx-auto mt-16">
-        <Profile />
-        <Badges />
+
+      <div className="w-full max-w-[100vw] mx-auto px-4 sm:px-6 lg:px-8 pt-20 pb-10 overflow-x-hidden">
+        <div className="grid grid-cols-1 lg:grid-cols-3 gap-6">
+          {/* Profile Card - Takes 2 columns on large screens */}
+          <div className="col-span-1 lg:col-span-2 w-full">
+            <Profile />
+          </div>
+
+          {/* Achievement Card - Takes 1 column, matches Profile height, hides vertical overflow */}
+          <div className="col-span-1 w-full h-full overflow-y-hidden">
+            <GameAchievementSystem />
+          </div>
+        </div>
       </div>
     </>
   );

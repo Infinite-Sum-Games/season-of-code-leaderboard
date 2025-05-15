@@ -2,190 +2,107 @@ import { Lock } from 'lucide-react';
 import Image from 'next/image';
 import React from 'react';
 
-interface ExpandedProps {
+interface BadgeProps {
   title: string;
-  description: string;
-  date: string;
   icon: string;
-  tier: string;
+  tier: 'bronze' | 'silver' | 'gold' | 'diamond';
+  description?: string;
+  date?: string;
   progress?: number;
 }
 
-interface CollapsedProps {
-  title: string;
-  icon: string;
-  tier: string;
-}
-
-interface LockedProps {
-  title: string;
-  icon: string;
-  tier: string;
-  progress?: number;
-}
+const tierStyles = {
+  bronze: {
+    gradient: 'from-amber-600 via-amber-700 to-orange-800 border-amber-400',
+    glow: 'shadow-amber-500/40',
+    locked: 'from-gray-500 via-gray-600 to-gray-700 border-gray-400',
+  },
+  silver: {
+    gradient: 'from-slate-400 via-silver-300 to-slate-600 border-slate-200',
+    glow: 'shadow-slate-300/40',
+    locked: 'from-gray-400 via-gray-500 to-gray-600 border-gray-300',
+  },
+  gold: {
+    gradient: 'from-yellow-400 via-amber-500 to-yellow-600 border-yellow-300',
+    glow: 'shadow-yellow-400/40',
+    locked: 'from-gray-300 via-gray-400 to-gray-500 border-gray-200',
+  },
+  diamond: {
+    gradient: 'from-cyan-400 via-blue-500 to-indigo-600 border-cyan-300',
+    glow: 'shadow-cyan-400/40',
+    locked: 'from-gray-200 via-gray-300 to-gray-400 border-gray-100',
+  },
+};
 
 export function Expanded({
   title,
-  description,
-  date,
+  description = '',
+  date = '',
   icon,
   tier,
   progress,
-}: ExpandedProps) {
-  const tierStyles = {
-    bronze: 'from-amber-600 to-amber-800',
-    silver: 'from-gray-400 to-gray-600',
-    gold: 'from-yellow-500 to-yellow-700 animate-holographic',
-    diamond: 'from-blue-400 to-purple-600 animate-holographic-diamond',
-  };
-
+}: BadgeProps) {
   return (
-    <div className="relative w-[200px] mx-auto overflow-visible group transition-all duration-500">
-      {/* Icon with Glow and Particle Effect */}
-      <div className="relative z-20 w-28 h-28 mx-auto mb-4 rounded-full overflow-hidden shadow-2xl duration-500 group-hover:shadow-[0_0_30px_10px_rgba(99,102,241,0.8)] group-hover:-translate-y-2 group-hover:scale-110 transition-transform">
+    <div className="relative w-[200px] mx-auto overflow-visible group transition-all duration-300">
+      <div
+        className={`relative z-20 w-20 h-20 mx-auto mb-4 rounded-full overflow-hidden border-2 shadow-lg ${tierStyles[tier].gradient} ${tierStyles[tier].glow} transition-transform duration-300 group-hover:scale-110`}
+      >
         <Image
           src={icon}
           alt="Badge Icon"
-          width={112}
-          height={112}
-          className="object-cover w-full h-full transition-all duration-500 group-hover:brightness-150"
+          width={80}
+          height={80}
+          className="object-cover w-full h-full"
         />
-        {(tier === 'gold' || tier === 'diamond') && (
-          <div className="absolute inset-0 particle-effect" />
-        )}
       </div>
 
-      {/* Card with SVG Background and Holographic Effect */}
       <div
-        className={`relative w-[200px] h-[240px] rounded-2xl bg-white/10 backdrop-blur-xl shadow-2xl border border-white/30 overflow-hidden duration-500 group-hover:scale-105 group-hover:shadow-[0_0_20px_rgba(99,102,241,0.7)] transition-all bg-gradient-to-br ${
-          tierStyles[tier as keyof typeof tierStyles]
-        }`}
+        className={`relative w-full h-[240px] rounded-2xl bg-white/15 backdrop-blur-md shadow-lg border border-white/20 transition-all duration-300 group-hover:scale-105 bg-gradient-to-br ${tierStyles[tier].gradient}`}
       >
-        {/* SVG Background */}
-        <svg
-          className="absolute inset-0 w-full h-full transition-all duration-500"
-          viewBox="0 0 200 240"
-          preserveAspectRatio="none"
-          aria-labelledby="ribbonTitle"
-        >
-          <title id="ribbonTitle">Dynamic wave background</title>
-          {Array.from({ length: 20 }).map((_, i) => {
-            const yOffset = i * 12;
-            const pathData = Array.from({ length: 41 })
-              .map((_, x) => {
-                const xPos = x * 5;
-                const yPos =
-                  yOffset +
-                  Math.sin(xPos / 20) * 8 +
-                  Math.cos((xPos + i * 10) / 15) * 4;
-                return `${x === 0 ? 'M' : 'L'}${xPos},${yPos}`;
-              })
-              .join(' ');
-            return (
-              <path
-                key={`wave-expanded-path-${i}-${Math.random()
-                  .toString(36)
-                  .substring(2, 9)}`}
-                d={pathData}
-                stroke={`rgba(255, 255, 255, ${0.1 + i * 0.02})`}
-                strokeWidth="1.5"
-                fill="none"
-                className="animate-wave"
-              />
-            );
-          })}
-        </svg>
-
-        {/* Content */}
-        <div className="relative flex flex-col gap-3 w-full h-full text-center text-white px-4 pt-16 pb-4">
-          <div className="text-xl font-bold tracking-wide drop-shadow-lg transition-colors duration-300">
+        <BackgroundWaves
+          width={200}
+          height={240}
+          id="expanded"
+        />
+        <div className="relative flex flex-col gap-2 text-white px-4 pt-14 pb-4 h-full text-center">
+          <div className="text-lg font-bold tracking-wide text-gray-900">
             {title}
           </div>
-          <div className="text-xs tracking-wider drop-shadow-md opacity-90">
-            {date}
-          </div>
-          <div className="text-sm leading-relaxed tracking-wide drop-shadow-md overflow-y-auto max-h-20">
+          <div className="text-xs tracking-wider text-blue-300">{date}</div>
+          <div className="text-xs leading-relaxed text-gray-200 overflow-y-auto max-h-20">
             {description}
           </div>
-          {progress !== undefined && (
-            <div className="mt-auto">
-              <div className="w-full bg-gray-700/50 rounded-full h-3">
-                <div
-                  className="bg-gradient-to-r from-blue-500 to-purple-600 h-3 rounded-full transition-all duration-500"
-                  style={{ width: `${progress}%` }}
-                />
-              </div>
-              <div className="text-xs mt-2 text-blue-200">
-                {progress}% to Unlock
-              </div>
-            </div>
-          )}
+          {progress !== undefined && <ProgressBar progress={progress} />}
         </div>
       </div>
     </div>
   );
 }
 
-export function Collapsed({ title, icon, tier }: CollapsedProps) {
-  const tierStyles = {
-    bronze: 'from-amber-600 to-amber-800',
-    silver: 'from-gray-400 to-gray-600',
-    gold: 'from-yellow-500 to-yellow-700 animate-holographic',
-    diamond: 'from-blue-400 to-purple-600 animate-holographic-diamond',
-  };
-
+export function Collapsed({ title, icon, tier }: BadgeProps) {
   return (
-    <div className="relative w-[140px] mx-auto overflow-visible group transition-all duration-500">
-      {/* Icon with Subtle Glow */}
-      <div className="relative z-20 w-24 h-24 mx-auto mb-4 rounded-full overflow-hidden shadow-xl duration-500 group-hover:shadow-[0_0_20px_5px_rgba(99,102,241,0.6)] group-hover:-translate-y-2 group-hover:scale-105 transition-transform">
+    <div className="relative w-[140px] mx-auto overflow-visible group transition-all duration-300">
+      <div
+        className={`relative z-20 w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 shadow-lg ${tierStyles[tier].gradient} ${tierStyles[tier].glow} transition-transform duration-300 group-hover:scale-110`}
+      >
         <Image
           src={icon}
           alt="Badge Icon"
-          width={96}
-          height={96}
-          className="object-cover w-full h-full transition-all duration-500"
+          width={64}
+          height={64}
+          className="object-cover w-full h-full"
         />
       </div>
-      <div
-        className={`relative w-[140px] h-[100px] rounded-xl bg-white/10 backdrop-blur-xl shadow-lg border border-white/20 duration-500 group-hover:scale-105 group-hover:shadow-[0_0_15px_rgba(99,102,241,0.5)] transition-all bg-gradient-to-br ${
-          tierStyles[tier as keyof typeof tierStyles]
-        }`}
-      >
-        <svg
-          className="absolute inset-0 w-full h-full transition-all duration-500"
-          viewBox="0 0 140 100"
-          preserveAspectRatio="none"
-          aria-labelledby="ribbonTitle1"
-        >
-          <title id="ribbonTitle1">Dynamic wave background</title>
-          {Array.from({ length: 8 }).map((_, i) => {
-            const yOffset = i * 12;
-            const pathData = Array.from({ length: 29 })
-              .map((_, x) => {
-                const xPos = x * 5;
-                const yPos =
-                  yOffset +
-                  Math.sin(xPos / 20) * 6 +
-                  Math.cos((xPos + i * 10) / 15) * 3;
-                return `${x === 0 ? 'M' : 'L'}${xPos},${yPos}`;
-              })
-              .join(' ');
-            return (
-              <path
-                key={`wave-collapsed-path-${i}-${Math.random()
-                  .toString(36)
-                  .substring(2, 9)}`}
-                d={pathData}
-                stroke={`rgba(255, 255, 255, ${0.1 + i * 0.02})`}
-                strokeWidth="1.5"
-                fill="none"
-                className="animate-wave"
-              />
-            );
-          })}
-        </svg>
 
-        <div className="relative flex items-center justify-center h-full text-center text-base font-semibold tracking-wide drop-shadow-md transition-colors duration-300 px-4">
+      <div
+        className={`relative w-full h-[80px] rounded-xl bg-white/10 backdrop-blur-md shadow-lg border border-white/20 transition-all duration-300 group-hover:scale-105 bg-gradient-to-br ${tierStyles[tier].gradient}`}
+      >
+        <BackgroundWaves
+          width={140}
+          height={80}
+          id="collapsed"
+        />
+        <div className="relative flex items-center justify-center h-full text-center text-sm font-semibold text-gray-900 px-4">
           {title}
         </div>
       </div>
@@ -193,91 +110,85 @@ export function Collapsed({ title, icon, tier }: CollapsedProps) {
   );
 }
 
-export function Locked({ title, icon, tier, progress }: LockedProps) {
-  const tierStyles = {
-    bronze: 'from-amber-600/30 to-amber-800/30',
-    silver: 'from-gray-400/30 to-gray-600/30',
-    gold: 'from-yellow-500/30 to-yellow-700/30',
-    diamond: 'from-blue-400/30 to-purple-600/30',
-  };
-
+export function Locked({ title, icon, tier, progress }: BadgeProps) {
   return (
-    <div className="relative w-[140px] mx-auto overflow-visible group transition-all duration-500">
-      {/* Icon with Locked Overlay */}
-      <div className="relative z-20 w-24 h-24 mx-auto mb-4 rounded-full flex items-center justify-center overflow-hidden duration-500 group-hover:scale-105 transition-transform">
-        <div className="relative w-full h-full">
-          <Image
-            src={icon}
-            alt="Badge Icon"
-            fill
-            className="object-cover blur-[1px] grayscale opacity-60 transition-all duration-500"
-          />
-          <div className="absolute inset-0 flex items-center justify-center transition-all duration-500">
-            <span className="bg-black/60 text-white text-sm px-2 py-1 rounded-full flex items-center gap-1 transition-all duration-500">
-              <Lock className="w-4 h-4 inline-block mr-1" />
-              Locked
-            </span>
-          </div>
+    <div className="relative w-[140px] mx-auto overflow-visible group transition-all duration-300">
+      <div className="relative z-20 w-16 h-16 mx-auto mb-2 rounded-full overflow-hidden border-2 transition-transform duration-300 group-hover:scale-110">
+        <Image
+          src={icon}
+          alt="Badge Icon"
+          width={64}
+          height={64}
+          className="object-cover w-full h-full grayscale opacity-60"
+        />
+        <div className="absolute inset-0 flex items-center justify-center bg-black/20">
+          <Lock className="w-4 h-4 text-gray-900" />
         </div>
       </div>
 
-      {/* Card with Dimmed SVG Background */}
       <div
-        className={`relative w-[140px] h-[120px] rounded-xl bg-white/5 backdrop-blur-md shadow-md border border-white/10 duration-500 group-hover:scale-105 transition-all bg-gradient-to-br ${
-          tierStyles[tier as keyof typeof tierStyles]
-        }`}
+        className={`relative w-full h-[100px] rounded-xl bg-white/10 backdrop-blur-md shadow-lg border border-white/20 transition-all duration-300 group-hover:scale-105 bg-gradient-to-br ${tierStyles[tier].locked}`}
       >
-        <svg
-          className="absolute inset-0 w-full h-full transition-all duration-500"
-          viewBox="0 0 140 120"
-          preserveAspectRatio="none"
-          aria-labelledby="ribbonTitle2"
-        >
-          <title id="ribbonTitle2">Dynamic wave background</title>
-          {Array.from({ length: 8 }).map((_, i) => {
-            const yOffset = i * 15;
-            const pathData = Array.from({ length: 29 })
-              .map((_, x) => {
-                const xPos = x * 5;
-                const yPos =
-                  yOffset +
-                  Math.sin(xPos / 20) * 6 +
-                  Math.cos((xPos + i * 10) / 15) * 3;
-                return `${x === 0 ? 'M' : 'L'}${xPos},${yPos}`;
-              })
-              .join(' ');
-            return (
-              <path
-                key={`wave-locked-path-${i}-${Math.random()
-                  .toString(36)
-                  .substring(2, 9)}`}
-                d={pathData}
-                stroke={`rgba(255, 255, 255, ${0.05 + i * 0.01})`}
-                strokeWidth="1.5"
-                fill="none"
-                className="animate-wave"
-              />
-            );
-          })}
-        </svg>
-
-        <div className="relative text-center text-gray-400 text-base font-semibold tracking-wide pt-8 px-4">
+        <BackgroundWaves
+          width={140}
+          height={100}
+          id="locked"
+        />
+        <div className="relative text-center text-gray-400 text-sm font-semibold pt-6 px-4">
           {title}
         </div>
-        {progress !== undefined && (
-          <div className="absolute bottom-4 w-full px-4">
-            <div className="w-full bg-gray-700/50 rounded-full h-2">
-              <div
-                className="bg-blue-500/50 h-2 rounded-full transition-all duration-500"
-                style={{ width: `${progress}%` }}
-              />
-            </div>
-            <div className="text-xs mt-2 text-gray-500 text-center">
-              {progress}% to Unlock
-            </div>
-          </div>
-        )}
+        {progress !== undefined && <ProgressBar progress={progress} />}
       </div>
     </div>
+  );
+}
+
+function ProgressBar({ progress }: { progress: number }) {
+  return (
+    <div className="mt-auto">
+      <div className="w-full bg-white/10 rounded-full h-1.5">
+        <div
+          className="bg-blue-400 h-1.5 rounded-full transition-all duration-500"
+          style={{ width: `${progress}%` }}
+        />
+      </div>
+      <div className="text-xs mt-2 text-gray-400 text-center">
+        {progress}% to Unlock
+      </div>
+    </div>
+  );
+}
+
+function BackgroundWaves({
+  width,
+  height,
+  id,
+}: {
+  width: number;
+  height: number;
+  id: string;
+}) {
+  return (
+    <svg
+      className="absolute inset-0 w-full h-full opacity-30"
+      viewBox={`0 0 ${width} ${height}`}
+      preserveAspectRatio="none"
+      aria-labelledby={`ribbonTitle-${id}`}
+    >
+      <title id={`ribbonTitle-${id}`}>Dynamic wave background</title>
+      {Array.from({ length: 3 }).map((_, i) => (
+        <path
+          key={`wave-${id}-${Math.random().toString(36).substr(2, 9)}`}
+          d={`M 0 ${15 + i * (height / 3)} Q ${width / 4} ${
+            10 + i * (height / 2)
+          }, ${width / 2} ${20 + i * (height / 3)} T ${width} ${
+            15 + i * (height / 2)
+          }`}
+          fill="none"
+          stroke="rgba(255,255,255,0.15)"
+          strokeWidth="1.5"
+        />
+      ))}
+    </svg>
   );
 }
