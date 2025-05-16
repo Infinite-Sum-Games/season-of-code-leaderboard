@@ -1,0 +1,50 @@
+[
+  {
+    "title": "Rust in 100 Seconds",
+    "imageSrc": "/resourceCards/Rust-3.jpg",
+    "description": "Quick introduction to Rust by Fireship. Perfect for beginners wanting to understand what makes Rust special.",
+    "tags": ["Rust", "Video", "Beginner"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=5C_HPTJg5ek"
+  },
+  {
+    "title": "The Rust Programming Language Book",
+    "imageSrc": "/resourceCards/Rust-2.jpg",
+    "description": "The official Rust documentation. Comprehensive guide covering all Rust concepts from basics to advanced topics.",
+    "tags": ["Rust", "Documentation"],
+    "buttonText": "Explore",
+    "url": "https://doc.rust-lang.org/book/title-page.html"
+  },
+  {
+    "title": "Rust Crash Course",
+    "imageSrc": "/resourceCards/Rust-1.png",
+    "description": "Complete Rust programming tutorial by Harkirat Singh. Learn Rust fundamentals in a structured way.",
+    "tags": ["Rust", "Video", "Tutorial"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=qP7LzZqGh30"
+  },
+  {
+    "title": "Rust Full Course - Build a CLI Project",
+    "imageSrc": "/resourceCards/Rust-1.png",
+    "description": "Build a command line application in Rust. Hands-on project-based learning with practical examples.",
+    "tags": ["Rust", "Project", "CLI"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=joCFbTJt0o0"
+  },
+  {
+    "title": "Rust for Beginners",
+    "imageSrc": "/resourceCards/Rust-1.png",
+    "description": "Step-by-step guide for beginners. Learn memory management, ownership model, and other core Rust concepts.",
+    "tags": ["Rust", "Beginner", "Video"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=rQ_J9WH6CGk"
+  },
+  {
+    "title": "Rust Programming Masterclass",
+    "imageSrc": "/resourceCards/Rust-1.png",
+    "description": "Advanced topics in Rust programming. Learn about concurrency, unsafe Rust, and systems programming fundamentals.",
+    "tags": ["Rust", "Advanced", "Video"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=BpPEoZW5IiY"
+  }
+]

@@ -20,26 +20,31 @@ export default function Card({
 }: CardProps) {
   return (
     <div className="relative h-full w-full max-w-sm overflow-hidden rounded-lg shadow-lg">
-      {/* Background layer with full coverage */}
-      <div className="absolute inset-0 z-0 bg-[url('/resourceCards/Background.jpg')] bg-center bg-cover bg-no-repeat" />
+      <div className="absolute inset-0 z-0 bg-center bg-cover bg-gray-300/30 bg-no-repeat" />
 
       <div className="relative z-10 flex h-full flex-col p-6">
-        <div className="mb-4 text-center font-bold text-2xl text-white">
-          {title}
+        <div className="mb-4 flex h-16 items-center justify-center">
+          <h3 className="line-clamp-2 overflow-hidden text-center font-bold text-2xl text-white">
+            {title}
+          </h3>
         </div>
 
         <div className="mx-auto mb-4 w-full overflow-hidden rounded-lg bg-gray-800">
           <img
-            src={imageSrc || '/api/placeholder/400/320'}
+            src={imageSrc}
             alt={title}
             className="h-40 w-full object-cover"
           />
         </div>
 
-        <p className="mb-4 text-center text-sm text-white">{description}</p>
+        {/* Fixed height description container */}
+        <div className="mb-4 h-15 overflow-hidden">
+          <p className="text-center text-sm text-white">{description}</p>
+        </div>
 
-        <div className="mb-4 flex flex-wrap justify-center gap-2">
-          {tags.map((tag) => (
+        {/* Fixed height tags container */}
+        <div className="mb-4 flex h-16 flex-wrap items-center justify-center gap-2 overflow-hidden">
+          {tags.slice(0, 3).map((tag) => (
             <span
               key={tag}
               className="inline-flex items-center rounded-full border border-3 border-green-500 bg-white px-3 py-1 font-medium text-black text-sm"
@@ -49,11 +54,13 @@ export default function Card({
             </span>
           ))}
         </div>
+
         <div className="h-px w-full bg-white" />
+
         <button
           type="button"
           onClick={onClick}
-          className="relative mt-4 flex w-full items-center justify-center rounded-lg border-2 border-white bg-gradient-to-r from-[#0F217B] to-[#18371F] px-4 py-3 font-semibold text-3xl text-white transition-colors duration-300"
+          className="relative mt-4 flex w-full items-center justify-center rounded-lg border-2 border-white bg-gray-900 px-4 py-3 font-semibold text-3xl text-white transition-colors duration-300"
         >
           <span className="text-center">{buttonText}</span>
           <TiArrowForward
