@@ -6,7 +6,7 @@
     "dev": "next dev --turbopack",
     "start": "next start",
     "prepare": "husky",
-    "type": "module", 
+    "type": "module",
     "lint": "biome lint --write --unsafe --files-ignore-unknown=true ./app",
     "format": "biome format --write --files-ignore-unknown=true ./app",
     "storybook": "storybook dev -p 6006",

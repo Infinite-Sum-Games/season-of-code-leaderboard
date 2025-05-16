@@ -33,7 +33,7 @@ export default function Card({
           <img
             src={imageSrc}
             alt={title}
-            className="h-40 w-full object-cover"
+            className="h-45 w-full object-cover"
           />
         </div>
 

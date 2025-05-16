@@ -46,5 +46,101 @@
     "tags": ["Rust", "Advanced", "Video"],
     "buttonText": "Watch Now",
     "url": "https://www.youtube.com/watch?v=BpPEoZW5IiY"
+  },
+  {
+    "title": "Go in 100 Seconds",
+    "imageSrc": "/resourceCards/Go-1.jpg",
+    "description": "A fast-paced overview of Go programming language by Fireship. Learn what makes Go ideal for performance and simplicity.",
+    "tags": ["Go", "Video", "Beginner"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=446E-r0rXHI"
+  },
+  {
+    "title": "Learn Go with Tour of Go",
+    "imageSrc": "/resourceCards/Go-2.png",
+    "description": "Interactive official tutorial for Go by the creators. Perfect hands-on introduction to syntax and core concepts.",
+    "tags": ["Go", "Documentation"],
+    "buttonText": "Explore",
+    "url": "https://go.dev/tour/welcome/1"
+  },
+  {
+    "title": "Go Crash Course",
+    "imageSrc": "/resourceCards/Go-3.jpg",
+    "description": "Beginner-friendly tutorial by Traversy Media. Covers Go setup, syntax, structs, goroutines, and more.",
+    "tags": ["Go", "Video", "Tutorial"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=SqrbIlUwR0U"
+  },
+  {
+    "title": "Python in 100 Seconds",
+    "imageSrc": "/resourceCards/PYTHON-1.jpg",
+    "description": "Quick intro to Python by Fireship. Learn syntax, use cases, and ecosystem in just 100 seconds.",
+    "tags": ["Python", "Video", "Beginner"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=x7X9w_GIm1s"
+  },
+  {
+    "title": "The Python Handbook",
+    "imageSrc": "/resourceCards/PYTHON-2.jpeg",
+    "description": "FreeCodeCamp's beginner to intermediate Python guide covering syntax, functions, OOP, and more.",
+    "tags": ["Python", "Documentation"],
+    "buttonText": "Explore",
+    "url": "https://www.freecodecamp.org/news/the-python-handbook/"
+  },
+  {
+    "title": "Python Full Course for Beginners",
+    "imageSrc": "/resourceCards/PYTHON-3.jpg",
+    "description": "A 4-hour Python course from Programming with Mosh. Covers all the basics with real-world examples.",
+    "tags": ["Python", "Video", "Tutorial"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=_uQrJ0TkZlc"
+  },
+  {
+    "title": "JavaScript in 100 Seconds",
+    "imageSrc": "/resourceCards/JS-1.jpg",
+    "description": "Learn the core of JavaScript in 100 seconds. Covers syntax, dynamic typing, and the event loop.",
+    "tags": ["JavaScript", "Video", "Beginner"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=DHjqpvDnNGE"
+  },
+  {
+    "title": "JavaScript.info",
+    "imageSrc": "/resourceCards/JS-3.png",
+    "description": "In-depth modern JavaScript tutorial starting from the basics to advanced topics like closures and prototypal inheritance.",
+    "tags": ["JavaScript", "Advanced"],
+    "buttonText": "Explore",
+    "url": "https://javascript.info/"
+  },
+  {
+    "title": "JavaScript Crash Course for Beginners",
+    "imageSrc": "/resourceCards/JS-2.jpg",
+    "description": "Full beginner crash course by Traversy Media. Learn variables, functions, DOM manipulation and more.",
+    "tags": ["JavaScript", "Video", "Tutorial"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=hdI2bqOjy3c"
+  },
+  {
+    "title": "HTML in 100 Seconds",
+    "imageSrc": "/resourceCards/HTML-1.jpg",
+    "description": "A super fast intro to HTML by Fireship. Great for total beginners starting web development.",
+    "tags": ["HTML", "Video", "Beginner"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=ok-plXXHlWw"
+  },
+  {
+    "title": "HTML Full Course - Build a Website",
+    "imageSrc": "/resourceCards/HTML-2.jpg",
+    "description": "HTML crash course by freeCodeCamp. Includes HTML basics and practical layout examples.",
+    "tags": ["HTML", "Video", "Tutorial"],
+    "buttonText": "Watch Now",
+    "url": "https://www.youtube.com/watch?v=pQN-pnXPaVg"
+  },
+  {
+    "title": "MDN Web Docs - HTML",
+    "imageSrc": "/resourceCards/HTML-3.png",
+    "description": "The official Mozilla HTML documentation. Definitive reference and guide for modern HTML elements and usage.",
+    "tags": ["HTML", "Documentation"],
+    "buttonText": "Explore",
+    "url": "https://developer.mozilla.org/en-US/docs/Web/HTML"
   }
 ]
