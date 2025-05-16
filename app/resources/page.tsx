@@ -33,6 +33,13 @@ const allResources = [
     buttonText: 'Read More',
   },
   {
+    title: 'GO and Rust Guide',
+    imageSrc: '/resourceCards/Rust-1.png',
+    description: 'Learn Rust from beginner to advanced.',
+    tags: ['GO', 'Rust'],
+    buttonText: 'Read More',
+  },
+  {
     title: 'GO Guide',
     imageSrc: '/resourceCards/Rust-1.png',
     description: 'Learn Rust from beginner to advanced.',
@@ -43,16 +50,20 @@ const allResources = [
 
 const ResourcePage = () => {
   const [selectedTags, setSelectedTags] = useState<SelectOption[]>([]);
-
+  const selectedLabels = selectedTags.map((t) => t.label);
   const filteredResources =
     selectedTags.length === 0
       ? allResources
-      : allResources.filter((resource) =>
-          resource.tags.some((tag) =>
-            selectedTags.map((s) => s.label).includes(tag),
+      : [
+          ...allResources.filter((resource) =>
+            selectedLabels.every((tag) => resource.tags.includes(tag)),
           ),
-        );
-
+          ...allResources.filter(
+            (resource) =>
+              selectedLabels.some((tag) => resource.tags.includes(tag)) &&
+              !selectedLabels.every((tag) => resource.tags.includes(tag)),
+          ),
+        ];
   return (
     <div className="relative min-h-screen overflow-hidden">
       <Navbar />
