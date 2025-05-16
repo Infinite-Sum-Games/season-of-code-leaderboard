@@ -1,7 +1,7 @@
 'use client';
 import { Github } from 'lucide-react';
 import { signIn } from 'next-auth/react';
-import Logtable from '../Logtable';
+import { useSession } from 'next-auth/react';
 
 // Winter theme stuff is commented out.
 
@@ -13,6 +13,8 @@ const handleSignIn = async () => {
 };
 
 export const Home = () => {
+  const { data: session } = useSession();
+
   // const [timeLeft, setTimeLeft] = useState({
   //   days: 0,
   //   hours: 0,
@@ -44,55 +46,67 @@ export const Home = () => {
   // }, []);
 
   return (
-    <div className="relative flex w-full flex-col items-center px-4 text-[#E3E8F1] sm:px-10">
-      <div className="z-10 mb-6 w-full max-w-screen-lg text-center">
-        <h1 className="font-bold text-3xl text-[#E3E8F1] tracking-tight sm:text-5xl md:text-6xl">
-          <span className="text-slate-800">Amrita</span> Summer of Code
+    <div className="relative flex w-full flex-col px-4 text-[#E3E8F1]">
+      <div className="z-10 text-left">
+        <h1 className="mb-4 font-bold text-4xl text-[#E3E8F1] tracking-tight sm:text-4xl">
+          <span className="text-gray-800">Amrita</span> Summer of Code
         </h1>
 
-        {/* <p className="mx-auto mb-4 max-w-md text-sm text-white leading-relaxed sm:text-base">
-          Join{' '}
-          <span className="font-medium text-slate-800">
-            Amrita Vishwa Vidyapeetham
-          </span>
-          's coding community to learn, collaborate, and build impactful
-          projects.
+        {/* <p className="mb-6 max-w-md cl:text-lg text-md text-white leading-relaxed sm:mb-8 sm:text-base">
+          After a successful Winter of Code, the ACM student chapter at{' '}
+          <span className="text-[#3ABEF9]">
+            Amrita Vishwa Vidyapeetham, Coimbatore
+          </span>{' '}
+          is back with the <strong>Summer of Code</strong>. Collaborate, learn,
+          and build innovative projects with a passionate coding community.
         </p> */}
 
-        {/* Countdown Timer */}
-        {/* <div className="mb-6">
-          <p className="mb-2 text-sm sm:text-base text-white font-light">
-            Summer Of Code ends in
-          </p>
-          <div className="flex flex-wrap justify-center gap-4">
-            {["Days", "Hours", "Minutes", "Seconds"].map((label, idx) => (
-              <div
-                key={label}
-                className="flex h-14 w-14 sm:h-16 sm:w-16 flex-col items-center justify-center rounded-lg 
-                bg-white/10 text-slate-800 shadow-lg backdrop-blur-md 
-                border border-white/20"
-              >
-                <span className="font-bold text-lg sm:text-2xl">
-                  {Object.values(timeLeft)[idx]}
-                </span>
-                <span className="text-xs sm:text-sm">{label}</span>
-              </div>
-            ))}
+        {/* <div className="mb-8 font-semibold text-lg">
+          <p className=" mb-2 font-light text-sm">Summer Of Code ends in</p>
+          <div className="flex items-center gap-4 text-center">
+            <div className="flex h-12 w-12 flex-col items-center justify-center rounded-lg bg-[#3ABEF9] text-[#070F2B] shadow-md sm:h-12 sm:w-12">
+              <span className="font-bold text-xl sm:text-xl">
+                {timeLeft.days}
+              </span>
+              <span className="text-xs sm:text-[0.6rem]">Days</span>
+            </div>
+
+            <div className="flex h-12 w-12 flex-col items-center justify-center rounded-lg bg-[#3ABEF9] text-[#070F2B] shadow-md sm:h-12 sm:w-12">
+              <span className="font-bold text-xl sm:text-xl">
+                {timeLeft.hours}
+              </span>
+              <span className="text-xs sm:text-[0.6rem]">Hours</span>
+            </div>
+
+            <div className="flex h-12 w-12 flex-col items-center justify-center rounded-lg bg-[#3ABEF9] text-[#070F2B] shadow-md sm:h-12 sm:w-12">
+              <span className="font-bold text-xl sm:text-xl">
+                {timeLeft.minutes}
+              </span>
+              <span className="text-xs sm:text-[0.6rem]">Minutes</span>
+            </div>
+
+            <div className="flex h-12 w-12 flex-col items-center justify-center rounded-lg bg-[#3ABEF9] text-[#070F2B] shadow-md sm:h-12 sm:w-12">
+              <span className="font-bold text-xl sm:text-xl">
+                {timeLeft.seconds}
+              </span>
+              <span className="text-xs sm:text-[0.6rem]">Seconds</span>
+            </div>
           </div>
         </div> */}
 
         {/* GitHub Login Button */}
-        <div className="mt-4 flex justify-center">
-          <button
-            type="button"
-            onClick={handleSignIn}
-            className="flex items-center gap-2 rounded-lg border border-gray-400 bg-slate-800 px-5 py-3 font-semibold text-sm text-white transition duration-300 hover:scale-105 hover:bg-[#3ABEF9] hover:text-[#E3E8F1] focus:outline-none focus:ring-2 focus:ring-[#3ABEF9] sm:text-lg"
-          >
-            <Github size={20} />
-            Log in with GitHub
-          </button>
-        </div>
-
+        {!session?.user && (
+          <div className="mt-2 flex">
+            <button
+              type="button"
+              onClick={handleSignIn}
+              className="flex transform cursor-pointer gap-1 rounded-lg border border-gray-400 bg-gray-800 px-4 py-2 font-semibold text-[#00000] text-sm text-white transition duration-300 ease-in-out hover:scale-102 focus:outline-none focus:ring-1 sm:gap-3 sm:px-4 sm:py-3 sm:text-md"
+            >
+              <Github size={20} />
+              Log in with GitHub
+            </button>
+          </div>
+        )}
         {/* Credits
         <div className="mt-4 flex justify-center items-center text-gray-300 text-xs sm:text-sm">
           <p className="mr-1">Made by</p>
@@ -110,13 +124,6 @@ export const Home = () => {
             <span>Infinite Sum Games</span>
           </a>
         </div> */}
-      </div>
-
-      {/* Log Table */}
-      <div className="flex w-full justify-center">
-        <div className="max-h-screen w-full max-w-screen-md px-2 ">
-          <Logtable />
-        </div>
       </div>
 
       {/* <div

@@ -69,6 +69,13 @@ const logs: LogEntry[] = [
     timestamp: '2025-05-04T12:45:00Z',
     description: 'New issue "Optimize sorting algorithm" was created.',
   },
+  {
+    id: '6',
+    type: 'issue',
+    user: 'adithya-menon-r',
+    timestamp: '2025-05-15T01:00:00Z',
+    description: 'New issue "Fix responsiveness" was created.',
+  },
 ];
 
 const typeMeta: Record<
@@ -132,11 +139,16 @@ export default function Logtable() {
   const [activeTab, setActiveTab] = useState('all');
   const [filteredLogs, setFilteredLogs] = useState(logs);
   const [newActivity, setNewActivity] = useState(false);
+  const [hasMounted, setHasMounted] = useState(false);
 
   useEffect(() => {
+    setHasMounted(true);
+    setCurrentTime(new Date());
+
     const timer = setInterval(() => {
       setCurrentTime(new Date());
     }, 1000);
+
     return () => clearInterval(timer);
   }, []); // to check current time for the clock
 
@@ -158,9 +170,9 @@ export default function Logtable() {
 
   return (
     <TooltipProvider>
-      <div className="relative h-fit w-full px-4 sm:px-6 lg:px-6">
-        <Card className="mx-auto mb-2 w-full max-w-5xl overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
-          <CardHeader className="bg-white/10 pb-2 backdrop-blur-md">
+      <div className="flex h-[500px] w-full px-2 sm:h-full sm:px-6 lg:px-4">
+        <Card className="flex h-full w-full flex-col overflow-hidden rounded-2xl border border-white/20 bg-white/30 shadow-lg backdrop-blur-md">
+          <CardHeader className="shrink-0 bg-white/10 p-4 pb-2 backdrop-blur-md">
             <div className="flex items-center justify-between">
               <div className="flex items-center gap-2">
                 <div
@@ -170,7 +182,7 @@ export default function Logtable() {
                 >
                   <Activity className="h-5 w-5 text-blue-500" />
                 </div>
-                <CardTitle className="font-bold text-gray-800 text-xl sm:text-2xl">
+                <CardTitle className="font-bold text-gray-800 text-xl">
                   Live Activity
                 </CardTitle>
                 {newActivity && (
@@ -188,9 +200,13 @@ export default function Logtable() {
                   className="flex items-center gap-1 bg-white/30 backdrop-blur-md"
                 >
                   <Clock className="h-3 w-3" />
-                  <span className="text-xs">
-                    {currentTime.toLocaleTimeString()}
-                  </span>
+                  {hasMounted && currentTime ? (
+                    <span className="text-xs">
+                      {currentTime.toLocaleTimeString()}
+                    </span>
+                  ) : (
+                    <span className="text-xs">--:--:--</span>
+                  )}
                 </Badge>
               </div>
             </div>
@@ -229,114 +245,116 @@ export default function Logtable() {
             </Tabs>
           </CardHeader>
 
-          <CardContent className="p-0">
-            <ScrollArea className="h-[38vh] overflow-y-auto p-4">
-              <div className="timeline-container relative">
-                <div className="absolute top-0 bottom-0 left-[22px] w-0.5 bg-white/30" />
+          <CardContent className="min-h-0 flex-1 overflow-hidden p-0">
+            <ScrollArea className="h-full w-full">
+              <div className="p-4">
+                <div className="timeline-container relative">
+                  <div className="absolute top-0 bottom-0 left-[22px] w-0.5 bg-white/30" />
 
-                {filteredLogs.map((log, index) => {
-                  const { Icon, iconColor, dotColor, label, pulseColor } =
-                    typeMeta[log.type];
-                  const timeAgo = getTimeAgo(log.timestamp);
-                  const isFirst = index === 0;
+                  {filteredLogs.map((log, index) => {
+                    const { Icon, iconColor, dotColor, label, pulseColor } =
+                      typeMeta[log.type];
+                    const timeAgo = getTimeAgo(log.timestamp);
+                    const isFirst = index === 0;
 
-                  return (
-                    <div
-                      key={`${log.id}-${index}`}
-                      className={`relative mb-6 pl-12 ${
-                        isFirst ? 'animate-fade-in' : ''
-                      }`}
-                    >
+                    return (
                       <div
-                        className={`absolute top-0 left-0 z-10 ${
-                          isFirst ? `animate-pulse-${pulseColor}` : ''
+                        key={`${log.id}-${index}`}
+                        className={`relative mb-6 pl-12 ${
+                          isFirst ? 'animate-fade-in' : ''
                         }`}
                       >
-                        <div className="relative rounded-full border border-white/50 bg-white/30 p-2 backdrop-blur-md">
-                          <Icon className={`h-5 w-5 ${iconColor}`} />
-                          <span
-                            className={`-top-1 -right-1 absolute h-2.5 w-2.5 rounded-full ${dotColor} border-2 border-white ${
-                              isFirst ? 'animate-ping-slow' : ''
-                            }`}
-                          />
-                        </div>
-                      </div>
-
-                      <div className="rounded-lg border border-white/30 bg-white/20 p-3 backdrop-blur-md">
-                        <div className="mb-2 flex items-center gap-2">
-                          <Avatar className="h-6 w-6">
-                            <AvatarImage
-                              src={`https://github.com/${log.user}.png`}
-                              alt={log.user}
+                        <div
+                          className={`absolute top-0 left-1 z-10 ${
+                            isFirst ? `animate-pulse-${pulseColor}` : ''
+                          }`}
+                        >
+                          <div className="relative rounded-full border border-white/50 bg-white/30 p-2 backdrop-blur-md">
+                            <Icon className={`h-5 w-5 ${iconColor}`} />
+                            <span
+                              className={`-top-1 -right-1 absolute h-2.5 w-2.5 rounded-full ${dotColor} border-2 border-white ${
+                                isFirst ? 'animate-ping-slow' : ''
+                              }`}
                             />
-
-                            <AvatarFallback>
-                              {log.user.substring(0, 2).toUpperCase()}
-                            </AvatarFallback>
-                          </Avatar>
-                          <div className="font-semibold text-gray-800 text-sm">
-                            <Tooltip>
-                              <TooltipTrigger asChild>
-                                <a
-                                  href={`https://github.com/${log.user}`}
-                                  target="_blank"
-                                  rel="noopener noreferrer"
-                                  className="hover:underline"
-                                >
-                                  @{log.user}
-                                </a>
-                              </TooltipTrigger>
-                              <TooltipContent>
-                                View GitHub profile
-                              </TooltipContent>
-                            </Tooltip>
                           </div>
-                          <Badge
-                            variant="secondary"
-                            className="border-none bg-white/30 backdrop-blur-md"
-                          >
-                            {label}
-                          </Badge>
-                          {isFirst && (
-                            <Badge className="ml-auto bg-green-500/20 text-green-600">
-                              Latest
-                            </Badge>
-                          )}
                         </div>
 
-                        <div className="mb-2 text-gray-800 text-sm">
-                          {log.description}
-                        </div>
+                        <div className="rounded-lg border border-white/30 bg-white/20 p-3 backdrop-blur-md">
+                          <div className="mb-2 flex items-center gap-2">
+                            <Avatar className="h-6 w-6">
+                              <AvatarImage
+                                src={`https://github.com/${log.user}.png`}
+                                alt={log.user}
+                              />
 
-                        <div className="flex items-center justify-between text-gray-700 text-xs">
-                          <div>{formatDate(log.timestamp)}</div>
-                          <div className="flex items-center gap-2">
+                              <AvatarFallback>
+                                {log.user.substring(0, 2).toUpperCase()}
+                              </AvatarFallback>
+                            </Avatar>
+                            <div className="font-semibold text-gray-800 text-sm">
+                              <Tooltip>
+                                <TooltipTrigger asChild>
+                                  <a
+                                    href={`https://github.com/${log.user}`}
+                                    target="_blank"
+                                    rel="noopener noreferrer"
+                                    className="hover:underline"
+                                  >
+                                    @{log.user}
+                                  </a>
+                                </TooltipTrigger>
+                                <TooltipContent>
+                                  View GitHub profile
+                                </TooltipContent>
+                              </Tooltip>
+                            </div>
                             <Badge
-                              variant="outline"
-                              className="flex items-center gap-1 bg-white/30 backdrop-blur-md"
+                              variant="secondary"
+                              className="border-none bg-white/30 backdrop-blur-md"
                             >
-                              <Clock className="h-3 w-3" />
-                              {timeAgo}
+                              {label}
                             </Badge>
+                            {isFirst && (
+                              <Badge className="ml-auto bg-green-500/20 text-green-600">
+                                Latest
+                              </Badge>
+                            )}
+                          </div>
+
+                          <div className="mb-2 text-gray-800 text-sm">
+                            {log.description}
+                          </div>
+
+                          <div className="flex items-center justify-between text-gray-700 text-xs">
+                            <div>{formatDate(log.timestamp)}</div>
+                            <div className="flex items-center gap-2">
+                              <Badge
+                                variant="outline"
+                                className="flex items-center gap-1 bg-white/30 backdrop-blur-md"
+                              >
+                                <Clock className="h-3 w-3" />
+                                {timeAgo}
+                              </Badge>
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                  );
-                })}
+                    );
+                  })}
 
-                <div className="-translate-x-1/2 absolute bottom-0 left-[22px] transform">
-                  <div className="relative flex items-center justify-center">
-                    <div className="absolute h-3 w-3 animate-ping rounded-full bg-blue-500" />
-                    <div className="relative h-3 w-3 rounded-full bg-blue-500" />
+                  <div className="-translate-x-1/2 absolute bottom-0 left-[22px] transform">
+                    <div className="relative flex items-center justify-center">
+                      <div className="absolute h-3 w-3 animate-ping rounded-full bg-blue-500" />
+                      <div className="relative h-3 w-3 rounded-full bg-blue-500" />
+                    </div>
                   </div>
                 </div>
               </div>
             </ScrollArea>
           </CardContent>
 
-          <CardFooter className="flex items-center justify-between border-white/20 border-t bg-white/10 p-4 backdrop-blur-md">
-            <div className="text-gray-700 text-xs">
+          <CardFooter className="flex shrink-0 items-center justify-between border-white/20 border-t bg-white/10 p-3 backdrop-blur-md">
+            <div className="max-w-[180px] truncate text-gray-700 text-xs sm:max-w-full">
               Live updates • Last activity: {getTimeAgo(logs[0].timestamp)}
             </div>
           </CardFooter>

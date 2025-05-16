@@ -4,7 +4,6 @@ import useLeaderboardStore from '@/app/useLeaderboardStore';
 import { useEffect, useState } from 'react';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'; // Import sorting icons
 import { Card, CardDescription, CardHeader } from '../ui/card';
-import Rowcards from './rowcards';
 
 export type TUserData = {
   fullName: string;
@@ -175,55 +174,67 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="z-50 max-h-screen w-full rounded-2xl border-none bg-transparent px-1 shadow-none md:px-8">
-      <CardHeader className="px-2 pt-2 pb-1 font-bold text-3xl text-slate-800 sm:px-4 sm:pt-4 sm:pb-2 sm:text-6xl">
+    <Card className="z-10 flex h-full w-full flex-col rounded-2xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
+      <CardHeader className="pb-1 font-bold text-4xl text-gray-800">
         Leaderboard
       </CardHeader>
-      <CardDescription className="px-2 pb-2 text-[#c8c7cc] text-sm sm:px-4 sm:pb-4 sm:text-base">
+      <CardDescription className="pb-4 text-gray-600">
         Refresh the page to see real-time leaderboard updates.
       </CardDescription>
-      <div className="mx-1 flex rounded-lg bg-[#1d1b2e] p-2 text-white sm:mx-2 sm:p-4 sm:font-semibold">
-        <div className="w-[10%] text-left text-xs sm:text-base">Rank</div>
-        <div className="w-[70%] pl-4 text-left text-xs sm:pl-16 sm:text-base">
-          Name
-        </div>
-        <div className="hidden w-[23%] text-center text-sm sm:text-base min-[769px]:block">
+
+      <div className="flex items-center rounded-lg bg-white/10 px-3 py-2 font-semibold text-gray-800 backdrop-blur-md">
+        <div className="w-[25%] md:w-[10%]">#</div>
+        <div className="w-[60%] md:w-[50%]">Name</div>
+        <div className="hidden w-[30%] text-center md:block">
           <button
             type="button"
             onClick={() => sortLeaderboard('PRs')}
-            className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
+            className="flex items-center gap-1"
           >
-            PR Merged
+            PRs
             {getSortIcon('PRs')}
           </button>
         </div>
-        <div className="w-[20%] text-right text-xs sm:w-[13%] sm:text-base">
+        <div className="text-right">
           <button
             type="button"
             onClick={() => sortLeaderboard('Bounty')}
-            className="flex items-center justify-center gap-2 transition-colors duration-200 hover:text-[#3abef9]"
+            className="flex items-center justify-end gap-1"
           >
-            Bounties
+            Bounty
             {getSortIcon('Bounty')}
           </button>
         </div>
       </div>
-      <ScrollArea className="relative max-h-[60vh] overflow-y-auto overflow-x-hidden sm:h-fit">
-        {!leaderboardData || leaderboardData.length === 0 ? (
-          <div className="p-4 text-center text-2xl text-[#c8c7cc]">
+
+      <ScrollArea className="mt-2 min-h-0 flex-grow overflow-y-auto">
+        {leaderboardData.length === 0 ? (
+          <div className="py-8 text-center text-white/60 text-xl">
             Loading Leaderboard...
           </div>
         ) : (
           leaderboardData.map((data, index) => (
-            <Rowcards
+            <div
               key={data.username}
-              index={index + 1}
-              avatar_url={`https://github.com/${data.username}.png`}
-              fullName={data.fullName}
-              username={data.username}
-              PRmerged={Number.parseInt(data._count.Solution)}
-              bounty={data.bounty}
-            />
+              className="my-1 flex items-center rounded-lg bg-white/10 px-3 py-2 text-gray-800 backdrop-blur-md"
+            >
+              <div className="w-[10%]">{index + 1}</div>
+              <div className="flex w-[60%] items-center gap-2 md:w-[40%]">
+                <img
+                  src={`https://github.com/${data.username}.png`}
+                  alt="avatar"
+                  className="h-6 w-6 rounded-full"
+                />
+                <div>
+                  <div className="font-semibold">{data.fullName}</div>
+                  <div className="text-gray-600 text-sm">@{data.username}</div>
+                </div>
+              </div>
+              <div className="hidden w-[25%] text-center md:block">
+                {+data._count.Solution}
+              </div>
+              <div className="w-[30%] text-right md:w-[25%]">{data.bounty}</div>
+            </div>
           ))
         )}
       </ScrollArea>
