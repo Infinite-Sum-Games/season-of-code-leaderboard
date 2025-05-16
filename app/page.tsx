@@ -1,38 +1,45 @@
 'use client';
 import { Separator } from '@/app/components/ui/separator';
 import Leaderboard from './components/dashboard-components/leaderboard';
-import Usercard from './components/dashboard-components/usercard';
 import './globals.css';
-import { useSession } from 'next-auth/react';
+// import { useSession } from 'next-auth/react';
+import Logtable from './components/Logtable';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
 import Home from './components/dashboard-components/Home';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 
 const Dashboard = () => {
-  const { data: session } = useSession();
+  // const { data: session } = useSession();
 
   return (
-    <div className="h-fit">
+    <div className="relative flex h-auto w-full flex-col overflow-hidden md:h-screen">
       <SunGlareEffect />
       <Cloud />
-      <div className="mx-auto overflow-clip px-3 md:px-0">
-        <div className="grid grid-cols-1 items-start justify-start gap-3 md:grid-cols-2">
-          <div>
-            <Navbar />
 
-            {session?.user ? (
-              <div className="w-full pt-20">
-                <Usercard />
+      <div className="z-20 h-[80px] shrink-0">
+        <Navbar />
+      </div>
+
+      <div className="relative flex flex-1 flex-col overflow-hidden px-6 py-8 md:px-18 md:py-4">
+        <div className="grid h-full w-full grid-cols-1 gap-4 md:grid-cols-2">
+          <div className="flex h-full flex-col overflow-hidden">
+            <div className="flex min-h-0 flex-1 flex-col space-y-4 overflow-hidden">
+              <div className="shrink-0">
+                <Home />
               </div>
-            ) : (
-              <Home />
-            )}
+
+              <Separator className="md:hidden" />
+
+              <div className="min-h-0 flex-1">
+                <Logtable />
+              </div>
+            </div>
           </div>
 
           <Separator className="md:hidden" />
 
-          <div className="relative mt-24">
+          <div className="flex h-full flex-col overflow-hidden">
             <Leaderboard />
           </div>
         </div>
