@@ -95,23 +95,23 @@ export default function Card({
   const resourceDifficulty = getResourceDifficulty(tags);
 
   return (
-    <div className="relative h-full w-full max-w-sm overflow-hidden rounded-lg bg-gray-50/70 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-md">
-      <div className="flex h-full flex-col p-4">
+    <div className="group relative h-full w-full max-w-sm overflow-hidden rounded-3xl bg-gray-50/70 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-xl">
+      <div className="flex h-full flex-col p-2">
+        {/* Image with subtle gradient overlay */}
+        <div className="relative mb-4 w-full overflow-hidden rounded-3xl">
+          <img
+            src={imageSrc}
+            alt={title}
+            className="h-48 w-full object-cover transition-transform duration-300 group-hover:scale-110"
+          />
+          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />
+        </div>
+
         {/* Title */}
         <div className="mb-4 flex items-center justify-center">
           <h3 className="line-clamp-2 text-center font-bold text-2xl text-gray-900">
             {title}
           </h3>
-        </div>
-
-        {/* Image with subtle gradient overlay */}
-        <div className="relative mb-4 w-full overflow-hidden rounded-lg">
-          <img
-            src={imageSrc}
-            alt={title}
-            className="h-48 w-full object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-gray-900/20 to-transparent" />
         </div>
 
         {/* Description */}
@@ -153,12 +153,12 @@ export default function Card({
         <button
           type="button"
           onClick={onClick}
-          className="relative mt-4 flex w-full items-center justify-center rounded-lg bg-slate-700 px-4 py-3 font-medium text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md"
+          className="relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl bg-slate-700 px-4 py-3 font-medium text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md"
         >
           <span className="text-center">{buttonText}</span>
           <MdArrowForward
             size={24}
-            className="absolute right-4 hidden md:block"
+            className="absolute right-4 hidden transform transition-all duration-200 group-hover:translate-x-1 md:block"
           />
         </button>
       </div>
