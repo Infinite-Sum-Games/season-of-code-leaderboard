@@ -110,6 +110,23 @@
       transform: rotate(360deg);
     }
   }
+
+  .ribbon-shape {
+    clip-path: polygon(0 0, 100% 0%, 100% 100%, 50% 80%, 0% 100%);
+    background: linear-gradient(to bottom, #e14c59, #5b1a74);
+    border-radius: 8px;
+  }
+
+  .ribbon-shape::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    right: 0;
+    width: 0;
+    height: 0;
+    border-left: 10px solid transparent;
+    border-bottom: 10px solid rgba(0, 0, 0, 0.2); /* Simulated fold shadow */
+  }
 }
 
 @layer base {
@@ -124,7 +141,6 @@
       #609bf5 70%,
       #a9d1f6 100%
     );
-    font-family: var(--font-geist-sans), sans-serif;
   }
 }
 
@@ -221,176 +237,32 @@
   }
 }
 
-/* made animation faster for testing */
-/* .animate-cloud-ltr {
-  animation: cloud-move-ltr 10s linear infinite;
-  position: fixed;
-}
-
-.animate-cloud-rtl {
-  animation: cloud-move-rtl 10s linear infinite;
-  animation-delay: 4s;
-  position: fixed;
-}
-
-@keyframes cloud-move-ltr {
-  0% {
-    left: -450px;
-  }
-  100% {
-    left: 100vw;
-  }
-}
-
-@keyframes cloud-move-rtl {
-  0% {
-    left: 100vw;
-  }
-  100% {
-    left: -450px;
-  }
-} */
-
-/* Add this to your globals.css file */
-
-/* Gold shine animation for multiplier badge */
-@keyframes goldShine {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-@keyframes rotateGlow {
-  0% {
-    transform: rotate(0deg);
-  }
-  100% {
-    transform: rotate(360deg);
-  }
-}
-
-.multiplier-badge {
-  position: relative;
-  overflow: hidden;
-  background: linear-gradient(
-    90deg,
-    #f6e05e 0%,
-    #d69e2e 33%,
-    #f6e05e 66%,
-    #d69e2e 100%
+.badge-futuristic {
+  clip-path: polygon(
+    0% 0%,
+    /* Top-left */ 100% 0%,
+    /* Top-right */ 100% 70%,
+    /* Right vertical edge */ 85% 85%,
+    /* Bottom-right inward cut */ 70% 100%,
+    /* Bottom inward edge */ 30% 100%,
+    /* Bottom inward edge */ 15% 85%,
+    /* Bottom-left inward cut */ 0% 70% /* Left vertical edge */
   );
-  background-size: 200% 100%;
-  color: #7c3aed;
-  font-weight: 600;
-  border: none;
-  text-shadow: 0 0 2px rgba(255, 255, 255, 0.5);
-  animation: goldShine 3s linear infinite;
-  box-shadow: 0 0 10px rgba(246, 224, 94, 0.3);
+  transition: all 0.3s ease;
+  position: relative;
+  z-index: 10;
 }
 
-.multiplier-badge:before {
+.badge-futuristic:hover {
+  box-shadow: 0 0 15px 4px rgba(93, 156, 255, 0.6);
+}
+
+.badge-futuristic::before {
   content: "";
   position: absolute;
-  top: -50%;
-  left: -50%;
-  width: 200%;
-  height: 200%;
-  background: radial-gradient(
-    circle,
-    rgba(255, 255, 255, 0.3) 0%,
-    transparent 70%
-  );
-  transform: rotate(30deg);
-  animation: rotateGlow 3s linear infinite;
-}
-
-/* Add these styles to globals.css */
-
-/* Main card gradient */
-.gradient-card {
-  background: linear-gradient(
-    -45deg,
-    #95c1f6,
-    #6aa1f5,
-    #5e96f3,
-    #598eef,
-    #5485eb
-  );
-  background-size: 400% 400%;
-  animation: gradientAnimation 18s ease infinite;
-}
-
-@keyframes gradientAnimation {
-  0% {
-    background-position: 0% 50%;
-  }
-  50% {
-    background-position: 100% 50%;
-  }
-  100% {
-    background-position: 0% 50%;
-  }
-}
-
-/* Optional gradient overlay for additional visual effect */
-.gradient-card-overlay {
-  background: linear-gradient(
-    120deg,
-    rgba(218, 254, 254, 0.1),
-    rgba(123, 244, 255, 0.1),
-    rgba(0, 140, 235, 0.1),
-    rgba(0, 54, 169, 0.1),
-    rgba(1, 1, 71, 0.1)
-  );
-  background-size: 300% 300%;
-  animation: gradientOverlayAnimation 15s ease infinite;
-}
-
-@keyframes gradientOverlayAnimation {
-  0% {
-    background-position: 0% 30%;
-  }
-  50% {
-    background-position: 100% 70%;
-  }
-  100% {
-    background-position: 0% 30%;
-  }
-}
-
-/* Tailwind utility classes for the gradient card */
-@layer utilities {
-  .bg-gradient-flow {
-    @apply relative overflow-hidden;
-    background: linear-gradient(
-      -45deg,
-      #dafefe,
-      #7bf4ff,
-      #008ceb,
-      #0036a9,
-      #010147
-    );
-    background-size: 400% 400%;
-    animation: gradientAnimation 18s ease infinite;
-  }
-
-  .overlay-gradient-flow {
-    @apply absolute inset-0 opacity-30;
-    background: linear-gradient(
-      120deg,
-      rgba(218, 254, 254, 0.1),
-      rgba(123, 244, 255, 0.1),
-      rgba(0, 140, 235, 0.1),
-      rgba(0, 54, 169, 0.1),
-      rgba(1, 1, 71, 0.1)
-    );
-    background-size: 300% 300%;
-    animation: gradientOverlayAnimation 15s ease infinite;
-  }
+  inset: 4px;
+  border: 2px solid rgba(34, 34, 34, 0.15);
+  clip-path: inherit;
+  border-radius: inherit;
+  z-index: -1;
 }
