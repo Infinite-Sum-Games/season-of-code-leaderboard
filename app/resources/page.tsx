@@ -1,11 +1,6 @@
 'use client';
 import Navbar from '@/app/components/Navbar';
 import Card from '@/app/components/resources-components/resourceCard';
-import {
-  Select,
-  type SelectOption,
-} from '@/app/components/resources-components/selector';
-import { ScrollArea } from '@/app/components/ui/scroll-area';
 import { useEffect, useState } from 'react';
 import Cloud from '../components/dashboard-components/Cloud';
 import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
@@ -20,9 +15,9 @@ type Resource = {
 };
 
 const ResourcePage = () => {
-  const [selectedTags, setSelectedTags] = useState<SelectOption[]>([]);
+  const [selectedLabels, setSelectedLabels] = useState<string[]>([]);
   const [resources, setResources] = useState<Resource[]>([]);
-  const [options, setOptions] = useState<SelectOption[]>([]);
+  const [allTags, setAllTags] = useState<string[]>([]);
   const [isLoading, setIsLoading] = useState(true);
   const [error, setError] = useState<string | null>(null);
 
@@ -40,16 +35,9 @@ const ResourcePage = () => {
         setResources(data);
 
         // Generate unique tags from all resources
-        const allTags = data.flatMap((resource: Resource) => resource.tags);
-        const uniqueTags = [...new Set(allTags)].sort();
-
-        // Create options array with unique tags
-        const tagOptions = uniqueTags.map((tag, index) => ({
-          label: String(tag),
-          value: index + 1,
-        }));
-
-        setOptions(tagOptions);
+        const tags = data.flatMap((resource: Resource) => resource.tags);
+        const uniqueTags = [...new Set(tags)].sort();
+        setAllTags(uniqueTags);
       } catch (err) {
         setError(
           err instanceof Error ? err.message : 'Failed to load resources',
@@ -63,28 +51,35 @@ const ResourcePage = () => {
     fetchResources();
   }, []);
 
-  // Get an array of the selected tag labels
-  const selectedLabels = selectedTags.map((t) => t.label);
+  // Toggle a tag in the selectedLabels array
+  const toggleTag = (tag: string) => {
+    setSelectedLabels((prev) =>
+      prev.includes(tag) ? prev.filter((t) => t !== tag) : [...prev, tag],
+    );
+  };
 
-  // Apply the prioritized filtering logic
+  // Clear all selected tags
+  const clearFilters = () => {
+    setSelectedLabels([]);
+  };
+
+  // Filtering Logic (same as before)
   const filteredResources =
-    selectedTags.length === 0
+    selectedLabels.length === 0
       ? resources
-      : [
-          // First show resources that match ALL selected tags
-          ...resources.filter((resource) =>
-            selectedLabels.every((tag) => resource.tags.includes(tag)),
-          ),
-          // Then show resources that match SOME but not ALL selected tags
-          ...resources.filter(
-            (resource) =>
-              selectedLabels.some((tag) => resource.tags.includes(tag)) &&
-              !selectedLabels.every((tag) => resource.tags.includes(tag)),
-          ),
-        ];
+      : resources
+          .map((resource) => {
+            const matchingTagsCount = selectedLabels.filter((tag) =>
+              resource.tags.includes(tag),
+            ).length;
+            return { resource, matchingTagsCount };
+          })
+          .filter(({ matchingTagsCount }) => matchingTagsCount > 0)
+          .sort((a, b) => b.matchingTagsCount - a.matchingTagsCount)
+          .map(({ resource }) => resource);
 
   return (
-    <div className="relative h-screen overflow-hidden">
+    <div className="relative min-h-screen overflow-y-auto">
       <Navbar />
       <SunGlareEffect />
       <Cloud />
@@ -98,48 +93,64 @@ const ResourcePage = () => {
           Find tools, guides, and libraries to boost your development journey.
         </p>
 
-        {/* Dropdown */}
-        <div className="relative z-[100] mx-auto mt-0 flex max-w-3xl justify-center">
-          <Select
-            multiple
-            options={options}
-            value={selectedTags}
-            onChange={(o) => setSelectedTags(o)}
-          />
+        {/* Filter Chips */}
+        <div className="relative z-50 mx-auto mt-4 flex max-w-3xl flex-wrap justify-center gap-2">
+          {allTags.map((tag) => {
+            const isSelected = selectedLabels.includes(tag);
+            return (
+              <button
+                type="button"
+                key={tag}
+                onClick={() => toggleTag(tag)}
+                className={`flex items-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${
+                  isSelected
+                    ? 'bg-slate-700 text-white hover:bg-slate-800'
+                    : 'border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-100'
+                }`}
+              >
+                {tag}
+              </button>
+            );
+          })}
+          {selectedLabels.length > 0 && (
+            <button
+              type="button"
+              onClick={clearFilters}
+              className="ml-2 rounded-full bg-gray-200 px-3 py-1 font-medium text-gray-900 text-sm shadow-sm transition-all duration-200 hover:bg-gray-300"
+            >
+              Clear All
+            </button>
+          )}
         </div>
       </section>
 
-      {/* Cards Section with Scroll */}
+      {/* Cards Section */}
       <section className="mx-auto max-w-screen-xl px-4 pb-8 sm:px-6 md:px-8">
-        <ScrollArea className="h-[60vh] rounded-lg border-none">
-          {isLoading ? (
-            <div className="flex h-full items-center justify-center">
-              <p className="text-white">Loading resources...</p>
-            </div>
-          ) : error ? (
-            <div className="flex h-full items-center justify-center">
-              <p className="text-red-500">{error}</p>
-            </div>
-          ) : filteredResources.length === 0 ? (
-            <div className="flex h-full items-center justify-center">
-              <p className="text-white">
-                No resources match your selected tags.
-              </p>
-            </div>
-          ) : (
-            <div className="grid grid-cols-1 gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3">
-              {filteredResources.map((card, index) => (
-                <Card
-                  key={`${card.title}-${index}`}
-                  {...card}
-                  onClick={
-                    card.url ? () => window.open(card.url, '_blank') : undefined
-                  }
-                />
-              ))}
-            </div>
-          )}
-        </ScrollArea>
+        {isLoading ? (
+          <div className="flex min-h-[60vh] items-center justify-center">
+            <p className="text-white">Loading resources...</p>
+          </div>
+        ) : error ? (
+          <div className="flex min-h-[60vh] items-center justify-center">
+            <p className="text-red-500">{error}</p>
+          </div>
+        ) : filteredResources.length === 0 ? (
+          <div className="flex min-h-[60vh] items-center justify-center">
+            <p className="text-white">No resources match your selected tags.</p>
+          </div>
+        ) : (
+          <div className="grid grid-cols-1 gap-6 p-2 sm:grid-cols-2 sm:p-4 md:grid-cols-3">
+            {filteredResources.map((card, index) => (
+              <Card
+                key={`${card.title}-${index}`}
+                {...card}
+                onClick={
+                  card.url ? () => window.open(card.url, '_blank') : undefined
+                }
+              />
+            ))}
+          </div>
+        )}
       </section>
     </div>
   );
