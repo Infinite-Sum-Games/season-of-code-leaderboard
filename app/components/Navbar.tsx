@@ -12,7 +12,7 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 z-50 mt-4 flex w-full justify-center">
+    <div className="fixed top-0 left-0 z-[100] mt-4 flex w-full justify-center">
       <nav className="w-11/12 rounded-2xl border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm md:w-9/10">
         <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
@@ -70,7 +70,9 @@ const Navbar = () => {
 
         {/* Mobile Menu */}
         <div
-          className={`overflow-hidden rounded-xl border-gray-200 border-t bg-white transition-all duration-400 ease-in-out md:hidden ${mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'}`}
+          className={`overflow-hidden rounded-xl border-gray-200 border-t bg-white transition-all duration-400 ease-in-out md:hidden ${
+            mobileMenuOpen ? 'max-h-screen opacity-100' : 'max-h-0 opacity-0'
+          }`}
         >
           <div className="space-y-1 px-2 pt-2 pb-3 sm:px-3">
             <MobileNavLink href="/home">Home</MobileNavLink>
