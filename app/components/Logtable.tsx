@@ -213,31 +213,31 @@ export default function Logtable() {
 
             <Tabs
               defaultValue="all"
-              className="mt-2"
+              className="mt-2 rounded-3xl"
               onValueChange={setActiveTab}
             >
-              <TabsList className="bg-white/20 backdrop-blur-md">
+              <TabsList className="rounded-3xl bg-white/20 backdrop-blur-md">
                 <TabsTrigger
                   value="all"
-                  className="text-xs"
+                  className="rounded-3xl text-xs"
                 >
                   All
                 </TabsTrigger>
                 <TabsTrigger
                   value="top3"
-                  className="text-xs"
+                  className="rounded-3xl text-xs"
                 >
                   Top 3
                 </TabsTrigger>
                 <TabsTrigger
                   value="bounty"
-                  className="text-xs"
+                  className="rounded-3xl text-xs"
                 >
                   Bounty
                 </TabsTrigger>
                 <TabsTrigger
                   value="issue"
-                  className="text-xs"
+                  className="rounded-3xl text-xs"
                 >
                   Issue
                 </TabsTrigger>
