@@ -3,6 +3,7 @@ import { ScrollArea } from '@/app/components/ui/scroll-area';
 import useLeaderboardStore from '@/app/useLeaderboardStore';
 import { useEffect, useState } from 'react';
 import { FaSort, FaSortDown, FaSortUp } from 'react-icons/fa'; // Import sorting icons
+import { MdCode, MdMonetizationOn } from 'react-icons/md';
 import { Card, CardDescription, CardHeader } from '../ui/card';
 
 export type TUserData = {
@@ -182,16 +183,16 @@ const Leaderboard = () => {
         Refresh the page to see real-time leaderboard updates.
       </CardDescription>
 
-      <div className="flex items-center rounded-lg bg-white/10 px-3 py-2 font-semibold text-gray-800 backdrop-blur-md">
-        <div className="w-[25%] md:w-[10%]">#</div>
-        <div className="w-[60%] md:w-[50%]">Name</div>
+      <div className="flex items-center rounded-lg bg-white/20 px-4 py-2 font-medium text-gray-900 shadow-sm">
+        <div className="w-[25%] font-medium md:w-[10%]">#</div>
+        <div className="w-[60%] font-medium md:w-[50%]">Name</div>
         <div className="hidden w-[30%] text-center md:block">
           <button
             type="button"
             onClick={() => sortLeaderboard('PRs')}
-            className="flex items-center gap-1"
+            className="flex items-center justify-center gap-1 rounded-3xl bg-blue-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
           >
-            PRs
+            <MdCode className="mr-1 text-gray-900" /> PRs
             {getSortIcon('PRs')}
           </button>
         </div>
@@ -199,9 +200,9 @@ const Leaderboard = () => {
           <button
             type="button"
             onClick={() => sortLeaderboard('Bounty')}
-            className="flex items-center justify-end gap-1"
+            className="flex items-center justify-end gap-1 rounded-3xl bg-amber-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-amber-500/70 hover:text-gray-800 hover:shadow-md"
           >
-            Bounty
+            <MdMonetizationOn className="mr-1 text-gray-900" /> Bounty
             {getSortIcon('Bounty')}
           </button>
         </div>
