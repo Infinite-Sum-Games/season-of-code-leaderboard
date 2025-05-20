@@ -2,6 +2,8 @@
 import Navbar from '@/app/components/Navbar';
 import Card from '@/app/components/resources-components/resourceCard';
 import { useEffect, useState } from 'react';
+import { BsCheckLg } from 'react-icons/bs';
+import { FaTimes } from 'react-icons/fa';
 import Cloud from '../components/dashboard-components/Cloud';
 import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
 
@@ -31,7 +33,7 @@ const ResourcePage = () => {
           throw new Error(`Failed to fetch resources: ${response.status}`);
         }
 
-        const data = await response.json();
+        const data: Resource[] = await response.json();
         setResources(data);
 
         // Generate unique tags from all resources
@@ -102,12 +104,13 @@ const ResourcePage = () => {
                 type="button"
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`flex items-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${
+                className={`flex items-center justify-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${
                   isSelected
                     ? 'bg-slate-700 text-white hover:bg-slate-800'
                     : 'border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-100'
                 }`}
               >
+                {isSelected && <BsCheckLg className="mr-2 h-4 w-4" />}
                 {tag}
               </button>
             );
@@ -116,9 +119,10 @@ const ResourcePage = () => {
             <button
               type="button"
               onClick={clearFilters}
-              className="ml-2 rounded-full bg-gray-200 px-3 py-1 font-medium text-gray-900 text-sm shadow-sm transition-all duration-200 hover:bg-gray-300"
+              className="ml-2 rounded-full bg-[#ffa4a4] px-2 py-1 font-medium text-[#360000] text-sm shadow-sm transition-all duration-200 hover:bg-[#ffa4a4]/80 flex items-center justify-center align-middle"
             >
-              Clear All
+              <FaTimes className="mr-1 h-4 w-4" />
+              Clear Filters
             </button>
           )}
         </div>

@@ -54,23 +54,27 @@ export default function Card({
     switch (category) {
       case 'Technology':
         return {
-          bg: 'bg-blue-50',
-          hover: 'hover:bg-blue-100',
+          bg: 'bg-sky-100',
+          hover: 'hover:bg-sky-200',
+          text: 'text-sky-700',
         };
       case 'Content Type':
         return {
-          bg: 'bg-purple-50',
-          hover: 'hover:bg-purple-100',
+          bg: 'bg-purple-100',
+          hover: 'hover:bg-purple-200',
+          text: 'text-purple-700',
         };
       case 'Difficulty':
         return {
-          bg: 'bg-green-50',
-          hover: 'hover:bg-green-100',
+          bg: 'bg-emerald-100',
+          hover: 'hover:bg-emerald-200',
+          text: 'text-emerald-700',
         };
       default:
         return {
-          bg: 'bg-gray-50',
-          hover: 'hover:bg-gray-100',
+          bg: 'bg-slate-100',
+          hover: 'hover:bg-slate-200',
+          text: 'text-slate-700',
         };
     }
   };
@@ -81,13 +85,13 @@ export default function Card({
   ) => {
     switch (difficulty) {
       case 'Beginner':
-        return 'bg-green-400';
+        return 'bg-green-500';
       case 'Intermediate':
-        return 'bg-amber-400';
+        return 'bg-yellow-500';
       case 'Advanced':
-        return 'bg-red-400';
+        return 'bg-red-500';
       default:
-        return 'bg-gray-400';
+        return 'bg-gray-500';
     }
   };
 
@@ -95,7 +99,7 @@ export default function Card({
   const resourceDifficulty = getResourceDifficulty(tags);
 
   return (
-    <div className="group relative h-full w-full max-w-sm overflow-hidden rounded-3xl bg-gray-50/70 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-xl">
+    <div className="group relative h-full w-full max-w-sm overflow-hidden rounded-4xl bg-[#000000]/50 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-xl">
       <div className="flex h-full flex-col p-2">
         {/* Image with subtle gradient overlay */}
         <div className="relative mb-4 w-full overflow-hidden rounded-3xl">
@@ -109,14 +113,14 @@ export default function Card({
 
         {/* Title */}
         <div className="mb-4 flex items-center justify-center">
-          <h3 className="line-clamp-2 text-center font-bold text-2xl text-gray-900">
+          <h3 className="line-clamp-2 text-center font-bold text-2xl text-white">
             {title}
           </h3>
         </div>
 
         {/* Description */}
         <div className="mb-4 flex-1">
-          <p className="line-clamp-3 text-center text-gray-700 text-sm">
+          <p className="line-clamp-3 text-center text-gray-200 text-sm">
             {description}
           </p>
         </div>
@@ -125,7 +129,7 @@ export default function Card({
         <div className="mb-4 flex flex-wrap items-center justify-center gap-2">
           {tags.slice(0, 3).map((tag) => {
             const category = getTagCategory(tag);
-            const { bg, hover } = getTagStyles(category);
+            const { bg, hover, text } = getTagStyles(category);
             // Use the tag's own difficulty if it's a Difficulty tag, otherwise use the resource's difficulty
             const dotDifficulty =
               category === 'Difficulty'
@@ -137,7 +141,7 @@ export default function Card({
             return (
               <span
                 key={tag}
-                className={`inline-flex items-center rounded-full px-3 py-1 font-medium text-gray-900 text-sm shadow-sm ${bg} ${hover} transition-colors duration-200`}
+                className={`inline-flex items-center rounded-full px-3 py-1 font-medium text-sm shadow-sm ${bg} ${hover} ${text} transition-colors duration-200`}
               >
                 <span className={`mr-1 h-3 w-3 rounded-full ${dotColor}`} />
                 {tag}
@@ -153,12 +157,12 @@ export default function Card({
         <button
           type="button"
           onClick={onClick}
-          className="relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl bg-slate-700 px-4 py-3 font-medium text-white shadow-sm transition-all duration-200 hover:bg-slate-800 hover:shadow-md"
+          className="group/button relative mt-4 flex w-full cursor-pointer items-center justify-center rounded-3xl bg-[#181818] px-4 py-3 font-medium text-white shadow-sm transition-all duration-200 hover:bg-[#000000]/80 hover:shadow-md"
         >
           <span className="text-center">{buttonText}</span>
           <MdArrowForward
             size={24}
-            className="absolute right-4 hidden transform transition-all duration-200 group-hover:translate-x-1 md:block"
+            className="absolute right-4 hidden transform transition-all duration-200 group-hover:translate-x-1 md:block group-hover:text-sky-400"
           />
         </button>
       </div>
