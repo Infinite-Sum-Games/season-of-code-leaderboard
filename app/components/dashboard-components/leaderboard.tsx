@@ -234,7 +234,9 @@ const Leaderboard = () => {
               <div className="hidden w-[25%] text-center md:block">
                 {+data._count.Solution}
               </div>
-              <div className="w-[30%] text-right md:w-[25%]">{data.bounty}</div>
+              <div className="w-[30%] pr-1 text-right font-bold md:w-[25%]">
+                {data.bounty}
+              </div>
             </div>
           ))
         )}
