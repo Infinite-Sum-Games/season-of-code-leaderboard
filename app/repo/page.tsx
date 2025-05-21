@@ -12,7 +12,6 @@ import {
   GitBranch,
   Search,
   SortAsc,
-  Tag,
   X,
   XCircle,
 } from 'lucide-react';
@@ -355,7 +354,7 @@ const ReposPage = () => {
           Repositories{' '}
           <span className="ml-2 text-gray-700">({repositories.length})</span>
         </h2>
-        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[70vh] overflow-y-autorounded-lg p-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[70vh] overflow-y-auto rounded-lg p-2">
           <div className="space-y-3">
             {repositories.map((repo) => (
               <button
@@ -742,22 +741,6 @@ const ReposPage = () => {
         <Navbar />
       </div>
       <div className="container mx-auto mt-4 p-4 sm:p-6 bg-cover bg-center min-h-screen rounded-lg">
-        <div className="mb-6 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-6 shadow-lg">
-          <h1 className="mb-2 font-bold text-3xl sm:text-4xl md:text-5xl text-gray-800">
-            Repositories & Issues
-          </h1>
-          <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between">
-            <p className="max-w-3xl text-gray-700 text-sm sm:text-md">
-              Explore repositories on the left. Select one to view its issues on
-              the right.
-            </p>
-            <div className="mt-3 md:mt-0">
-              <Badge className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800">
-                Season of Code
-              </Badge>
-            </div>
-          </div>
-        </div>
         <div className="hidden md:block">{desktopView}</div>
         <div className="md:hidden">{mobileView}</div>
       </div>

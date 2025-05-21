@@ -100,7 +100,7 @@ export default function Card({
 
   return (
     <div className="group relative h-full w-full max-w-sm overflow-hidden rounded-4xl bg-[#000000]/50 shadow-sm backdrop-blur-md transition-all duration-300 hover:shadow-xl">
-      <div className="flex h-full flex-col p-2">
+      <div className="flex h-full flex-col md:p-2 p-4">
         {/* Image with subtle gradient overlay */}
         <div className="relative mb-4 w-full overflow-hidden rounded-3xl">
           <img

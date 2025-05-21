@@ -104,7 +104,7 @@ const ResourcePage = () => {
                 type="button"
                 key={tag}
                 onClick={() => toggleTag(tag)}
-                className={`flex items-center justify-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${
+                className={`flex cursor-pointer items-center justify-center rounded-full px-3 py-1 font-medium text-sm shadow-sm transition-all duration-200 ${
                   isSelected
                     ? 'bg-slate-700 text-white hover:bg-slate-800'
                     : 'border border-gray-300 bg-gray-50 text-gray-900 hover:bg-gray-100'

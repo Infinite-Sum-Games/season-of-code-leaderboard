@@ -47,7 +47,7 @@ const RepoCard = (props: ReposData) => {
                     className="text-sm"
                   >
                     @{username}
-                    {index < props.maintainerUsernames.length - 1 && ', '}
+                    {index < props.maintainerUsernames.length - 1 && ',\u00A0'}
                   </span>
                 </a>
               ))}
