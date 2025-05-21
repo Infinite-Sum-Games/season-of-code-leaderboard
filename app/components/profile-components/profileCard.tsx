@@ -365,7 +365,7 @@ const ProfileCard = () => {
                       <BountyBar
                         value={userData.bounty}
                         max={1000}
-                        width="100%"
+                        width={220}
                       />
                     </div>
                   </div>

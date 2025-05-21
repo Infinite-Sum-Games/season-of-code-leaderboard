@@ -1,7 +1,9 @@
-import type { Prisma } from '@prisma/client';
+// import type { Prisma } from '@prisma/client';
 import type { NextAuthOptions } from 'next-auth';
 import Github from 'next-auth/providers/github';
-import prisma from '../db';
+// import prisma from '../db';
+
+// TODO: Integrate Auth with `pulse`.
 
 export const NEXT_AUTH: NextAuthOptions = {
   providers: [
@@ -19,31 +21,31 @@ export const NEXT_AUTH: NextAuthOptions = {
       // @ts-expect-error unknown-type
       const username = profile.login;
       try {
-        await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
-          const user = await tx.participant.findFirst({
-            where: {
-              username: username,
-            },
-          });
+        // await prisma.$transaction(async (tx: Prisma.TransactionClient) => {
+        //   const user = await tx.participant.findFirst({
+        //     where: {
+        //       username: username,
+        //     },
+        //   });
 
-          // Account does not exist or banned account
-          if (!user || user.accountActive === false) {
-            return false;
-          }
+        //   // Account does not exist or banned account
+        //   if (!user || user.accountActive === false) {
+        //     return false;
+        //   }
 
-          // Add provider ID
-          if (!user.providerId) {
-            await tx.participant.update({
-              data: {
-                // @ts-expect-error unknown-type
-                providerId: profile.id.toString(),
-              },
-              where: {
-                username: username,
-              },
-            });
-          }
-        });
+        //   // Add provider ID
+        //   if (!user.providerId) {
+        //     await tx.participant.update({
+        //       data: {
+        //         // @ts-expect-error unknown-type
+        //         providerId: profile.id.toString(),
+        //       },
+        //       where: {
+        //         username: username,
+        //       },
+        //     });
+        //   }
+        // });
         return true;
       } catch (error) {
         console.log(error);
@@ -53,15 +55,15 @@ export const NEXT_AUTH: NextAuthOptions = {
     async session({ session, token }) {
       if (session?.user) {
         try {
-          const user = await prisma.participant.findFirst({
-            select: {
-              username: true,
-            },
-            where: {
-              providerId: token.sub,
-            },
-          });
-          session.user.name = user?.username;
+          // const user = await prisma.participant.findFirst({
+          //   select: {
+          //     username: true,
+          //   },
+          //   where: {
+          //     providerId: token.sub,
+          //   },
+          // });
+          // session.user.name = user?.username;
           return session;
         } catch (error) {
           console.log(error);
