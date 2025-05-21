@@ -12,20 +12,20 @@ const Navbar = () => {
   };
 
   return (
-    <div className="fixed top-0 left-0 z-[100] mt-4 flex w-full justify-center">
-      <nav className="w-11/12 rounded-2xl border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm md:w-9/10">
-        <div className="mx-auto max-w-7xl px-4 sm:px-6 lg:px-4">
+    <div className="fixed top-0 left-0 mt-4 flex w-full justify-center z-10">
+      <nav className="w-11/12 rounded-2xl border-[#A7E6FF] border-b bg-white/90 shadow-sm backdrop-blur-sm z-10">
+        <div className="mx-auto px-4 sm:px-6 lg:px-4">
           <div className="flex h-16 items-center justify-between">
             {/* Logo */}
             <div
-              className="flex-shrink-0"
+              className="shrink-0"
               aria-label="Home"
             >
               <Link
                 href="/"
                 aria-label="Home"
               >
-                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-gradient-to-br from-blue-600 to-blue-400 shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12">
+                <div className="flex h-10 w-10 items-center justify-center overflow-hidden rounded-full bg-linear-to-br from-blue-600 to-blue-400 shadow-md transition-all duration-300 ease-in-out hover:scale-105 hover:shadow-lg sm:h-12 sm:w-12">
                   <Image
                     src="/acmlogonew.webp"
                     alt="ACM Logo"
@@ -50,9 +50,9 @@ const Navbar = () => {
             </div>
 
             {/* Register Button - Desktop */}
-            <div className="hidden md:block">
+            {/* <div className="hidden md:block">
               <RegisterButton onClick={handleApplyButtonClick} />
-            </div>
+            </div> */}
 
             {/* Mobile Menu Button */}
             <div className="flex items-center md:hidden">
@@ -81,12 +81,12 @@ const Navbar = () => {
             <MobileNavLink href="/resources">Resources</MobileNavLink>
             <MobileNavLink href="/team">Team</MobileNavLink>
             <MobileNavLink href="/past-editions">Past Editions</MobileNavLink>
-            <div className="mt-4 border-gray-200 border-t pt-4">
+            {/* <div className="mt-4 border-gray-200 border-t pt-4">
               <RegisterButton
                 onClick={handleApplyButtonClick}
                 className="w-full justify-center"
               />
-            </div>
+            </div> */}
           </div>
         </div>
       </nav>
@@ -127,7 +127,7 @@ const MobileNavLink = ({
 );
 
 // Reusable RegisterButton component
-const RegisterButton = ({
+/* const RegisterButton = ({
   onClick,
   className = '',
 }: {
@@ -142,6 +142,6 @@ const RegisterButton = ({
   >
     Register
   </button>
-);
+); */
 
 export default Navbar;
