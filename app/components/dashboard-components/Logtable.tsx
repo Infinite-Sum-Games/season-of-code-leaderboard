@@ -182,17 +182,19 @@ export default function Logtable() {
                 >
                   <Activity className="h-5 w-5 text-blue-500" />
                 </div>
-                <CardTitle className="font-bold text-gray-800 text-xl">
-                  Live Activity
-                </CardTitle>
-                {newActivity && (
-                  <Badge
-                    variant="outline"
-                    className="animate-pulse bg-red-500/20 text-red-600"
-                  >
-                    New activity
-                  </Badge>
-                )}
+                <div className="flex flex-col items-start sm:flex-row sm:items-center sm:gap-2">
+                  <CardTitle className="font-bold text-gray-800 text-xl">
+                    Live Activity
+                  </CardTitle>
+                  {newActivity && (
+                    <Badge
+                      variant="outline"
+                      className="animate-pulse bg-red-500/20 text-red-600 text-xs mt-1 sm:mt-0 sm:text-sm"
+                    >
+                      New activity
+                    </Badge>
+                  )}
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Badge
