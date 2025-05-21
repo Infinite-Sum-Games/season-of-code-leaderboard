@@ -190,7 +190,7 @@ const Leaderboard = () => {
           <button
             type="button"
             onClick={() => sortLeaderboard('PRs')}
-            className="flex items-center justify-center gap-1 rounded-3xl bg-blue-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
+            className="flex items-center cursor-pointer justify-center gap-1 rounded-3xl bg-blue-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
           >
             <MdCode className="mr-1 text-gray-900" /> PRs
             {getSortIcon('PRs')}
@@ -200,7 +200,7 @@ const Leaderboard = () => {
           <button
             type="button"
             onClick={() => sortLeaderboard('Bounty')}
-            className="flex items-center justify-end gap-1 rounded-3xl bg-amber-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-amber-500/70 hover:text-gray-800 hover:shadow-md"
+            className="flex items-center cursor-pointer justify-end gap-1 rounded-3xl bg-amber-500/50 px-3 py-1 font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-amber-500/70 hover:text-gray-800 hover:shadow-md"
           >
             <MdMonetizationOn className="mr-1 text-gray-900" /> Bounty
             {getSortIcon('Bounty')}

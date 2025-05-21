@@ -4,23 +4,23 @@ import type React from 'react';
 
 import { Activity, Bug, Clock, Sparkles, Trophy } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Badge } from './ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Badge } from '../ui/badge';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from './ui/card';
-import { ScrollArea } from './ui/scroll-area';
-import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
+} from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './ui/tooltip';
+} from '../ui/tooltip';
 
 type LogType = 'top3' | 'bounty' | 'issue';
 
@@ -219,25 +219,25 @@ export default function Logtable() {
               <TabsList className="rounded-3xl bg-white/20 backdrop-blur-md">
                 <TabsTrigger
                   value="all"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   All
                 </TabsTrigger>
                 <TabsTrigger
                   value="top3"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   Top 3
                 </TabsTrigger>
                 <TabsTrigger
                   value="bounty"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   Bounty
                 </TabsTrigger>
                 <TabsTrigger
                   value="issue"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   Issue
                 </TabsTrigger>

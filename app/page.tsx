@@ -2,11 +2,11 @@
 import { Separator } from '@/app/components/ui/separator';
 import Leaderboard from './components/dashboard-components/leaderboard';
 import './globals.css';
-// import { useSession } from 'next-auth/react';
-import Logtable from './components/Logtable';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
 import Home from './components/dashboard-components/Home';
+// import { useSession } from 'next-auth/react';
+import Logtable from './components/dashboard-components/Logtable';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 
 const Dashboard = () => {
