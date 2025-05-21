@@ -61,7 +61,7 @@ const RepoCard = (props: ReposData) => {
               <Badge
                 key={techname}
                 variant="outline"
-                className="flex items-center px-3 py-1.5 text-sm sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 focus:bg-white/50 transition-all duration-200"
+                className="flex items-center px-2 py-1.5 text-sm sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 focus:bg-white/50 transition-all duration-200"
               >
                 <img
                   className="mr-2"

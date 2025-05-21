@@ -188,7 +188,7 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
+          className="bg-white/40 cursor-pointer border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
         >
           <Filter className="mr-1 h-4 w-4 text-gray-600" />
           <span>Filter</span>
@@ -275,7 +275,7 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
+          className="bg-white/40 cursor-pointer border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
         >
           <SortAsc className="mr-1 h-4 w-4 text-gray-600" />
           <span>Sort</span>
@@ -345,7 +345,7 @@ const ReposPage = () => {
 
   const desktopView = (
     <div className="flex flex-col gap-6 md:flex-row h-full">
-      <div className="w-full flex-shrink-0 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-5/12 flex flex-col">
+      <div className="w-full flex-shrink-0 rounded-lg bg-white/30 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-5/12 flex flex-col">
         <h2 className="mb-3 flex items-center border-b border-white/50 pb-2 font-semibold text-2xl text-gray-800 shrink-0">
           <GitBranch
             className="mr-2 h-6 w-6"
@@ -354,7 +354,7 @@ const ReposPage = () => {
           Repositories{' '}
           <span className="ml-2 text-gray-700">({repositories.length})</span>
         </h2>
-        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent flex-1 min-h-0 overflow-y-auto rounded-lg p-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent flex-1 min-h-0 overflow-y-auto rounded-lg p-1">
           <div className="space-y-3">
             {repositories.map((repo) => (
               <button
@@ -382,7 +382,7 @@ const ReposPage = () => {
         </div>
       </div>
 
-      <div className="w-full rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12 flex flex-col">
+      <div className="w-full rounded-lg bg-white/40 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12 flex flex-col">
         <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2 shrink-0">
           <h2 className="flex items-center font-semibold text-2xl text-gray-800">
             <Code
@@ -402,7 +402,7 @@ const ReposPage = () => {
               size="sm"
               type="button"
               onClick={clearSelection}
-              className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:text-gray-600"
+              className="bg-white/40 cursor-pointer border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:text-gray-600"
             >
               <XCircle className="mr-1 h-4 w-4" /> Clear
             </Button>
@@ -410,7 +410,7 @@ const ReposPage = () => {
         </div>
 
         {selectedRepo && (
-          <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg p-3 shrink-0">
+          <div className="mb-2 flex flex-wrap items-center gap-2 rounded-lg p-3 shrink-0">
             <div className="relative max-w-md flex-grow">
               <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
               <Input
@@ -529,7 +529,7 @@ const ReposPage = () => {
       }
       className="md:hidden"
     >
-      <TabsList className="grid w-full grid-cols-2 bg-white/20 backdrop-blur-md p-1 border border-white/30">
+      <TabsList className="grid w-full grid-cols-2 bg-white/40 backdrop-blur-md p-1 border border-white/30">
         <TabsTrigger
           value="repositories"
           className={cn(
@@ -552,7 +552,7 @@ const ReposPage = () => {
 
       <TabsContent
         value="repositories"
-        className="mt-4 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
+        className="mt-4 rounded-lg bg-white/40 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
       >
         <h2 className="mb-3 flex items-center border-b border-white/50 pb-2 font-semibold text-xl sm:text-2xl text-gray-800">
           <GitBranch className="mr-2 h-6 w-6 text-gray-600" />
@@ -594,15 +594,14 @@ const ReposPage = () => {
 
       <TabsContent
         value="issues"
-        className="mt-4 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
+        className="mt-4 rounded-lg bg-white/40 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
       >
         <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2">
           <h2 className="flex items-center font-semibold text-xl sm:text-2xl text-gray-800">
             <Code className="mr-2 h-6 w-6 text-gray-600" />
-            Issues
             {selectedRepo && (
-              <span className="ml-2 text-lg text-gray-700">
-                ({selectedRepo.name})
+              <span className="ml-2 text-lg text-gray-800">
+                {selectedRepo.name}
               </span>
             )}
           </h2>
