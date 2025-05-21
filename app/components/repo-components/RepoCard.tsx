@@ -1,46 +1,46 @@
 import { Badge } from '@/app/components/ui/badge';
 import {
   Card,
-  CardContent, // Note: CardContent is imported but not used in the provided snippet. Will keep it if you plan to use it.
+  CardContent,
   CardDescription,
   CardHeader,
   CardTitle,
 } from '@/app/components/ui/card';
-// import { Progress } from '@/app/components/ui/progress'; // Not used in the snippet
 import type { ReposData } from '@/app/store/useRepositoryStore';
 import { ChevronRight, Github } from 'lucide-react';
 import React from 'react';
 
 const RepoCard = (props: ReposData) => {
   return (
-    <Card className="bg-[#93B6F6] border border-white/20 shadow-md w-full">
-      <div className="flex h-full flex-row items-center justify-between">
+    <Card className="bg-white/20 backdrop-blur-md border border-white/30 shadow-sm w-full transition-all duration-300 hover:bg-white/30 hover:shadow-lg">
+      <div className="flex h-full flex-row items-center justify-between p-4 sm:p-5">
         <div>
-          <CardHeader className="pb-1">
-            <div className="my-0 flex flex-row items-center">
+          <CardHeader className="p-0 pb-2 border-b border-white/30">
+            <div className="flex flex-row items-center">
               <CardTitle className="mb-0">
                 <a
                   href={props.url}
-                  className="text-xl font-semibold md:text-2xl flex flex-row items-center text-indigo-900 hover:text-pink-900" // Updated text color
+                  className="text-xl sm:text-2xl font-bold flex flex-row items-center text-gray-800 hover:text-gray-600 focus:text-gray-600 transition-colors duration-200"
                   target="_blank"
                   rel="noopener noreferrer"
                 >
                   <Github
-                    className="hidden md:block mr-2"
-                    color="indigo"
+                    className="hidden md:block mr-2 h-5 w-5"
+                    color="#4B5563"
+                    aria-hidden="true"
                   />
                   {props.name}
                 </a>
               </CardTitle>
             </div>
-            <div className="flex flex-row items-center">
+            <div className="flex flex-row items-center mt-1">
               {props.maintainerUsernames.map((username, index) => (
                 <a
                   href={`https://www.github.com/${username}`}
                   key={username}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-green-300 hover:text-amber-100"
+                  className="text-gray-700 hover:text-gray-500 focus:text-gray-500 transition-colors duration-200"
                 >
                   <span
                     key={username}
@@ -53,36 +53,35 @@ const RepoCard = (props: ReposData) => {
               ))}
             </div>
           </CardHeader>
-          <CardDescription className="mt-0 ml-6 text-indigo-950">
+          <CardDescription className="mt-2 text-gray-700 text-sm sm:text-base">
             {props.description}
           </CardDescription>
-          <div className="mx-6 mt-3 mb-5 flex flex-row flex-wrap items-center gap-2">
+          <div className="mt-4 flex flex-row flex-wrap items-center gap-3 border-t border-white/30 pt-3">
             {props.tech.map((techname) => (
               <Badge
                 key={techname}
                 variant="outline"
-                className="flex items-center px-2 py-1 text-sm bg-[#5decffd3] border-white/30"
+                className="flex items-center px-3 py-1.5 text-sm sm:text-sm bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 focus:bg-white/50 transition-all duration-200"
               >
                 <img
                   className="mr-2"
                   src={`/icons/${techname.toLowerCase()}.svg`}
                   alt={techname}
-                  width={16}
-                  height={16}
+                  width={18}
+                  height={18}
+                  aria-hidden="true"
                 />
-                <span className="text-indigo-600">{techname}</span>{' '}
-                {/* Updated badge text color */}
+                <span>{techname}</span>
               </Badge>
             ))}
           </div>
         </div>
 
-        {/* The right arrow head */}
-        <div className="mr-4 cursor-pointer rounded-full p-2 hover:bg-white/10">
-          {' '}
-          {/* Updated hover background */}
-          <ChevronRight className="h-6 w-6 text-white" />{' '}
-          {/* Updated icon color */}
+        <div className="ml-4 cursor-pointer rounded-full p-2 hover:bg-white/40 focus:bg-white/40 transition-colors duration-200">
+          <ChevronRight
+            className="h-6 w-6 text-gray-600"
+            aria-hidden="true"
+          />
         </div>
       </div>
     </Card>

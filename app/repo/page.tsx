@@ -17,6 +17,9 @@ import {
   XCircle,
 } from 'lucide-react';
 import React, { useEffect, useState, useMemo } from 'react';
+import Navbar from '../components/Navbar';
+import Cloud from '../components/dashboard-components/Cloud';
+import SunGlareEffect from '../components/dashboard-components/SunGlareEffect';
 import IssueCard from '../components/repo-components/IssueCard';
 import RepoCard from '../components/repo-components/RepoCard';
 import { Badge } from '../components/ui/badge';
@@ -59,7 +62,6 @@ const ReposPage = () => {
 
   const handleRepoSelect = (repoId: string) => {
     setSelectedRepoId(repoId);
-    // For mobile view, switch to issues tab after selection
     if (window.innerWidth < 768) {
       setActiveTab('issues');
     }
@@ -72,13 +74,11 @@ const ReposPage = () => {
     }
   };
 
-  // Filter and sort issues - moved to useMemo for performance
   const filteredIssues = useMemo(() => {
     if (!selectedRepo?.Issues) return [];
 
     let filtered = [...selectedRepo.Issues];
 
-    // Apply filters
     switch (issueFilter) {
       case 'claimed':
         filtered = filtered.filter((issue) => issue.isClaimed);
@@ -94,7 +94,6 @@ const ReposPage = () => {
         break;
     }
 
-    // Apply search
     if (searchTerm.trim()) {
       const lowerSearchTerm = searchTerm.toLowerCase();
       filtered = filtered.filter(
@@ -106,7 +105,6 @@ const ReposPage = () => {
       );
     }
 
-    // Apply sorting
     switch (issueSort) {
       case 'bounty-high':
         filtered.sort((a, b) => {
@@ -145,7 +143,6 @@ const ReposPage = () => {
     return filtered;
   }, [selectedRepo, issueFilter, searchTerm, issueSort]);
 
-  // Create filter badge text
   const filterBadgeText = useMemo(() => {
     switch (issueFilter) {
       case 'claimed':
@@ -161,7 +158,6 @@ const ReposPage = () => {
     }
   }, [issueFilter]);
 
-  // Create sort badge text
   const sortBadgeText = useMemo(() => {
     switch (issueSort) {
       case 'bounty-high':
@@ -177,7 +173,6 @@ const ReposPage = () => {
     }
   }, [issueSort]);
 
-  // Check if filters are applied
   const hasActiveFilters =
     issueFilter !== 'all' || searchTerm || issueSort !== 'newest';
 
@@ -187,7 +182,6 @@ const ReposPage = () => {
     setIssueSort('newest');
   };
 
-  // Enhanced Filter and Sort Menu Components
   const FilterMenu = () => (
     <DropdownMenu>
       <DropdownMenuTrigger asChild>
@@ -195,78 +189,80 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="border-gray-600 bg-gray-800 text-gray-200 hover:bg-gray-800 hover:border-blue-400 hover:text-gray-200"
+          className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
         >
-          <Filter className="mr-1 h-4 w-4 text-blue-400" />
+          <Filter className="mr-1 h-4 w-4 text-gray-600" />
           <span>Filter</span>
           {issueFilter !== 'all' && (
-            <Badge className="ml-2 bg-blue-600 text-white">1</Badge>
+            <Badge className="ml-2 bg-gray-200 text-gray-800 border-white/30">
+              1
+            </Badge>
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="border-gray-600 bg-gray-800 text-gray-200">
-        <DropdownMenuLabel className="text-blue-400">
+      <DropdownMenuContent className="bg-white/20 border-white/30 backdrop-blur-md text-gray-800">
+        <DropdownMenuLabel className="text-gray-700">
           Filter Issues
         </DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-gray-600" />
+        <DropdownMenuSeparator className="bg-white/30" />
         <DropdownMenuItem
           onClick={() => setIssueFilter('all')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueFilter === 'all' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueFilter === 'all' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">All Issues</span>
+          <span className="text-gray-800">All Issues</span>
           {issueFilter === 'all' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueFilter('claimed')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueFilter === 'claimed' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueFilter === 'claimed' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">Claimed</span>
+          <span className="text-gray-800">Claimed</span>
           {issueFilter === 'claimed' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueFilter('unclaimed')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueFilter === 'unclaimed' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueFilter === 'unclaimed' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">Unclaimed</span>
+          <span className="text-gray-800">Unclaimed</span>
           {issueFilter === 'unclaimed' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueFilter('completed')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueFilter === 'completed' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueFilter === 'completed' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">Completed</span>
+          <span className="text-gray-800">Completed</span>
           {issueFilter === 'completed' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueFilter('active')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueFilter === 'active' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueFilter === 'active' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">Active</span>
+          <span className="text-gray-800">Active</span>
           {issueFilter === 'active' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-blue-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
       </DropdownMenuContent>
@@ -280,86 +276,86 @@ const ReposPage = () => {
           variant="outline"
           size="sm"
           type="button"
-          className="border-gray-600 bg-gray-800 text-gray-200 hover:bg-gray-800 hover:border-purple-600 hover:text-gray-200"
+          className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:border-white/50 hover:text-gray-700"
         >
-          <SortAsc className="mr-1 h-4 w-4 text-purple-400" />
+          <SortAsc className="mr-1 h-4 w-4 text-gray-600" />
           <span>Sort</span>
           {issueSort !== 'newest' && (
-            <Badge className="ml-2 bg-purple-600 text-white">1</Badge>
+            <Badge className="ml-2 bg-gray-200 text-gray-800 border-white/30">
+              1
+            </Badge>
           )}
         </Button>
       </DropdownMenuTrigger>
-      <DropdownMenuContent className="border-gray-600 bg-gray-800 text-gray-200">
-        <DropdownMenuLabel className="text-gray-300">
+      <DropdownMenuContent className="bg-white/20 border-white/30 backdrop-blur-md text-gray-800">
+        <DropdownMenuLabel className="text-gray-700">
           Sort Issues
         </DropdownMenuLabel>
-        <DropdownMenuSeparator className="bg-gray-600" />
+        <DropdownMenuSeparator className="bg-white/30" />
         <DropdownMenuItem
           onClick={() => setIssueSort('newest')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueSort === 'newest' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueSort === 'newest' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">Newest First</span>
+          <span className="text-gray-800">Newest First</span>
           {issueSort === 'newest' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-purple-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueSort('oldest')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueSort === 'oldest' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueSort === 'oldest' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-gray-200">Oldest First</span>
+          <span className="text-gray-800">Oldest First</span>
           {issueSort === 'oldest' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-purple-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueSort('bounty-high')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueSort === 'bounty-high' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueSort === 'bounty-high' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-amber-300">Bounty: High to Low</span>
+          <span className="text-gray-800">Bounty: High to Low</span>
           {issueSort === 'bounty-high' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-purple-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
         <DropdownMenuItem
           onClick={() => setIssueSort('bounty-low')}
           className={cn(
-            'cursor-pointer hover:bg-gray-500 data-[highlighted]:bg-gray-500',
-            issueSort === 'bounty-low' && 'bg-gray-700 font-medium',
+            'cursor-pointer hover:bg-white/40 data-[highlighted]:bg-white/40',
+            issueSort === 'bounty-low' && 'bg-white/50 font-medium',
           )}
         >
-          <span className="text-amber-300">Bounty: Low to High</span>
+          <span className="text-gray-800">Bounty: Low to High</span>
           {issueSort === 'bounty-low' && (
-            <CheckSquare className="ml-2 h-4 w-4 text-purple-400" />
+            <CheckSquare className="ml-2 h-4 w-4 text-gray-600" />
           )}
         </DropdownMenuItem>
       </DropdownMenuContent>
     </DropdownMenu>
   );
 
-  // Desktop view layout
   const desktopView = (
     <div className="flex flex-col gap-6 md:flex-row">
-      {/* Repo List */}
-      <div className="w-full flex-shrink-0 rounded-lg bg-blue-300/30 backdrop-blur-md p-4 shadow-lg md:w-1/2 lg:w-5/12">
-        <h2 className="mb-3 flex items-center border-gray-700 border-b pb-2 font-semibold text-2xl text-white">
+      <div className="w-full flex-shrink-0 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-5/12">
+        <h2 className="mb-3 flex items-center border-b border-white/50 pb-2 font-semibold text-2xl text-gray-800">
           <GitBranch
             className="mr-2 h-6 w-6"
-            color="white"
+            color="#4B5563"
           />
           Repositories{' '}
-          <span className="ml-2 text-white">({repositories.length})</span>
+          <span className="ml-2 text-gray-700">({repositories.length})</span>
         </h2>
-        <div className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 h-[70vh] overflow-y-auto">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[70vh] overflow-y-autorounded-lg p-2">
           <div className="space-y-3">
             {repositories.map((repo) => (
               <button
@@ -379,26 +375,25 @@ const ReposPage = () => {
             ))}
             {repositories.length === 0 && (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <GitBranch className="mb-2 h-10 w-10 text-gray-500" />
-                <p className="text-gray-400">No repositories loaded.</p>
+                <GitBranch className="mb-2 h-10 w-10 text-gray-600" />
+                <p className="text-gray-600">No repositories loaded.</p>
               </div>
             )}
           </div>
         </div>
       </div>
 
-      {/* Issues List */}
-      <div className="w-full rounded-lg bg-blue-300/30 backdrop-blur-md p-4 shadow-lg md:w-1/2 lg:w-7/12">
-        <div className="mb-3 flex items-center justify-between border-gray-700 border-b pb-2">
-          <h2 className="flex items-center font-semibold text-2xl text-white">
+      <div className="w-full rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12">
+        <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2">
+          <h2 className="flex items-center font-semibold text-2xl text-gray-800">
             <Code
               className="mr-2 h-6 w-6"
-              color="white"
+              color="#4B5563"
             />
             Issues
             {selectedRepo && (
-              <span className="ml-2 text-lg text-white/80">
-                - &nbsp;{selectedRepo.name}
+              <span className="ml-2 text-lg text-gray-700">
+                - {selectedRepo.name}
               </span>
             )}
           </h2>
@@ -408,7 +403,7 @@ const ReposPage = () => {
               size="sm"
               type="button"
               onClick={clearSelection}
-              className="border border-gray-200 text-white transition-colors hover:bg-blue-400 hover:text-red-900"
+              className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:text-gray-600"
             >
               <XCircle className="mr-1 h-4 w-4" /> Clear
             </Button>
@@ -416,14 +411,14 @@ const ReposPage = () => {
         </div>
 
         {selectedRepo && (
-          <div className="mb-4 flex flex-wrap items-center gap-2">
+          <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg p-3">
             <div className="relative max-w-md flex-grow">
-              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-500" />
+              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
               <Input
                 placeholder="Search issues..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-gray-700 bg-gray-800 pl-8 text-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
               />
               {searchTerm && (
                 <button
@@ -432,7 +427,7 @@ const ReposPage = () => {
                   onClick={() => setSearchTerm('')}
                   aria-label="Clear search"
                 >
-                  <X className="h-4 w-4 text-gray-500 transition-colors hover:text-red-400" />
+                  <X className="h-4 w-4 text-gray-600 hover:text-gray-500" />
                 </button>
               )}
             </div>
@@ -446,7 +441,7 @@ const ReposPage = () => {
                 size="sm"
                 type="button"
                 onClick={resetFilters}
-                className="border border-gray-700 text-gray-300 hover:text-red-400"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:text-gray-600"
               >
                 <X className="mr-1 h-4 w-4" /> Reset
               </Button>
@@ -455,11 +450,11 @@ const ReposPage = () => {
         )}
 
         {selectedRepo && hasActiveFilters && (
-          <div className="mb-4 flex flex-wrap gap-2">
+          <div className="mb-4 flex flex-wrap gap-2 rounded-lg p-3">
             {issueFilter !== 'all' && (
               <Badge
                 variant="outline"
-                className="border-blue-600 bg-gray-800 text-blue-300"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800"
               >
                 <Filter className="mr-1 h-3 w-3" /> {filterBadgeText}
               </Badge>
@@ -467,7 +462,7 @@ const ReposPage = () => {
             {issueSort !== 'newest' && (
               <Badge
                 variant="outline"
-                className="border-purple-600 bg-gray-800 text-purple-300"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800"
               >
                 <SortAsc className="mr-1 h-3 w-3" /> {sortBadgeText}
               </Badge>
@@ -475,7 +470,7 @@ const ReposPage = () => {
             {searchTerm && (
               <Badge
                 variant="outline"
-                className="border-green-600 bg-gray-800 text-green-300"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800"
               >
                 <Search className="mr-1 h-3 w-3" /> "{searchTerm}"
               </Badge>
@@ -483,7 +478,7 @@ const ReposPage = () => {
           </div>
         )}
 
-        <div className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 h-[calc(70vh-100px)] overflow-y-auto pr-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[calc(70vh-100px)] overflow-y-auto rounded-lg p-2">
           {selectedRepo ? (
             filteredIssues.length > 0 ? (
               <div className="space-y-4">
@@ -498,8 +493,8 @@ const ReposPage = () => {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <Search className="mb-2 h-10 w-10 text-gray-500" />
-                <p className="text-gray-400">
+                <Search className="mb-2 h-10 w-10 text-gray-600" />
+                <p className="text-gray-600">
                   No issues found matching your criteria.
                 </p>
                 {hasActiveFilters && (
@@ -507,7 +502,7 @@ const ReposPage = () => {
                     variant="link"
                     type="button"
                     onClick={resetFilters}
-                    className="mt-2 text-blue-400 hover:text-blue-300"
+                    className="mt-2 text-gray-700 hover:text-gray-500"
                   >
                     Clear all filters
                   </Button>
@@ -515,9 +510,9 @@ const ReposPage = () => {
               </div>
             )
           ) : (
-            <div className="flex h-40 flex-col items-center justify-center rounded-lg border-2 border-gray-700 border-dashed bg-gray-800/50">
-              <Code className="mb-2 h-8 w-8 text-gray-500" />
-              <p className="text-gray-500 text-sm sm:text-base">
+            <div className="flex h-40 flex-col items-center justify-center rounded-lg border-2 border-white/30 border-dashed bg-white/10">
+              <Code className="mb-2 h-8 w-8 text-gray-600" />
+              <p className="text-gray-600 text-sm sm:text-base">
                 Select a repository to view its issues
               </p>
             </div>
@@ -527,7 +522,6 @@ const ReposPage = () => {
     </div>
   );
 
-  // Mobile view layout using tabs
   const mobileView = (
     <Tabs
       value={activeTab}
@@ -536,12 +530,12 @@ const ReposPage = () => {
       }
       className="md:hidden"
     >
-      <TabsList className="grid w-full grid-cols-2 bg-gray-800 p-1">
+      <TabsList className="grid w-full grid-cols-2 bg-white/20 backdrop-blur-md p-1 border border-white/30">
         <TabsTrigger
           value="repositories"
           className={cn(
-            'data-[state=active]:bg-gray-700 data-[state=active]:text-blue-400',
-            'data-[state=inactive]:text-gray-400 data-[state=inactive]:hover:text-gray-200',
+            'data-[state=active]:bg-white/40 data-[state=active]:text-gray-800',
+            'data-[state=inactive]:text-gray-600 data-[state=inactive]:hover:text-gray-500',
           )}
         >
           <GitBranch className="mr-2 h-4 w-4" /> Repositories
@@ -549,8 +543,8 @@ const ReposPage = () => {
         <TabsTrigger
           value="issues"
           className={cn(
-            'data-[state=active]:bg-gray-700 data-[state=active]:text-purple-400',
-            'data-[state=inactive]:text-gray-400 data-[state=inactive]:hover:text-gray-200',
+            'data-[state=active]:bg-white/40 data-[state=active]:text-gray-800',
+            'data-[state=inactive]:text-gray-600 data-[state=inactive]:hover:text-gray-500',
           )}
         >
           <Code className="mr-2 h-4 w-4" /> Issues
@@ -559,14 +553,14 @@ const ReposPage = () => {
 
       <TabsContent
         value="repositories"
-        className="mt-4 rounded-lg bg-gray-900 p-4 shadow-lg"
+        className="mt-4 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
       >
-        <h2 className="mb-3 flex items-center border-gray-700 border-b pb-2 font-semibold text-2xl text-gray-200">
-          <GitBranch className="mr-2 h-6 w-6 text-blue-400" />
+        <h2 className="mb-3 flex items-center border-b border-white/50 pb-2 font-semibold text-xl sm:text-2xl text-gray-800">
+          <GitBranch className="mr-2 h-6 w-6 text-gray-600" />
           Repositories{' '}
-          <span className="ml-2 text-blue-400">({repositories.length})</span>
+          <span className="ml-2 text-gray-700">({repositories.length})</span>
         </h2>
-        <div className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 h-[70vh] overflow-y-auto pr-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[70vh] overflow-y-auto rounded-lg p-2">
           <div className="space-y-3">
             {repositories.map((repo) => (
               <button
@@ -580,10 +574,10 @@ const ReposPage = () => {
                 }}
                 aria-pressed={selectedRepoId === repo.id}
                 className={cn(
-                  'cursor-pointer rounded-lg transition-all duration-200 hover:translate-y-[-2px] hover:shadow-md',
+                  'cursor-pointer rounded-lg transition-all duration-200 hover:translate-y-[-2px] hover:shadow-md w-full',
                   selectedRepoId === repo.id
-                    ? 'bg-gray-800 ring-2 ring-blue-500'
-                    : 'hover:ring-1 hover:ring-blue-400',
+                    ? 'ring-2 ring-gray-500'
+                    : 'hover:ring-1 hover:ring-gray-400',
                 )}
               >
                 <RepoCard {...repo} />
@@ -591,8 +585,8 @@ const ReposPage = () => {
             ))}
             {repositories.length === 0 && (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <GitBranch className="mb-2 h-10 w-10 text-gray-500" />
-                <p className="text-gray-400">No repositories loaded.</p>
+                <GitBranch className="mb-2 h-10 w-10 text-gray-600" />
+                <p className="text-gray-600">No repositories loaded.</p>
               </div>
             )}
           </div>
@@ -601,14 +595,14 @@ const ReposPage = () => {
 
       <TabsContent
         value="issues"
-        className="mt-4 rounded-lg bg-gray-900 p-4 shadow-lg"
+        className="mt-4 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg"
       >
-        <div className="mb-3 flex items-center justify-between border-gray-700 border-b pb-2">
-          <h2 className="flex items-center font-semibold text-2xl text-gray-200">
-            <Code className="mr-2 h-6 w-6 text-purple-400" />
+        <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2">
+          <h2 className="flex items-center font-semibold text-xl sm:text-2xl text-gray-800">
+            <Code className="mr-2 h-6 w-6 text-gray-600" />
             Issues
             {selectedRepo && (
-              <span className="ml-2 text-lg text-purple-400">
+              <span className="ml-2 text-lg text-gray-700">
                 ({selectedRepo.name})
               </span>
             )}
@@ -619,7 +613,7 @@ const ReposPage = () => {
               size="sm"
               type="button"
               onClick={clearSelection}
-              className="border border-gray-700 text-gray-300 hover:bg-gray-800 hover:text-red-400"
+              className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:bg-white/50 hover:text-gray-600"
             >
               <XCircle className="mr-1 h-4 w-4" /> Clear
             </Button>
@@ -627,14 +621,14 @@ const ReposPage = () => {
         </div>
 
         {selectedRepo && (
-          <div className="mb-4 space-y-3">
+          <div className="mb-4 space-y-3  rounded-lg p-3">
             <div className="relative">
-              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-500" />
+              <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
               <Input
                 placeholder="Search issues..."
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="border-gray-700 bg-gray-800 pl-8 text-gray-200 focus:border-blue-500 focus:ring-1 focus:ring-blue-500"
+                className="bg-white/40 border-white/40 backdrop-blur-sm pl-8 text-gray-800 focus:border-gray-500 focus:ring-1 focus:ring-gray-500"
               />
               {searchTerm && (
                 <button
@@ -643,12 +637,12 @@ const ReposPage = () => {
                   onClick={() => setSearchTerm('')}
                   aria-label="Clear search"
                 >
-                  <X className="h-4 w-4 text-gray-500 transition-colors hover:text-red-400" />
+                  <X className="h-4 w-4 text-gray-600 hover:text-gray-500" />
                 </button>
               )}
             </div>
 
-            <div className="flex justify-between gap-2">
+            <div className="flex flex-wrap gap-2">
               <FilterMenu />
               <SortMenu />
               {hasActiveFilters && (
@@ -657,7 +651,7 @@ const ReposPage = () => {
                   size="sm"
                   type="button"
                   onClick={resetFilters}
-                  className="border border-gray-700 text-gray-300 hover:text-red-400"
+                  className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800 hover:text-gray-600"
                 >
                   <X className="mr-1 h-4 w-4" /> Reset
                 </Button>
@@ -667,11 +661,11 @@ const ReposPage = () => {
         )}
 
         {selectedRepo && hasActiveFilters && (
-          <div className="mb-4 flex flex-wrap gap-2">
+          <div className="mb-4 flex flex-wrap gap-2 rounded-lg p-3">
             {issueFilter !== 'all' && (
               <Badge
                 variant="outline"
-                className="border-blue-600 bg-gray-800 text-blue-300"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800"
               >
                 <Filter className="mr-1 h-3 w-3" /> {filterBadgeText}
               </Badge>
@@ -679,7 +673,7 @@ const ReposPage = () => {
             {issueSort !== 'newest' && (
               <Badge
                 variant="outline"
-                className="border-purple-600 bg-gray-800 text-purple-300"
+                className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800"
               >
                 <SortAsc className="mr-1 h-3 w-3" /> {sortBadgeText}
               </Badge>
@@ -687,7 +681,7 @@ const ReposPage = () => {
             {searchTerm && (
               <Badge
                 variant="outline"
-                className="max-w-xs truncate border-green-600 bg-gray-800 text-green-300"
+                className="max-w-xs truncate bg-white/40 border-white/40 backdrop-blur-sm text-gray-800"
               >
                 <Search className="mr-1 h-3 w-3" /> "{searchTerm}"
               </Badge>
@@ -695,7 +689,7 @@ const ReposPage = () => {
           </div>
         )}
 
-        <div className="scrollbar-thin scrollbar-thumb-gray-700 scrollbar-track-gray-900 h-[calc(70vh-150px)] overflow-y-auto pr-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[calc(70vh-150px)] overflow-y-auto rounded-lg p-2">
           {selectedRepo ? (
             filteredIssues.length > 0 ? (
               <div className="space-y-4">
@@ -710,8 +704,8 @@ const ReposPage = () => {
               </div>
             ) : (
               <div className="flex flex-col items-center justify-center py-10 text-center">
-                <Search className="mb-2 h-10 w-10 text-gray-500" />
-                <p className="text-gray-400">
+                <Search className="mb-2 h-10 w-10 text-gray-600" />
+                <p className="text-gray-600">
                   No issues found matching your criteria.
                 </p>
                 {hasActiveFilters && (
@@ -719,7 +713,7 @@ const ReposPage = () => {
                     variant="link"
                     type="button"
                     onClick={resetFilters}
-                    className="mt-2 text-blue-400 hover:text-blue-300"
+                    className="mt-2 text-gray-700 hover:text-gray-500"
                   >
                     Clear all filters
                   </Button>
@@ -727,9 +721,9 @@ const ReposPage = () => {
               </div>
             )
           ) : (
-            <div className="flex h-40 flex-col items-center justify-center rounded-lg border-2 border-gray-700 border-dashed bg-gray-800/50">
-              <Code className="mb-2 h-8 w-8 text-gray-500" />
-              <p className="text-gray-500 text-sm sm:text-base">
+            <div className="flex h-40 flex-col items-center justify-center rounded-lg border-2 border-white/30 border-dashed bg-white/10">
+              <Code className="mb-2 h-8 w-8 text-gray-600" />
+              <p className="text-gray-600 text-sm sm:text-base">
                 Select a repository to view its issues
               </p>
             </div>
@@ -740,26 +734,33 @@ const ReposPage = () => {
   );
 
   return (
-    <div className="container mx-auto mt-4 p-6">
-      {/* Header Section with improved visuals */}
-      <div className="mb-6 rounded-lg bg-blue-300/30 backdrop-blur-md p-6 shadow-lg">
-        <h1 className="mb-2 bg-clip-text font-bold text-4xl text-white sm:text-6xl">
-          Repositories & Issues
-        </h1>
-        <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between">
-          <p className="max-w-3xl text-gray-300 text-md">
-            Explore repositories on the left. Select one to view its issues on
-            the right.
-          </p>
-          <div className="mt-3 md:mt-0">
-            <Badge className="bg-blue-600">Season of Code</Badge>
+    <div>
+      <SunGlareEffect />
+      <Cloud />
+
+      <div className="z-20 h-[80px] shrink-0">
+        <Navbar />
+      </div>
+      <div className="container mx-auto mt-4 p-4 sm:p-6 bg-cover bg-center min-h-screen rounded-lg">
+        <div className="mb-6 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-6 shadow-lg">
+          <h1 className="mb-2 font-bold text-3xl sm:text-4xl md:text-5xl text-gray-800">
+            Repositories & Issues
+          </h1>
+          <div className="flex flex-col items-start md:flex-row md:items-center md:justify-between">
+            <p className="max-w-3xl text-gray-700 text-sm sm:text-md">
+              Explore repositories on the left. Select one to view its issues on
+              the right.
+            </p>
+            <div className="mt-3 md:mt-0">
+              <Badge className="bg-white/40 border-white/40 backdrop-blur-sm text-gray-800">
+                Season of Code
+              </Badge>
+            </div>
           </div>
         </div>
+        <div className="hidden md:block">{desktopView}</div>
+        <div className="md:hidden">{mobileView}</div>
       </div>
-
-      {/* Responsive Layout */}
-      <div className="hidden md:block">{desktopView}</div>
-      <div className="md:hidden">{mobileView}</div>
     </div>
   );
 };
