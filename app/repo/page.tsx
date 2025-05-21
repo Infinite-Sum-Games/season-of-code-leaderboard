@@ -344,9 +344,9 @@ const ReposPage = () => {
   );
 
   const desktopView = (
-    <div className="flex flex-col gap-6 md:flex-row">
-      <div className="w-full flex-shrink-0 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-5/12">
-        <h2 className="mb-3 flex items-center border-b border-white/50 pb-2 font-semibold text-2xl text-gray-800">
+    <div className="flex flex-col gap-6 md:flex-row h-full">
+      <div className="w-full flex-shrink-0 rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-5/12 flex flex-col">
+        <h2 className="mb-3 flex items-center border-b border-white/50 pb-2 font-semibold text-2xl text-gray-800 shrink-0">
           <GitBranch
             className="mr-2 h-6 w-6"
             color="#4B5563"
@@ -354,7 +354,7 @@ const ReposPage = () => {
           Repositories{' '}
           <span className="ml-2 text-gray-700">({repositories.length})</span>
         </h2>
-        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[70vh] overflow-y-auto rounded-lg p-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent flex-1 min-h-0 overflow-y-auto rounded-lg p-2">
           <div className="space-y-3">
             {repositories.map((repo) => (
               <button
@@ -382,8 +382,8 @@ const ReposPage = () => {
         </div>
       </div>
 
-      <div className="w-full rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12">
-        <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2">
+      <div className="w-full rounded-lg bg-white/20 backdrop-blur-md border border-white/30 p-4 sm:p-5 shadow-lg md:w-1/2 lg:w-7/12 flex flex-col">
+        <div className="mb-3 flex items-center justify-between border-b border-white/50 pb-2 shrink-0">
           <h2 className="flex items-center font-semibold text-2xl text-gray-800">
             <Code
               className="mr-2 h-6 w-6"
@@ -410,7 +410,7 @@ const ReposPage = () => {
         </div>
 
         {selectedRepo && (
-          <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg p-3">
+          <div className="mb-4 flex flex-wrap items-center gap-2 rounded-lg p-3 shrink-0">
             <div className="relative max-w-md flex-grow">
               <Search className="absolute top-2.5 left-2 h-4 w-4 text-gray-600" />
               <Input
@@ -449,7 +449,7 @@ const ReposPage = () => {
         )}
 
         {selectedRepo && hasActiveFilters && (
-          <div className="mb-4 flex flex-wrap gap-2 rounded-lg p-3">
+          <div className="mb-4 flex flex-wrap gap-2 rounded-lg p-3 shrink-0">
             {issueFilter !== 'all' && (
               <Badge
                 variant="outline"
@@ -477,7 +477,7 @@ const ReposPage = () => {
           </div>
         )}
 
-        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent h-[calc(70vh-100px)] overflow-y-auto rounded-lg p-2">
+        <div className="scrollbar-thin scrollbar-thumb-gray-500 scrollbar-track-transparent flex-1 min-h-0 overflow-y-auto rounded-lg p-2">
           {selectedRepo ? (
             filteredIssues.length > 0 ? (
               <div className="space-y-4">
@@ -733,15 +733,17 @@ const ReposPage = () => {
   );
 
   return (
-    <div>
+    <div className="relative flex w-full flex-col min-h-screen md:h-screen md:overflow-hidden">
       <SunGlareEffect />
       <Cloud />
 
       <div className="z-20 h-[80px] shrink-0">
         <Navbar />
       </div>
-      <div className="container mx-auto mt-4 p-4 sm:p-6 bg-cover bg-center min-h-screen rounded-lg">
-        <div className="hidden md:block">{desktopView}</div>
+      <div className="w-full bg-cover bg-center rounded-lg flex flex-col flex-1 md:overflow-hidden px-6 py-4 md:px-18">
+        <div className="hidden md:block md:flex-1 md:min-h-0">
+          {desktopView}
+        </div>
         <div className="md:hidden">{mobileView}</div>
       </div>
     </div>
