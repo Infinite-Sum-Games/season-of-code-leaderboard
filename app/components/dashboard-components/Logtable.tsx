@@ -4,23 +4,23 @@ import type React from 'react';
 
 import { Activity, Bug, Clock, Sparkles, Trophy } from 'lucide-react';
 import { useEffect, useState } from 'react';
-import { Avatar, AvatarFallback, AvatarImage } from './ui/avatar';
-import { Badge } from './ui/badge';
+import { Avatar, AvatarFallback, AvatarImage } from '../ui/avatar';
+import { Badge } from '../ui/badge';
 import {
   Card,
   CardContent,
   CardFooter,
   CardHeader,
   CardTitle,
-} from './ui/card';
-import { ScrollArea } from './ui/scroll-area';
-import { Tabs, TabsList, TabsTrigger } from './ui/tabs';
+} from '../ui/card';
+import { ScrollArea } from '../ui/scroll-area';
+import { Tabs, TabsList, TabsTrigger } from '../ui/tabs';
 import {
   Tooltip,
   TooltipContent,
   TooltipProvider,
   TooltipTrigger,
-} from './ui/tooltip';
+} from '../ui/tooltip';
 
 type LogType = 'top3' | 'bounty' | 'issue';
 
@@ -182,17 +182,19 @@ export default function Logtable() {
                 >
                   <Activity className="h-5 w-5 text-blue-500" />
                 </div>
-                <CardTitle className="font-bold text-gray-800 text-xl">
-                  Live Activity
-                </CardTitle>
-                {newActivity && (
-                  <Badge
-                    variant="outline"
-                    className="animate-pulse bg-red-500/20 text-red-600"
-                  >
-                    New activity
-                  </Badge>
-                )}
+                <div className="flex flex-col items-start sm:flex-row sm:items-center sm:gap-2">
+                  <CardTitle className="font-bold text-gray-800 text-xl">
+                    Live Activity
+                  </CardTitle>
+                  {newActivity && (
+                    <Badge
+                      variant="outline"
+                      className="animate-pulse bg-red-500/20 text-red-600 text-xs mt-1 sm:mt-0 sm:text-sm"
+                    >
+                      New activity
+                    </Badge>
+                  )}
+                </div>
               </div>
               <div className="flex items-center gap-2">
                 <Badge
@@ -219,25 +221,25 @@ export default function Logtable() {
               <TabsList className="rounded-3xl bg-white/20 backdrop-blur-md">
                 <TabsTrigger
                   value="all"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   All
                 </TabsTrigger>
                 <TabsTrigger
                   value="top3"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   Top 3
                 </TabsTrigger>
                 <TabsTrigger
                   value="bounty"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   Bounty
                 </TabsTrigger>
                 <TabsTrigger
                   value="issue"
-                  className="rounded-3xl text-xs"
+                  className="rounded-3xl text-xs cursor-pointer"
                 >
                   Issue
                 </TabsTrigger>
