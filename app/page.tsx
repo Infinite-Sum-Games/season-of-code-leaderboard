@@ -1,5 +1,4 @@
 'use client';
-import { Separator } from '@/app/components/ui/separator';
 import Leaderboard from './components/dashboard-components/leaderboard';
 import './globals.css';
 import {
@@ -11,9 +10,9 @@ import {
 import { Github } from 'lucide-react';
 import { signIn } from 'next-auth/react';
 import { useSession } from 'next-auth/react';
+import { useRouter } from 'next/navigation';
 import Navbar from './components/Navbar';
 import Cloud from './components/dashboard-components/Cloud';
-// import Home from './components/dashboard-components/Home'; // Home component will be refactored or removed
 import Logtable from './components/dashboard-components/Logtable';
 import SunGlareEffect from './components/dashboard-components/SunGlareEffect';
 
@@ -21,12 +20,9 @@ const handleSignIn = async () => {
   await signIn('github');
 };
 
-const handleRegister = () => {
-  window.open('https://forms.office.com/r/xH6GzZZhzC', '_blank');
-};
-
 const Dashboard = () => {
   const { data: session } = useSession();
+  const router = useRouter();
 
   return (
     <div className="relative flex min-h-screen w-full flex-col overflow-x-hiddentext-white">
@@ -64,7 +60,7 @@ const Dashboard = () => {
             )}
             <button
               type="button"
-              onClick={handleRegister}
+              onClick={() => router.push('/register')}
               className="transform rounded-lg bg-yellow-400 px-6 py-2 text-sm font-medium sm:px-8 sm:py-3 sm:font-semibold text-gray-900 shadow-lg transition duration-300 ease-in-out hover:scale-105 hover:bg-yellow-300 focus:outline-none focus:ring-2 focus:ring-yellow-500 focus:ring-offset-2 focus:ring-offset-purple-600"
             >
               Register Now
