@@ -25,7 +25,7 @@ const Dashboard = () => {
   const router = useRouter();
 
   return (
-    <div className="relative flex min-h-screen w-full flex-col overflow-x-hiddentext-white">
+    <div className="relative flex min-h-screen w-full flex-col text-white">
       <SunGlareEffect />
       <Cloud />
 
@@ -34,20 +34,21 @@ const Dashboard = () => {
       </div>
 
       {/* Centered Content Wrapper - Now a two-column layout on medium screens and up */}
-      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-8 items-start py-12 md:py-0">
+      <div className="w-11/12 mx-auto grid grid-cols-1 md:grid-cols-[40%_minmax(0,1fr)] gap-8 items-start py-12 md:py-0 flex-grow">
         {/* Left Column: Hero Content */}
-        <div className="z-10 flex flex-col items-center md:items-start justify-center text-left py-0 md:py-12 md:h-[50vw]">
-          <h1 className="font-extrabold text-5xl tracking-tight sm:text-6xl md:text-7xl text-white">
+        <div className="z-10 flex flex-col items-center md:items-start justify-center text-left py-0 md:py-12 md:h-[calc(100vh-80px)]">
+          <h1 className="font-extrabold text-5xl tracking-tight sm:text-6xl md:text-5xl text-white">
             Amrita
           </h1>
-          <h1 className="mb-6 font-extrabold text-5xl tracking-tight sm:text-6xl md:text-7xl text-yellow-300">
+          <h1 className="mb-6 font-extrabold text-5xl tracking-tight sm:text-6xl md:text-5xl text-yellow-300">
             Summer of Code
           </h1>
-          <p className="mb-10 max-w-2xl text-lg text-gray-200 sm:text-xl md:text-2xl text-center md:text-left">
-            Join us for an exciting summer of coding, collaboration, and
-            innovation. Build amazing projects and showcase your skills!
+          <p className="mb-6 max-w-2xl text-lg text-gray-200 sm:text-xl md:text-xl text-center md:text-left">
+            After a successful Winter of Code, the ACM student chapter is back
+            with the <strong>Summer of Code</strong>. Collaborate, learn, build
+            innovative projects and showcase your skills!
           </p>
-          <div className="flex flex-col gap-4 sm:flex-row">
+          <div className="flex flex-row gap-4 sm:flex-row">
             {!session?.user && (
               <button
                 type="button"
@@ -69,36 +70,40 @@ const Dashboard = () => {
         </div>
 
         {/* Right Column: Tabs Section */}
-        <div className="relative z-10 flex w-full flex-1 flex-col items-center py-8 md:py-12">
+        <div className="relative z-10 flex w-full flex-1 flex-col items-center py-8 md:py-4 md:h-[calc(100vh-80px)]">
           <Tabs
             defaultValue="leaderboard"
-            className="w-full"
+            className="w-full flex flex-col h-full"
           >
-            <TabsList className="grid w-full grid-cols-2 bg-white/20 p-1 rounded-3xl backdrop-blur-sm mb-2">
+            <TabsList className="grid w-full grid-cols-2 bg-white/20 p-1 rounded-3xl backdrop-blur-sm mb-2 shrink-0">
               <TabsTrigger
                 value="live-activity"
-                className="py-2.5 text-sm font-bold text-white data-[state=active]:bg-white data-[state=active]:text-yellow-300 data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold text-white data-[state=active]:bg-white data-[state=active]:text-gray-800 data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
               >
                 Live Activity
               </TabsTrigger>
               <TabsTrigger
                 value="leaderboard"
-                className="py-2.5 text-sm font-bold text-white data-[state=active]:bg-white data-[state=active]:text-yellow-300 data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
+                className="py-2.5 text-sm font-bold text-white data-[state=active]:bg-white data-[state=active]:text-gray-800 data-[state=active]:shadow-md rounded-3xl transition-all cursor-pointer"
               >
                 Leaderboard
               </TabsTrigger>
             </TabsList>
-            <TabsContent value="live-activity">
+            <TabsContent
+              value="live-activity"
+              className="flex-grow overflow-y-auto"
+            >
               <Logtable />
             </TabsContent>
-            <TabsContent value="leaderboard">
+            <TabsContent
+              value="leaderboard"
+              className="flex-grow overflow-y-auto"
+            >
               <Leaderboard />
             </TabsContent>
           </Tabs>
         </div>
       </div>
-
-      {/* Removed Snowfall and old image section */}
     </div>
   );
 };

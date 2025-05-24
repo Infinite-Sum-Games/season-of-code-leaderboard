@@ -183,9 +183,9 @@ const Leaderboard = () => {
         Refresh the page to see real-time leaderboard updates.
       </CardDescription>
 
-      <div className="flex items-center rounded-3xl bg-white/20 px-3 py-2 font-medium text-gray-900 shadow-sm">
-        <div className="w-[70%] font-medium md:w-[50%] pl-2">Name</div>
-        <div className="w-[25%] text-center flex justify-center">
+      <div className="flex items-center rounded-xl bg-white/20 px-3 py-2 font-medium text-gray-900 shadow-sm">
+        <div className="flex-grow font-medium md:w-[50%] pl-2">Name</div>
+        <div className="w-[25%] text-center hidden md:flex justify-center">
           <button
             type="button"
             onClick={() => sortLeaderboard('PRs')}
@@ -195,7 +195,7 @@ const Leaderboard = () => {
             {getSortIcon('PRs')}
           </button>
         </div>
-        <div className="w-[30%] md:w-[25%] flex justify-end pr-1">
+        <div className="w-auto md:w-[25%] flex justify-end pr-1">
           <button
             type="button"
             onClick={() => sortLeaderboard('Bounty')}
@@ -216,9 +216,9 @@ const Leaderboard = () => {
           leaderboardData.map((data, index) => (
             <div
               key={data.username}
-              className="my-1 flex items-center rounded-3xl bg-white/10 px-3 py-2 text-gray-800 backdrop-blur-md"
+              className="my-1 flex items-center rounded-xl bg-white/10 px-3 py-2 text-gray-800 backdrop-blur-md"
             >
-              <div className="flex w-[70%] items-center gap-3 md:w-[50%]">
+              <div className="flex flex-grow items-center gap-3 md:w-[50%]">
                 <div className="relative">
                   <img
                     src={`https://github.com/${data.username}.png`}
@@ -234,8 +234,10 @@ const Leaderboard = () => {
                   <div className="text-gray-600 text-sm">@{data.username}</div>
                 </div>
               </div>
-              <div className="w-[25%] text-center">{+data._count.Solution}</div>
-              <div className="w-[30%] pr-1 text-right font-bold md:w-[25%]">
+              <div className="w-[25%] text-center hidden md:block">
+                {+data._count.Solution}
+              </div>
+              <div className="w-auto text-right md:w-[25%] pr-1 font-bold md:text-right">
                 {data.bounty}
               </div>
             </div>
