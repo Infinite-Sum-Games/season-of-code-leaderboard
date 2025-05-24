@@ -175,7 +175,7 @@ const Leaderboard = () => {
   };
 
   return (
-    <Card className="z-10 flex h-full w-full flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
+    <Card className="z-10 flex w-full max-h-full flex-col rounded-3xl border border-white/20 bg-white/35 p-4 backdrop-blur-md">
       <CardHeader className="pb-1 font-bold text-4xl text-gray-800">
         Leaderboard
       </CardHeader>

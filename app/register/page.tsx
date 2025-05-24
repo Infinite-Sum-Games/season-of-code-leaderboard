@@ -290,14 +290,14 @@ export default function RegisterPage() {
       <Cloud />
       <Navbar />
 
-      <div className="container mx-auto min-h-screen flex items-center justify-center">
-        <div className="max-w-4xl w-full">
-          <div className="flex flex-col overflow-hidden rounded-3xl border border-white/20 bg-white/30 p-4 sm:p-6 md:p-8 shadow-lg backdrop-blur-md">
-            <div className="mb-6 sm:mb-8 md:mb-12 flex items-center justify-between">
-              <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-800">
+      <div className="container mx-auto min-h-screen flex justify-center items-start md:items-center pt-[100px] md:pb-6 px-4 box-border">
+        <div className="max-w-4xl w-full max-h-full">
+          <div className="flex flex-col overflow-y-auto max-h-full rounded-2xl md:rounded-3xl border border-white/20 bg-white/40 p-4 sm:p-6 md:p-6 shadow-lg backdrop-blur-md">
+            <div className="mb-6 sm:mb-8 md:mb-4 flex items-center justify-between">
+              <h1 className="text-3xl sm:text-4xl md:text-4xl font-bold text-gray-800">
                 Amrita
                 <span className="mb-6 font-extrabold tracking-tight text-yellow-300 ml-1 sm:ml-2">
-                  Summer Of Code
+                  Summer of Code
                 </span>
               </h1>
             </div>
@@ -305,13 +305,13 @@ export default function RegisterPage() {
             {!showOtpInput ? (
               <form
                 onSubmit={onSubmit}
-                className="space-y-6 sm:space-y-8"
+                className="space-y-6 sm:space-y-8 md:space-y-6"
               >
-                <div className="grid gap-4 sm:gap-6 md:gap-8 md:grid-cols-2">
-                  <div className="space-y-2 sm:space-y-3">
+                <div className="grid gap-4 sm:gap-6 md:gap-6 md:grid-cols-2">
+                  <div className="space-y-2 sm:space-y-3 md:space-y-3">
                     <Label
                       htmlFor="email"
-                      className="text-base sm:text-lg font-medium text-gray-800"
+                      className="text-base sm:text-lg md:text-base font-medium text-gray-800"
                     >
                       Email
                     </Label>
@@ -323,24 +323,24 @@ export default function RegisterPage() {
                       value={formData.email}
                       onChange={handleInputChange}
                       onBlur={handleBlur}
-                      className="h-12 sm:h-14 text-base sm:text-lg bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
+                      className="h-12 sm:h-14 md:h-12 text-base sm:text-lg md:text-base bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl md:rounded-xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
                     />
-                    <p className="text-xs text-gray-500 italic font-bold mt-1">
+                    <p className="text-xs sm:text-sm md:text-xs text-gray-500 italic font-bold mt-1">
                       Only college email allowed (must end with{' '}
                       <span className="font-mono">@cb.students.amrita.edu</span>
                       ).
                     </p>
                     {touched.email && errors.email && (
-                      <p className="text-xs sm:text-sm text-red-500 mt-1">
+                      <p className="text-xs sm:text-sm md:text-xs text-red-500 mt-1">
                         {errors.email}
                       </p>
                     )}
                   </div>
 
-                  <div className="space-y-2 sm:space-y-3">
+                  <div className="space-y-2 sm:space-y-3 md:space-y-3">
                     <Label
                       htmlFor="github_username"
-                      className="text-base sm:text-lg font-medium text-gray-800"
+                      className="text-base sm:text-lg md:text-base font-medium text-gray-800"
                     >
                       GitHub Username
                     </Label>
@@ -351,9 +351,9 @@ export default function RegisterPage() {
                       value={formData.github_username}
                       onChange={handleInputChange}
                       onBlur={handleBlur}
-                      className="h-12 sm:h-14 text-base sm:text-lg bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
+                      className="h-12 sm:h-14 md:h-12 text-base sm:text-lg md:text-base bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl md:rounded-xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
                     />
-                    <p className="text-xs text-gray-500 italic font-bold mt-1">
+                    <p className="text-xs sm:text-sm md:text-xs text-gray-500 italic font-bold mt-1">
                       Enter only your GitHub username (not the URL).
                       <a
                         href="https://www.google.com/search?q=How+to+Find+Github+Username"
@@ -365,16 +365,16 @@ export default function RegisterPage() {
                       </a>
                     </p>
                     {touched.github_username && errors.github_username && (
-                      <p className="text-xs sm:text-sm text-red-500 mt-1">
+                      <p className="text-xs sm:text-sm md:text-xs text-red-500 mt-1">
                         {errors.github_username}
                       </p>
                     )}
                   </div>
 
-                  <div className="space-y-2 sm:space-y-3">
+                  <div className="space-y-2 sm:space-y-3 md:space-y-3">
                     <Label
                       htmlFor="first_name"
-                      className="text-base sm:text-lg font-medium text-gray-800"
+                      className="text-base sm:text-lg md:text-base font-medium text-gray-800"
                     >
                       First Name
                     </Label>
@@ -385,19 +385,19 @@ export default function RegisterPage() {
                       value={formData.first_name}
                       onChange={handleInputChange}
                       onBlur={handleBlur}
-                      className="h-12 sm:h-14 text-base sm:text-lg bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
+                      className="h-12 sm:h-14 md:h-12 text-base sm:text-lg md:text-base bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl md:rounded-xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
                     />
                     {touched.first_name && errors.first_name && (
-                      <p className="text-xs sm:text-sm text-red-500 mt-1">
+                      <p className="text-xs sm:text-sm md:text-xs text-red-500 mt-1">
                         {errors.first_name}
                       </p>
                     )}
                   </div>
 
-                  <div className="space-y-2 sm:space-y-3">
+                  <div className="space-y-2 sm:space-y-3 md:space-y-3">
                     <Label
                       htmlFor="middle_name"
-                      className="text-base sm:text-lg font-medium text-gray-800"
+                      className="text-base sm:text-lg md:text-base font-medium text-gray-800"
                     >
                       Middle Name (Optional)
                     </Label>
@@ -408,14 +408,14 @@ export default function RegisterPage() {
                       value={formData.middle_name}
                       onChange={handleInputChange}
                       onBlur={handleBlur}
-                      className="h-12 sm:h-14 text-base sm:text-lg bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
+                      className="h-12 sm:h-14 md:h-12 text-base sm:text-lg md:text-base bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl md:rounded-xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
                     />
                   </div>
 
-                  <div className="space-y-2 sm:space-y-3">
+                  <div className="space-y-2 sm:space-y-3 md:space-y-3">
                     <Label
                       htmlFor="last_name"
-                      className="text-base sm:text-lg font-medium text-gray-800"
+                      className="text-base sm:text-lg md:text-base font-medium text-gray-800"
                     >
                       Last Name
                     </Label>
@@ -426,10 +426,10 @@ export default function RegisterPage() {
                       value={formData.last_name}
                       onChange={handleInputChange}
                       onBlur={handleBlur}
-                      className="h-12 sm:h-14 text-base sm:text-lg bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
+                      className="h-12 sm:h-14 md:h-12 text-base sm:text-lg md:text-base bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl md:rounded-xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
                     />
                     {touched.last_name && errors.last_name && (
-                      <p className="text-xs sm:text-sm text-red-500 mt-1">
+                      <p className="text-xs sm:text-sm md:text-xs text-red-500 mt-1">
                         {errors.last_name}
                       </p>
                     )}
@@ -438,7 +438,7 @@ export default function RegisterPage() {
 
                 <Button
                   type="submit"
-                  className="group/button relative mt-6 sm:mt-8 flex w-full cursor-pointer items-center justify-center rounded-3xl bg-blue-500/50 px-4 py-6 sm:py-8 text-base sm:text-lg md:text-xl font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
+                  className="group/button relative mt-6 sm:mt-8 md:mt-6 flex w-full cursor-pointer items-center justify-center rounded-3xl bg-blue-500/50 px-4 py-6 sm:py-8 md:py-6 text-base sm:text-lg md:text-lg font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
                   disabled={isSubmitting}
                 >
                   {isSubmitting ? 'Loading...' : 'Register'}
@@ -447,9 +447,9 @@ export default function RegisterPage() {
             ) : (
               <form
                 onSubmit={onOtpSubmit}
-                className="space-y-6 sm:space-y-8"
+                className="space-y-6 sm:space-y-8 md:space-y-6"
               >
-                <div className="space-y-2 sm:space-y-3">
+                <div className="space-y-2 sm:space-y-3 md:space-y-3">
                   <p className="text-xs text-blue-700 font-bold italic mb-1">
                     OTP sent to{' '}
                     <span className="font-mono text-blue-900">
@@ -458,7 +458,7 @@ export default function RegisterPage() {
                   </p>
                   <Label
                     htmlFor="otp"
-                    className="text-base sm:text-lg font-medium text-gray-800"
+                    className="text-base sm:text-lg md:text-base font-medium text-gray-800"
                   >
                     Enter OTP
                   </Label>
@@ -469,11 +469,11 @@ export default function RegisterPage() {
                     value={otp}
                     onChange={(e) => setOtp(e.target.value)}
                     maxLength={6}
-                    className="h-12 sm:h-14 text-xl sm:text-2xl tracking-widest text-left bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
+                    className="h-12 sm:h-14 md:h-12 text-xl sm:text-2xl md:text-xl tracking-widest text-left bg-white/20 text-gray-800 border-white/30 placeholder:text-gray-500 rounded-2xl md:rounded-xl transition-all duration-200 hover:border-blue-500/50 focus:border-blue-500 focus:ring-blue-500"
                   />
                   <div className="flex items-center gap-2 mt-1">
                     {!canResendOtp && resendTimer > 0 && (
-                      <span className="text-xs text-gray-600 font-bold">
+                      <span className="text-xs md:text-xs text-gray-600 font-bold">
                         Resend in {Math.floor(resendTimer / 60)}:
                         {(resendTimer % 60).toString().padStart(2, '0')}
                       </span>
@@ -491,10 +491,10 @@ export default function RegisterPage() {
                   </div>
                 </div>
 
-                <div className="flex flex-col gap-3 sm:gap-4">
+                <div className="flex flex-col gap-3 sm:gap-4 md:gap-3">
                   <Button
                     type="submit"
-                    className="group/button relative flex w-full cursor-pointer items-center justify-center rounded-3xl bg-blue-500/50 px-4 py-6 sm:py-8 text-base sm:text-lg md:text-xl font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
+                    className="group/button relative flex w-full cursor-pointer items-center justify-center rounded-3xl bg-blue-500/50 px-4 py-6 sm:py-8 md:py-6 text-base sm:text-lg md:text-lg font-medium text-gray-900 shadow-sm transition-all duration-200 hover:bg-blue-500/70 hover:text-gray-800 hover:shadow-md"
                     disabled={isVerifying}
                   >
                     {isVerifying ? 'Loading...' : 'Verify OTP'}
